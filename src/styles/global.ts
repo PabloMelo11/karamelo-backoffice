@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { darken } from 'polished';
 
 export default createGlobalStyle`
   * {
@@ -11,8 +12,7 @@ export default createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     color: #FFF;
-    background: rgba(111,99,144,1);
-
+    background: ${darken(0.3, '#70658d')};
   }
 
   body, input, button {
