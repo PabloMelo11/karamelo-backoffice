@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { FiMail, FiLock } from 'react-icons/fi';
 import * as Yup from 'yup';
 
-import AuthContext from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -15,29 +15,42 @@ import getValidationErrors from '../../utils/getValidationsErrors';
 
 import { Container, Content, Background } from './styles';
 
+interface ISignInFormData {
+  name: string;
+  password: string;
+}
+
 const SingIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { name } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (data: ISignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('E-mail obrigatório')
-          .email('E-mail inválido'),
-        password: Yup.string().required('Senha obrigatória'),
-      });
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Usuário obrigatório'),
+          password: Yup.string().required('Senha obrigatória'),
+        });
 
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      const errors = getValidationErrors(err);
+        await schema.validate(data, { abortEarly: false });
 
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        const { name, password } = data;
+
+        signIn({
+          name,
+          password,
+        });
+      } catch (err) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [signIn],
+  );
 
   return (
     <Container>
@@ -47,7 +60,7 @@ const SingIn: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Faça seu logon</h1>
 
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
+          <Input name="name" icon={FiMail} placeholder="Usuário" />
           <Input
             name="password"
             icon={FiLock}
