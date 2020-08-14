@@ -1,10 +1,10 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { FiMail, FiLock } from 'react-icons/fi';
+import { FiUser, FiLock } from 'react-icons/fi';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Hooks/AuthContext';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -60,7 +60,7 @@ const SingIn: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Faça seu logon</h1>
 
-          <Input name="name" icon={FiMail} placeholder="Usuário" />
+          <Input name="name" icon={FiUser} placeholder="Usuário" />
           <Input
             name="password"
             icon={FiLock}
