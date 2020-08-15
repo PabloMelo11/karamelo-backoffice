@@ -4,7 +4,8 @@ import { Form } from '@unform/web';
 import { FiUser, FiLock } from 'react-icons/fi';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../Hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -24,6 +25,7 @@ const SingIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: ISignInFormData) => {
@@ -39,7 +41,7 @@ const SingIn: React.FC = () => {
 
         const { name, password } = data;
 
-        signIn({
+        await signIn({
           name,
           password,
         });
@@ -49,9 +51,11 @@ const SingIn: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         }
+
+        addToast();
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
