@@ -50,6 +50,8 @@ const SingIn: React.FC = () => {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+
+          return;
         }
 
         addToast({
@@ -80,7 +82,7 @@ const SingIn: React.FC = () => {
 
           <Button type="submit">Entrar</Button>
 
-          <a href="forgot">Esqueci minha senha</a>
+          {/* <a href="forgot">Esqueci minha senha</a> */}
         </Form>
       </Content>
       <Background />
