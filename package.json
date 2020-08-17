@@ -12,7 +12,8 @@
   "lint-staged": {
     "*.{tsx, ts}": [
       "eslint --fix",
-      "git add ."
+      "git add .",
+      "git push"
     ]
   },
   "dependencies": {
