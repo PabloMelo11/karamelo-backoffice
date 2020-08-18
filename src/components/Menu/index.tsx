@@ -3,6 +3,7 @@ import { FaColumns, FaBox, FaUsers, FaUser } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { MdDashboard, MdShoppingBasket, MdMenu } from 'react-icons/md';
 import { BsClipboardData } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 import {
   ProSidebar,
@@ -31,17 +32,48 @@ const MenuSideBar: React.FC = () => {
           <MdMenu size={28} color="#adadad" />
         </button>
       </SidebarHeader>
+
       <Menu iconShape="square">
-        <MenuItem icon={<FaColumns size={20} />}>Painel</MenuItem>
-        <MenuItem icon={<MdDashboard size={20} />}>Dashboard</MenuItem>
-        <MenuItem icon={<FaBox size={19} />}>Produtos</MenuItem>
+        <MenuItem icon={<FaColumns size={20} />}>
+          Painel
+          <Link to="/panels" />
+        </MenuItem>
+
+        <MenuItem icon={<MdDashboard size={20} />}>
+          Dashboard
+          <Link to="/dashboard" />
+        </MenuItem>
+
+        <MenuItem icon={<FaBox size={19} />}>
+          Produtos
+          <Link to="/products" />
+        </MenuItem>
+
         <SubMenu title="Pedidos" icon={<MdShoppingBasket size={20} />}>
-          <MenuItem>Catálogo</MenuItem>
-          <MenuItem>Carrinho</MenuItem>
+          <MenuItem>
+            Catálogo
+            <Link to="/catalog" />
+          </MenuItem>
+          <MenuItem>
+            Carrinho
+            <Link to="/cart" />
+          </MenuItem>
         </SubMenu>
-        <MenuItem icon={<FaUsers size={20} />}>Clientes</MenuItem>
-        <MenuItem icon={<FaUser />}>Usuários</MenuItem>
-        <MenuItem icon={<BsClipboardData size={20} />}>Relatórios</MenuItem>
+
+        <MenuItem icon={<FaUsers size={20} />}>
+          Clientes
+          <Link to="/customers" />
+        </MenuItem>
+
+        <MenuItem icon={<FaUser />}>
+          Usuários
+          <Link to="/users" />
+        </MenuItem>
+
+        <MenuItem icon={<BsClipboardData size={20} />}>
+          Relatórios
+          <Link to="/reports" />
+        </MenuItem>
       </Menu>
       <SidebarFooter>
         <button type="button" className="button-logout">
