@@ -12,6 +12,11 @@ export const Content = styled.div`
   flex-grow: 1;
   flex-direction: column;
   height: 100vh;
+  background: #fafafa;
+  color: rgb(85, 85, 85);
+
+  font-weight: 300;
+  line-height: 30px;
 `;
 
 export const Wrapper = styled.div`

@@ -9,7 +9,7 @@ const Reports: React.FC = () => {
 
   return (
     <Container>
-      <h1>Reports</h1>
+      <span>Reports</span>
     </Container>
   );
 };

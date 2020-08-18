@@ -9,7 +9,7 @@ const Customers: React.FC = () => {
 
   return (
     <Container>
-      <h1>Customers</h1>
+      <span>Customers</span>
     </Container>
   );
 };

@@ -9,7 +9,7 @@ const Products: React.FC = () => {
 
   return (
     <Container>
-      <h1>Products</h1>
+      <span>Products</span>
     </Container>
   );
 };
