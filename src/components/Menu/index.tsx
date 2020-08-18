@@ -97,18 +97,20 @@ const MenuSideBar: React.FC = () => {
               Perfil
             </span>
           </button>
+          <Link to="/me" />
         </MenuItem>
       </Menu>
 
       <SidebarFooter>
         <button type="button" className="button-logout">
           <FiLogOut size={25} color="#adadad" />
+          <span
+            className="logout"
+            style={{ display: collapsed ? 'none' : 'block' }}
+          >
+            Sair
+          </span>
         </button>
-        <span
-          style={{ display: collapsed ? 'none' : 'block', marginLeft: '5px' }}
-        >
-          Sair
-        </span>
       </SidebarFooter>
     </ProSidebar>
   );
