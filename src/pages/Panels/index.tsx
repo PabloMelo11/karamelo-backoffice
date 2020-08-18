@@ -9,7 +9,7 @@ const Panels: React.FC = () => {
 
   return (
     <Container>
-      <h1>Panels</h1>
+      <span>Panels</span>
     </Container>
   );
 };

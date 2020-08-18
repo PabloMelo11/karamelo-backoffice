@@ -15,13 +15,11 @@ import {
 
 import { useAuth } from '../../hooks/auth';
 
-import imageBackground from '../../assets/images/forgot-password-background.jpg';
-
 import 'react-pro-sidebar/dist/css/styles.css';
 import './styles.css';
 
 const MenuSideBar: React.FC = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -34,7 +32,7 @@ const MenuSideBar: React.FC = () => {
   }, [user]);
 
   return (
-    <ProSidebar collapsed={!!collapsed} image={imageBackground}>
+    <ProSidebar collapsed={!!collapsed}>
       <SidebarHeader>
         <button type="button" className="button-menu" onClick={handleCollapsed}>
           <MdMenu size={28} color="#adadad" />
@@ -102,7 +100,7 @@ const MenuSideBar: React.FC = () => {
       </Menu>
 
       <SidebarFooter>
-        <button type="button" className="button-logout">
+        <button type="button" className="button-logout" onClick={signOut}>
           <FiLogOut size={25} color="#adadad" />
           <span
             className="logout"

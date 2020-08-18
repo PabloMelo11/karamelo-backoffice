@@ -4,6 +4,26 @@
   height: 100%;
 }
 
+.pro-sidebar > .pro-sidebar-inner {
+  height: 100%;
+  position: relative;
+  z-index: 101;
+  background: #292534;
+}
+
+.pro-sidebar.collapsed
+  .pro-menu
+  > ul
+  > .pro-menu-item.pro-sub-menu
+  > .pro-inner-list-item
+  > .popper-inner {
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-left: 20px;
+  border-radius: 4px;
+  background: #292534;
+}
+
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
   border-bottom: 1px solid rgba(173, 173, 173, 0.2);
   padding: 20px;
@@ -16,7 +36,7 @@
 .button-menu {
   background: transparent;
   border: 0;
-  margin-left: 6px;
+  margin-left: 4px;
 }
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout {
@@ -61,6 +81,7 @@
   margin-left: 6px;
   margin-right: 10px;
   width: 100%;
+  height: 100%;
 
   display: flex;
   align-items: center;

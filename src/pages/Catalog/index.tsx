@@ -9,7 +9,7 @@ const Catalog: React.FC = () => {
 
   return (
     <Container>
-      <h1>Catalog</h1>
+      <span>Catalog</span>
     </Container>
   );
 };
