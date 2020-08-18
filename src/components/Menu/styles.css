@@ -1,3 +1,9 @@
+.pro-sidebar .pro-menu {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+}
+
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
   border-bottom: 1px solid rgba(173, 173, 173, 0.2);
   padding: 20px;
@@ -38,12 +44,15 @@
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-footer {
   border-top: 1px solid rgba(173, 173, 173, 0.2);
-  padding: 20px;
+  height: 68px;
+  margin-left: 20px;
+  width: 100%;
 
   position: absolute;
   bottom: 0;
 
   display: flex;
+  align-items: center;
 }
 
 .button-logout {
@@ -51,4 +60,58 @@
   border: 0;
   margin-left: 6px;
   margin-right: 10px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+.button-logout span {
+  color: #adadad;
+  margin-left: 14px;
+  transition: color 0.1s;
+}
+
+.button-logout:hover span {
+  color: #d8d8d8;
+}
+
+.button-logout:hover svg {
+  color: #d8d8d8;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item {
+  font-size: 15px;
+}
+
+.avatar {
+  position: absolute !important;
+  bottom: 81px;
+  height: 51px;
+  width: 100%;
+}
+
+.avatar .perfil {
+  color: #adadad;
+  transition: color 0.1s;
+}
+
+.avatar:hover span {
+  color: #d8d8d8;
+}
+
+.avatar button {
+  border: 0;
+  background: transparent;
+
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.avatar img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
 }
