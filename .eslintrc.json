@@ -35,7 +35,9 @@
     "@typescript-eslint/ban-types": "off",
     "import/no-duplicates": "off",
     "@typescript-eslint/class-name-casing": "off",
+    "import/no-extraneous-dependencies": "off",
     "no-unused-expressions": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
     "react/jsx-filename-extension": [
       1,
