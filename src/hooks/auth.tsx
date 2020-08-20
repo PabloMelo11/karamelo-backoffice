@@ -35,6 +35,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@Karamelo:user');
 
     if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
 

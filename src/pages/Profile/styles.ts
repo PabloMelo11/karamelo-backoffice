@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  span {
+  > span {
     color: inherit;
     margin: 0;
     font-size: 18px;

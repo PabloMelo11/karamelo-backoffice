@@ -13,12 +13,17 @@ export const Container = styled.div`
     opacity: 0;
     transition: opacity 0.4s;
     visibility: hidden;
+    z-index: 1;
 
     position: absolute;
     bottom: calc(100% + 12px);
     left: 50%;
     transform: translateX(-50%);
     color: #312e38;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &::before {
       content: '';

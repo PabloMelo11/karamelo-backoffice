@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.button`
+  height: 38px;
+  width: 132px;
   background-color: #9c27b0;
   color: #fff;
   border: none;
   cursor: pointer;
   margin: 0.3125rem 1px;
-  padding: 12px 30px;
   position: relative;
   font-size: 12px;
   min-width: auto;
@@ -24,12 +25,15 @@ export const Container = styled.button`
   text-transform: uppercase;
   letter-spacing: 1px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     background: ${shade(0.1, '#9c27b0')};
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     box-shadow: 0 0.7em 0.7em -0.5em ${shade(0.1, '#9c27b0')};
   }
 `;
