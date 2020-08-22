@@ -1,7 +1,14 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useRef,
+  useState,
+  useEffect,
+  ChangeEvent,
+} from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { FiCamera } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
@@ -22,22 +29,53 @@ import {
   Header,
   ContentForm,
   Row,
+  Divider,
   ContentMain,
+  MainInformations,
+  AvatarInput,
 } from './styles';
 
 interface IProfileFormData {
   name: string;
   email: string;
+  city?: string;
+  cpf?: string;
+  cep?: string;
+  date_of_birth?: string;
+  neighborhood?: string;
+  number?: string;
+  phone?: string;
+  state?: string;
+  street?: string;
+  whatsapp?: string;
   password?: string;
   password_confirmation?: string;
+}
+
+interface IUserProps {
+  id: number;
+  email: string;
+  name: string;
+  avatar_url: string;
+  city?: string;
+  cpf?: string;
+  cep?: string;
+  date_of_birth?: string;
+  neighborhood?: string;
+  number?: string;
+  phone?: string;
+  state?: string;
+  street?: string;
+  whatsapp?: string;
 }
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<IUserProps>({} as IUserProps);
 
-  const { user, updateUser } = useAuth();
+  const { updateUser } = useAuth();
   const { addToast } = useToast();
 
   const handleSubmit = useCallback(
@@ -65,11 +103,36 @@ const Profile: React.FC = () => {
           abortEarly: false,
         });
 
-        const { name, email, password, password_confirmation } = data;
+        const {
+          name,
+          email,
+          cpf,
+          date_of_birth,
+          phone,
+          whatsapp,
+          cep,
+          state,
+          city,
+          neighborhood,
+          street,
+          number,
+          password,
+          password_confirmation,
+        } = data;
 
         const formData = {
           name,
           email,
+          cpf,
+          date_of_birth,
+          phone,
+          whatsapp,
+          cep,
+          state,
+          city,
+          neighborhood,
+          street,
+          number,
           ...(password
             ? {
                 password,
@@ -123,6 +186,33 @@ const Profile: React.FC = () => {
     [addToast, updateUser],
   );
 
+  const handleAvatarChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) {
+        const data = new FormData();
+
+        data.append('avatar', e.target.files[0]);
+
+        api.patch('/me/avatar', data).then(response => {
+          updateUser(response.data);
+          setUser(response.data);
+
+          addToast({
+            type: 'success',
+            title: 'Avatar atualizado!',
+          });
+        });
+      }
+    },
+    [addToast, updateUser],
+  );
+
+  useEffect(() => {
+    api.get('/me').then(response => {
+      setUser(response.data[0]);
+    });
+  }, []);
+
   return (
     <Container>
       <ContentGrid>
@@ -140,14 +230,43 @@ const Profile: React.FC = () => {
                 initialData={{
                   name: user.name,
                   email: user.email,
+                  cpf: user.cpf,
+                  date_of_birth: user.date_of_birth,
+                  phone: user.phone,
+                  whatsapp: user.whatsapp,
+                  cep: user.cep,
+                  state: user.state,
+                  city: user.city,
+                  neighborhood: user.neighborhood,
+                  street: user.street,
+                  number: user.number,
                 }}
               >
                 <Row>
                   <InputForm name="name" placeholder="Usuário" />
                   <InputForm name="email" placeholder="E-mail" />
+                  <InputForm name="cpf" placeholder="CPF" />
                 </Row>
 
                 <Row>
+                  <InputForm name="date_of_birth" placeholder="Nascimento" />
+                  <InputForm name="phone" placeholder="Telefone" />
+                  <InputForm name="whatsapp" placeholder="Whatsapp" />
+                </Row>
+
+                <Row style={{ marginTop: 30 }}>
+                  <InputForm name="cep" placeholder="CEP" />
+                  <InputForm name="state" placeholder="Estado" />
+                  <InputForm name="city" placeholder="Cidade" />
+                </Row>
+
+                <Row>
+                  <InputForm name="neighborhood" placeholder="Bairro" />
+                  <InputForm name="street" placeholder="Logradouro" />
+                  <InputForm name="number" placeholder="Número" />
+                </Row>
+
+                <Row style={{ marginTop: 30 }}>
                   <InputForm
                     type="password"
                     name="password"
@@ -168,7 +287,23 @@ const Profile: React.FC = () => {
           </FormInformations>
         </ContentInformations>
 
-        <ContentMain />
+        <ContentMain>
+          <ContentInformations>
+            <MainInformations>
+              <AvatarInput>
+                <img src={user.avatar_url} alt={user.name} />
+                <label htmlFor="avatar">
+                  <FiCamera />
+                  <input
+                    type="file"
+                    id="avatar"
+                    onChange={handleAvatarChange}
+                  />
+                </label>
+              </AvatarInput>
+            </MainInformations>
+          </ContentInformations>
+        </ContentMain>
       </ContentGrid>
     </Container>
   );

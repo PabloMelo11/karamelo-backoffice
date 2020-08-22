@@ -27,10 +27,6 @@ const MenuSideBar: React.FC = () => {
     setCollapsed(oldState => !oldState);
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <ProSidebar collapsed={!!collapsed}>
       <SidebarHeader>

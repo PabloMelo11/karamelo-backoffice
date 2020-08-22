@@ -63,7 +63,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const updateUser = useCallback(
     (user: IUser) => {
-      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+      localStorage.setItem('@Karamelo:user', JSON.stringify(user));
 
       setData({
         token: data.token,

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -20,7 +21,7 @@ export const ContentGrid = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-gap: 20px;
 `;
 
@@ -78,8 +79,64 @@ export const Row = styled.div`
   align-items: center;
 `;
 
+export const Divider = styled.div``;
+
 export const ContentMain = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid #999;
+`;
+
+export const MainInformations = styled.div`
+  position: relative;
+  width: 100%;
+
+  background: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const AvatarInput = styled.div`
+  margin-bottom: 32px;
+  position: relative;
+  align-self: center;
+  top: -30px;
+
+  img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+      0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+  label {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ab47bc;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      display: none;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #fff;
+    }
+    &:hover {
+      background: ${shade(0.2, '#ab47bc')};
+    }
+  }
 `;
