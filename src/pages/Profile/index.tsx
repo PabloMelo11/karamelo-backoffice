@@ -78,6 +78,7 @@ const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const [loading, setLoading] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [user, setUser] = useState<IUserProps>({} as IUserProps);
 
   const { updateUser } = useAuth();
@@ -86,7 +87,7 @@ const Profile: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: IProfileFormData) => {
       try {
-        setLoading(true);
+        setLoadingSubmit(true);
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -149,6 +150,7 @@ const Profile: React.FC = () => {
         const response = await api.put('me', formData);
 
         updateUser(response.data);
+        setUser(response.data);
 
         if (formRef.current !== null) {
           formRef.current.clearField('password');
@@ -162,15 +164,14 @@ const Profile: React.FC = () => {
             'Suas informação do perfil foram atualizados com sucesso.',
         });
 
-        setLoading(false);
+        setLoadingSubmit(false);
       } catch (err) {
-        console.log(err.response);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
 
-          setLoading(false);
+          setLoadingSubmit(false);
           return;
         }
 
@@ -185,20 +186,22 @@ const Profile: React.FC = () => {
           description: `${err.response.data.error}`,
         });
 
-        setLoading(false);
+        setLoadingSubmit(false);
       }
     },
     [addToast, updateUser],
   );
 
   const handleAvatarChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) {
-        const data = new FormData();
+    async (e: ChangeEvent<HTMLInputElement>) => {
+      try {
+        if (e.target.files) {
+          const data = new FormData();
 
-        data.append('avatar', e.target.files[0]);
+          data.append('avatar', e.target.files[0]);
 
-        api.patch('/me/avatar', data).then(response => {
+          const response = await api.patch('me/avatar', data);
+
           updateUser(response.data);
           setUser(response.data);
 
@@ -206,6 +209,11 @@ const Profile: React.FC = () => {
             type: 'success',
             title: 'Avatar atualizado!',
           });
+        }
+      } catch {
+        addToast({
+          type: 'error',
+          title: 'Erro ao atualizar avatar!',
         });
       }
     },
@@ -262,27 +270,47 @@ const Profile: React.FC = () => {
                   }}
                 >
                   <Row>
-                    <InputForm name="name" placeholder="Usuário" />
-                    <InputForm name="email" placeholder="E-mail" />
-                    <InputForm name="cpf" placeholder="CPF" />
+                    <InputForm name="name" placeholder="Usuário" mask="" />
+                    <InputForm name="email" placeholder="E-mail" mask="" />
+                    <InputForm
+                      name="cpf"
+                      placeholder="CPF"
+                      mask="999.999.999-99"
+                    />
                   </Row>
 
                   <Row>
-                    <InputForm name="date_of_birth" placeholder="Nascimento" />
-                    <InputForm name="phone" placeholder="Telefone" />
-                    <InputForm name="whatsapp" placeholder="Whatsapp" />
+                    <InputForm
+                      name="date_of_birth"
+                      placeholder="Nascimento"
+                      mask="99/99/9999"
+                    />
+                    <InputForm
+                      name="phone"
+                      placeholder="Telefone"
+                      mask="(99) 99999-9999"
+                    />
+                    <InputForm
+                      name="whatsapp"
+                      placeholder="Whatsapp"
+                      mask="(99) 99999-9999"
+                    />
                   </Row>
 
                   <Row style={{ marginTop: 30 }}>
-                    <InputForm name="cep" placeholder="CEP" />
-                    <InputForm name="state" placeholder="Estado" />
-                    <InputForm name="city" placeholder="Cidade" />
+                    <InputForm name="cep" placeholder="CEP" mask="99999-999" />
+                    <InputForm name="state" placeholder="Estado" mask="" />
+                    <InputForm name="city" placeholder="Cidade" mask="" />
                   </Row>
 
                   <Row>
-                    <InputForm name="neighborhood" placeholder="Bairro" />
-                    <InputForm name="street" placeholder="Logradouro" />
-                    <InputForm name="number" placeholder="Número" />
+                    <InputForm
+                      name="neighborhood"
+                      placeholder="Bairro"
+                      mask=""
+                    />
+                    <InputForm name="street" placeholder="Logradouro" mask="" />
+                    <InputForm name="number" placeholder="Número" mask="" />
                   </Row>
 
                   <Row style={{ marginTop: 30 }}>
@@ -290,16 +318,18 @@ const Profile: React.FC = () => {
                       type="password"
                       name="password"
                       placeholder="Senha"
+                      mask=""
                     />
                     <InputForm
                       type="password"
                       name="password_confirmation"
                       placeholder="Confirmação de senha"
+                      mask=""
                     />
                   </Row>
 
                   <ButtonForm type="submit">
-                    {loading ? <Loading /> : 'Atualizar'}
+                    {loadingSubmit ? <Loading /> : 'Atualizar'}
                   </ButtonForm>
                 </Form>
               </ContentForm>

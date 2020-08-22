@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 import Tooltip from '../Tooltip';
 
 interface IContainerProps {
-  isFocused: boolean;
-  isFilled: boolean;
   isErrored: boolean;
 }
 
@@ -16,20 +14,6 @@ export const Container = styled.div<IContainerProps>`
   & + div {
     margin-left: 20px;
   }
-
-  ${props =>
-    props.isErrored &&
-    !props.isFilled &&
-    css`
-      border-color: #c53030;
-    `}
-
-  ${props =>
-    props.isFocused &&
-    css`
-      border-color: #f18b8c;
-    `}
-
 
   input {
     width: 100%;
