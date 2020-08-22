@@ -21,13 +21,12 @@ export const ContentGrid = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 3fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 2fr 1fr;
 `;
 
 export const ContentInformations = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 16px;
 
   display: flex;
   justify-content: center;
@@ -97,10 +96,10 @@ export const MainInformations = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 export const AvatarInput = styled.div`
-  margin-bottom: 32px;
   position: relative;
   align-self: center;
   top: -30px;
@@ -138,5 +137,28 @@ export const AvatarInput = styled.div`
     &:hover {
       background: ${shade(0.2, '#ab47bc')};
     }
+  }
+`;
+
+export const Description = styled.div`
+  width: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+
+  h6 {
+    font-weight: 300;
+    line-height: 1.5em;
+    font-size: 1em;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 14px 0;
+    text-align: center;
   }
 `;

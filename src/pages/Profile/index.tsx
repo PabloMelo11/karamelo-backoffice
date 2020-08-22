@@ -18,6 +18,10 @@ import api from '../../services/api';
 import InputForm from '../../components/InputForm';
 import ButtonForm from '../../components/ButtonForm';
 import Loading from '../../components/Loading';
+import {
+  LoadingProfile,
+  LoadingProfileContent,
+} from '../../components/Shimmer/LoadingProfile';
 
 import getValidationErrors from '../../utils/getValidationsErrors';
 
@@ -33,6 +37,7 @@ import {
   ContentMain,
   MainInformations,
   AvatarInput,
+  Description,
 } from './styles';
 
 interface IProfileFormData {
@@ -208,102 +213,125 @@ const Profile: React.FC = () => {
   );
 
   useEffect(() => {
-    api.get('/me').then(response => {
-      setUser(response.data[0]);
-    });
-  }, []);
+    try {
+      setLoading(true);
+      api.get('/me').then(response => {
+        setUser(response.data[0]);
+
+        setLoading(false);
+      });
+    } catch {
+      addToast({
+        type: 'error',
+        title: 'Ops...',
+        description: 'Houve um erro ao  buscar seu perfil, tente novamente.',
+      });
+    }
+  }, [addToast]);
 
   return (
     <Container>
       <ContentGrid>
-        <ContentInformations>
-          <FormInformations>
-            <Header>
-              <h4>Edite seu perfil</h4>
-              <p>Complete as informações do perfil</p>
-            </Header>
-
-            <ContentForm>
-              <Form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                initialData={{
-                  name: user.name,
-                  email: user.email,
-                  cpf: user.cpf,
-                  date_of_birth: user.date_of_birth,
-                  phone: user.phone,
-                  whatsapp: user.whatsapp,
-                  cep: user.cep,
-                  state: user.state,
-                  city: user.city,
-                  neighborhood: user.neighborhood,
-                  street: user.street,
-                  number: user.number,
-                }}
-              >
-                <Row>
-                  <InputForm name="name" placeholder="Usuário" />
-                  <InputForm name="email" placeholder="E-mail" />
-                  <InputForm name="cpf" placeholder="CPF" />
-                </Row>
-
-                <Row>
-                  <InputForm name="date_of_birth" placeholder="Nascimento" />
-                  <InputForm name="phone" placeholder="Telefone" />
-                  <InputForm name="whatsapp" placeholder="Whatsapp" />
-                </Row>
-
-                <Row style={{ marginTop: 30 }}>
-                  <InputForm name="cep" placeholder="CEP" />
-                  <InputForm name="state" placeholder="Estado" />
-                  <InputForm name="city" placeholder="Cidade" />
-                </Row>
-
-                <Row>
-                  <InputForm name="neighborhood" placeholder="Bairro" />
-                  <InputForm name="street" placeholder="Logradouro" />
-                  <InputForm name="number" placeholder="Número" />
-                </Row>
-
-                <Row style={{ marginTop: 30 }}>
-                  <InputForm
-                    type="password"
-                    name="password"
-                    placeholder="Senha"
-                  />
-                  <InputForm
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="Confirmação de senha"
-                  />
-                </Row>
-
-                <ButtonForm type="submit">
-                  {loading ? <Loading /> : 'Atualizar'}
-                </ButtonForm>
-              </Form>
-            </ContentForm>
-          </FormInformations>
-        </ContentInformations>
-
-        <ContentMain>
+        {loading ? (
+          <LoadingProfileContent />
+        ) : (
           <ContentInformations>
-            <MainInformations>
-              <AvatarInput>
-                <img src={user.avatar_url} alt={user.name} />
-                <label htmlFor="avatar">
-                  <FiCamera />
-                  <input
-                    type="file"
-                    id="avatar"
-                    onChange={handleAvatarChange}
-                  />
-                </label>
-              </AvatarInput>
-            </MainInformations>
+            <FormInformations>
+              <Header>
+                <h4>Edite seu perfil</h4>
+                <p>Complete as informações do perfil</p>
+              </Header>
+
+              <ContentForm>
+                <Form
+                  ref={formRef}
+                  onSubmit={handleSubmit}
+                  initialData={{
+                    name: user.name,
+                    email: user.email,
+                    cpf: user.cpf,
+                    date_of_birth: user.date_of_birth,
+                    phone: user.phone,
+                    whatsapp: user.whatsapp,
+                    cep: user.cep,
+                    state: user.state,
+                    city: user.city,
+                    neighborhood: user.neighborhood,
+                    street: user.street,
+                    number: user.number,
+                  }}
+                >
+                  <Row>
+                    <InputForm name="name" placeholder="Usuário" />
+                    <InputForm name="email" placeholder="E-mail" />
+                    <InputForm name="cpf" placeholder="CPF" />
+                  </Row>
+
+                  <Row>
+                    <InputForm name="date_of_birth" placeholder="Nascimento" />
+                    <InputForm name="phone" placeholder="Telefone" />
+                    <InputForm name="whatsapp" placeholder="Whatsapp" />
+                  </Row>
+
+                  <Row style={{ marginTop: 30 }}>
+                    <InputForm name="cep" placeholder="CEP" />
+                    <InputForm name="state" placeholder="Estado" />
+                    <InputForm name="city" placeholder="Cidade" />
+                  </Row>
+
+                  <Row>
+                    <InputForm name="neighborhood" placeholder="Bairro" />
+                    <InputForm name="street" placeholder="Logradouro" />
+                    <InputForm name="number" placeholder="Número" />
+                  </Row>
+
+                  <Row style={{ marginTop: 30 }}>
+                    <InputForm
+                      type="password"
+                      name="password"
+                      placeholder="Senha"
+                    />
+                    <InputForm
+                      type="password"
+                      name="password_confirmation"
+                      placeholder="Confirmação de senha"
+                    />
+                  </Row>
+
+                  <ButtonForm type="submit">
+                    {loading ? <Loading /> : 'Atualizar'}
+                  </ButtonForm>
+                </Form>
+              </ContentForm>
+            </FormInformations>
           </ContentInformations>
-        </ContentMain>
+        )}
+
+        {loading ? (
+          <LoadingProfile />
+        ) : (
+          <ContentMain>
+            <ContentInformations>
+              <MainInformations>
+                <AvatarInput>
+                  <img src={user.avatar_url} alt={user.name} />
+                  <label htmlFor="avatar">
+                    <FiCamera />
+                    <input
+                      type="file"
+                      id="avatar"
+                      onChange={handleAvatarChange}
+                    />
+                  </label>
+                </AvatarInput>
+
+                <Description>
+                  <h6>{user.name}</h6>
+                </Description>
+              </MainInformations>
+            </ContentInformations>
+          </ContentMain>
+        )}
       </ContentGrid>
     </Container>
   );
