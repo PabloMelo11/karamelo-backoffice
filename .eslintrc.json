@@ -38,6 +38,7 @@
     "import/no-extraneous-dependencies": "off",
     "no-unused-expressions": "off",
     "react/no-unescaped-entities": "off",
+    "no-param-reassign": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
     "react/jsx-filename-extension": [

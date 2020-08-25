@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import cepApi from 'cep-promise';
 import * as Yup from 'yup';
 import { FiCamera } from 'react-icons/fi';
 
@@ -76,10 +77,15 @@ interface IUserProps {
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const cepRef = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [user, setUser] = useState<IUserProps>({} as IUserProps);
+  const [cityApi, setCityApi] = useState('');
+  const [stateApi, setStateApi] = useState('');
+  const [neighborhoodApi, setNeighborhoodApi] = useState('');
+  const [streetApi, setStreetApi] = useState('');
 
   const { updateUser } = useAuth();
   const { addToast } = useToast();
@@ -220,6 +226,28 @@ const Profile: React.FC = () => {
     [addToast, updateUser],
   );
 
+  const handleSearchCEP = useCallback(
+    (event: string): void => {
+      const cep = event.replace('-', '');
+
+      cepApi(cep)
+        .then(response => {
+          setCityApi(response.city);
+          setStateApi(response.state);
+          setNeighborhoodApi(response.neighborhood);
+          setStreetApi(response.street);
+        })
+        .catch(() => {
+          addToast({
+            type: 'error',
+            title: 'Ops...',
+            description: 'CEP inválido, tente novamente.',
+          });
+        });
+    },
+    [addToast],
+  );
+
   useEffect(() => {
     try {
       setLoading(true);
@@ -232,7 +260,7 @@ const Profile: React.FC = () => {
       addToast({
         type: 'error',
         title: 'Ops...',
-        description: 'Houve um erro ao  buscar seu perfil, tente novamente.',
+        description: 'Houve um erro ao buscar seu perfil, tente novamente.',
       });
     }
   }, [addToast]);
@@ -298,18 +326,39 @@ const Profile: React.FC = () => {
                   </Row>
 
                   <Row style={{ marginTop: 30 }}>
-                    <InputForm name="cep" placeholder="CEP" mask="99999-999" />
-                    <InputForm name="state" placeholder="Estado" mask="" />
-                    <InputForm name="city" placeholder="Cidade" mask="" />
+                    <InputForm
+                      name="cep"
+                      placeholder="CEP"
+                      mask="99999-999"
+                      onChange={event => handleSearchCEP(event.target.value)}
+                    />
+                    <InputForm
+                      name="state"
+                      mask=""
+                      value={stateApi || user.state}
+                      disabled={formRef.current?.getFieldValue('cep') !== ''}
+                    />
+                    <InputForm
+                      name="city"
+                      mask=""
+                      value={cityApi || user.city}
+                      disabled={formRef.current?.getFieldValue('cep') !== ''}
+                    />
                   </Row>
 
                   <Row>
                     <InputForm
                       name="neighborhood"
-                      placeholder="Bairro"
                       mask=""
+                      value={neighborhoodApi || user.neighborhood}
+                      disabled={formRef.current?.getFieldValue('cep') !== ''}
                     />
-                    <InputForm name="street" placeholder="Logradouro" mask="" />
+                    <InputForm
+                      name="street"
+                      mask=""
+                      value={streetApi || user.street}
+                      disabled={formRef.current?.getFieldValue('cep') !== ''}
+                    />
                     <InputForm name="number" placeholder="Número" mask="" />
                   </Row>
 

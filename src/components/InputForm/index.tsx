@@ -7,7 +7,7 @@ import { Container, Error } from './styles';
 
 interface IInputProps extends InputProps {
   name: string;
-  placeholder: string;
+  placeholder?: string;
 }
 
 const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
