@@ -228,22 +228,25 @@ const Profile: React.FC = () => {
 
   const handleSearchCEP = useCallback(
     (event: string): void => {
-      const cep = event.replace('-', '');
+      const cep = event.replace('-', '').replace('_', '').trim();
 
-      cepApi(cep)
-        .then(response => {
-          setCityApi(response.city);
-          setStateApi(response.state);
-          setNeighborhoodApi(response.neighborhood);
-          setStreetApi(response.street);
-        })
-        .catch(() => {
-          addToast({
-            type: 'error',
-            title: 'Ops...',
-            description: 'CEP inválido, tente novamente.',
+      if (cep.length === 8) {
+        cepApi(cep)
+          .then(response => {
+            console.log(response);
+            setCityApi(response.city);
+            setStateApi(response.state);
+            setNeighborhoodApi(response.neighborhood);
+            setStreetApi(response.street);
+          })
+          .catch(() => {
+            addToast({
+              type: 'error',
+              title: 'Ops...',
+              description: 'CEP inválido, tente novamente.',
+            });
           });
-        });
+      }
     },
     [addToast],
   );
@@ -334,30 +337,30 @@ const Profile: React.FC = () => {
                     />
                     <InputForm
                       name="state"
+                      placeholder="UF"
                       mask=""
                       value={stateApi || user.state}
-                      disabled={formRef.current?.getFieldValue('cep') !== ''}
                     />
                     <InputForm
                       name="city"
+                      placeholder="Cidade"
                       mask=""
                       value={cityApi || user.city}
-                      disabled={formRef.current?.getFieldValue('cep') !== ''}
                     />
                   </Row>
 
                   <Row>
                     <InputForm
                       name="neighborhood"
+                      placeholder="Bairro"
                       mask=""
                       value={neighborhoodApi || user.neighborhood}
-                      disabled={formRef.current?.getFieldValue('cep') !== ''}
                     />
                     <InputForm
                       name="street"
+                      placeholder="Logradouro"
                       mask=""
                       value={streetApi || user.street}
-                      disabled={formRef.current?.getFieldValue('cep') !== ''}
                     />
                     <InputForm name="number" placeholder="Número" mask="" />
                   </Row>

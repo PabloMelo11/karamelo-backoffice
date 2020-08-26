@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import Tooltip from '../Tooltip';
 
@@ -13,6 +13,11 @@ export const Container = styled.div<IContainerProps>`
 
   & + div {
     margin-left: 20px;
+  }
+
+  .group {
+    position: relative;
+    margin-bottom: 45px;
   }
 
   input {
@@ -30,24 +35,21 @@ export const Container = styled.div<IContainerProps>`
     outline: none;
   }
 
-  /* LABEL ======================================= */
   label {
-    color: #adadad;
-    font-size: 16px;
-    font-weight: 300;
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
     position: absolute;
     pointer-events: none;
     left: 5px;
     top: 10px;
     min-height: auto;
     text-decoration: none;
-
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
   }
 
-  /* active state */
   input:focus ~ label,
   input:valid ~ label {
     top: -20px;
@@ -55,11 +57,11 @@ export const Container = styled.div<IContainerProps>`
     color: #ab47bc;
   }
 
-  /* BOTTOM BARS ================================= */
   .bar {
     position: relative;
     display: block;
   }
+
   .bar:before,
   .bar:after {
     content: '';
@@ -72,20 +74,20 @@ export const Container = styled.div<IContainerProps>`
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
   }
+
   .bar:before {
     left: 50%;
   }
+
   .bar:after {
     right: 50%;
   }
 
-  /* active state */
   input:focus ~ .bar:before,
   input:focus ~ .bar:after {
     width: 50%;
   }
 
-  /* HIGHLIGHTER ================================== */
   .highlight {
     position: absolute;
     height: 60%;
@@ -96,7 +98,6 @@ export const Container = styled.div<IContainerProps>`
     opacity: 0.5;
   }
 
-  /* active state */
   input:focus ~ .highlight {
     -webkit-animation: inputHighlighter 0.3s ease;
     -moz-animation: inputHighlighter 0.3s ease;
