@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 const Dashboard: React.FC = () => {
   useEffect(() => {
@@ -9,7 +9,24 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
-      <span>Dashboard</span>
+      <Content>
+        <div>Teste 1</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+        <div>Teste 2</div>
+      </Content>
     </Container>
   );
 };
