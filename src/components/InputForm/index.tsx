@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
-import InputMask, { Props as InputProps } from 'react-input-mask';
+import InputMask from 'react-input-mask';
 import { useField } from '@unform/core';
 import { FiAlertCircle } from 'react-icons/fi';
 
-import { Container, Error } from './styles';
+import { IInputProps } from './Props';
 
-interface IInputProps extends InputProps {
-  name: string;
-  placeholder?: string;
-}
+import { Container, Error } from './styles';
 
 const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
   const inputRef = useRef<any>(null);

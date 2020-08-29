@@ -16,6 +16,7 @@ import { useToast } from '../../hooks/toast';
 
 import api from '../../services/api';
 
+import MainModal from '../../components/MainModal';
 import InputForm from '../../components/InputForm';
 import ButtonForm from '../../components/ButtonForm';
 import Loading from '../../components/Loading';
@@ -277,12 +278,10 @@ const Profile: React.FC = () => {
           <LoadingProfileContent />
         ) : (
           <ContentInformations>
-            <FormInformations>
-              <Header>
-                <h4>Edite seu perfil</h4>
-                <p>Complete as informações do perfil</p>
-              </Header>
-
+            <MainModal
+              title="Edite seu perfil"
+              subtitle="Complete as informações do perfil"
+            >
               <ContentForm>
                 <Form
                   ref={formRef}
@@ -387,7 +386,7 @@ const Profile: React.FC = () => {
                   </ButtonForm>
                 </Form>
               </ContentForm>
-            </FormInformations>
+            </MainModal>
           </ContentInformations>
         )}
 

@@ -21,7 +21,7 @@ export const MainInformations = styled.div`
   padding: 120px 0;
 
   background: #fff;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: ${({ theme }) => theme.shadows.small};
   border-radius: 4px;
 
   display: flex;
@@ -34,13 +34,13 @@ export const MainInformations = styled.div`
     align-self: center;
     top: -30px;
 
-    width: 130px;
+    width: 13rem;
     height: 130px;
     border-radius: 50%;
   }
 
   .description {
-    width: 155px;
+    width: 15.5rem;
     height: 21px;
   }
 `;

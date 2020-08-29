@@ -5,7 +5,7 @@ export const Container = styled.div`
 
   span {
     width: 160px;
-    background: #f18b8c;
+    background: ${({ theme }) => theme.colors.primary};
     padding: 8px;
     border-radius: 4px;
     font-size: 14px;
@@ -19,7 +19,7 @@ export const Container = styled.div`
     bottom: calc(100% + 12px);
     left: 50%;
     transform: translateX(-50%);
-    color: #312e38;
+    color: ${({ theme }) => theme.colors.greyStrong};
 
     display: flex;
     justify-content: center;
@@ -28,7 +28,7 @@ export const Container = styled.div`
     &::before {
       content: '';
       border-style: solid;
-      border-color: #f18b8c transparent;
+      border-color: ${({ theme }) => theme.colors.primary} transparent;
       border-width: 6px 6px 0 6px;
       bottom: 20px;
       top: 100%;

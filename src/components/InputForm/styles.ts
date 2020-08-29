@@ -1,13 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import Tooltip from '../Tooltip';
+import { IContainerProps } from './Props';
 
-interface IContainerProps {
-  isErrored: boolean;
-  isFocused: boolean;
-  isFilled: boolean;
-  isValue?: boolean;
-}
+import Tooltip from '../Tooltip';
 
 export const Container = styled.div<IContainerProps>`
   position: relative;
@@ -25,12 +20,12 @@ export const Container = styled.div<IContainerProps>`
 
   input {
     width: 100%;
-    font-size: 18px;
+    font-size: 1.8rem;
     padding: 10px 10px 10px 5px;
     display: block;
     border: none;
     color: currentColor;
-    border-bottom: 1px solid #adadad;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
     position: relative;
   }
 
@@ -40,7 +35,7 @@ export const Container = styled.div<IContainerProps>`
 
   label {
     font-size: 14px;
-    color: #999;
+    color: ${({ theme }) => theme.colors.grey999};
     font-weight: normal;
     position: absolute;
     pointer-events: none;
@@ -59,28 +54,28 @@ export const Container = styled.div<IContainerProps>`
     css`
       label {
         top: -20px;
-        font-size: 14px !important;
-        color: #ab47bc !important;
+        font-size: 1.4rem !important;
+        color: ${({ theme }) => theme.colors.purple} !important;
       }
     `}
 
-  ${props =>
-    props.isFocused &&
-    css`
-      label {
-        top: -20px;
-        font-size: 14px !important;
-        color: #ab47bc !important;
-      }
-    `}
+    ${props =>
+      props.isFocused &&
+      css`
+        label {
+          top: -20px;
+          font-size: 1.4rem !important;
+          color: ${({ theme }) => theme.colors.purple} !important;
+        }
+      `}
 
   ${props =>
     props.isFilled &&
     css`
       label {
         top: -20px;
-        font-size: 14px;
-        color: #ab47bc;
+        font-size: 1.4rem;
+        color: ${({ theme }) => theme.colors.purple} !important;
       }
     `}
 
@@ -96,7 +91,7 @@ export const Container = styled.div<IContainerProps>`
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: #ab47bc;
+    background: ${({ theme }) => theme.colors.purple};
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
@@ -144,11 +139,11 @@ export const Error = styled(Tooltip)`
   }
 
   span {
-    background: #c53030;
-    color: #fff;
+    background: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.white};
 
     &::before {
-      border-color: #c53030 transparent;
+      border-color: ${({ theme }) => theme.colors.red} transparent;
     }
   }
 `;
