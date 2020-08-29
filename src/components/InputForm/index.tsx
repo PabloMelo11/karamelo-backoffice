@@ -11,9 +11,26 @@ interface IInputProps extends InputProps {
 }
 
 const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<any>(null);
+
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   const { fieldName, defaultValue, error, registerField } = useField(name);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(oldState => !oldState);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+
+    setIsFilled(!!inputRef.current?.value);
+  }, []);
+
+  useEffect(() => {
+    console.log(defaultValue);
+  }, [defaultValue]);
 
   useEffect(() => {
     registerField({
@@ -27,8 +44,19 @@ const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error}>
-      <InputMask defaultValue={defaultValue} ref={inputRef} {...rest} />
+    <Container
+      isErrored={!!error}
+      isFocused={isFocused}
+      isFilled={isFilled}
+      isValue={defaultValue !== undefined && defaultValue !== null}
+    >
+      <InputMask
+        defaultValue={defaultValue}
+        ref={inputRef}
+        {...rest}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+      />
       <span className="highlight" />
       <span className="bar" />
       <label>{placeholder}</label>

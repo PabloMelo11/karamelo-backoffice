@@ -105,7 +105,9 @@ const Profile: React.FC = () => {
           password_confirmation: Yup.string()
             .when('password', {
               is: value => !!value.length,
-              then: Yup.string().required('Campo obrigatório'),
+              then: Yup.string()
+                .required('Campo obrigatório')
+                .min(6, 'Mínimo 6 caracteres'),
               otherwise: Yup.string(),
             })
             .oneOf([Yup.ref('password')], 'Confirmação incorreta'),

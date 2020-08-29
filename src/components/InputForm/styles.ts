@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Tooltip from '../Tooltip';
 
 interface IContainerProps {
   isErrored: boolean;
+  isFocused: boolean;
+  isFilled: boolean;
+  isValue?: boolean;
 }
 
 export const Container = styled.div<IContainerProps>`
@@ -36,8 +39,8 @@ export const Container = styled.div<IContainerProps>`
   }
 
   label {
+    font-size: 14px;
     color: #999;
-    font-size: 18px;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
@@ -50,12 +53,36 @@ export const Container = styled.div<IContainerProps>`
     -webkit-transition: 0.2s ease all;
   }
 
-  input:focus ~ label,
-  input:valid ~ label {
-    top: -20px;
-    font-size: 14px;
-    color: #ab47bc;
-  }
+
+  ${props =>
+    props.isValue &&
+    css`
+      label {
+        top: -20px;
+        font-size: 14px !important;
+        color: #ab47bc !important;
+      }
+    `}
+
+  ${props =>
+    props.isFocused &&
+    css`
+      label {
+        top: -20px;
+        font-size: 14px !important;
+        color: #ab47bc !important;
+      }
+    `}
+
+  ${props =>
+    props.isFilled &&
+    css`
+      label {
+        top: -20px;
+        font-size: 14px;
+        color: #ab47bc;
+      }
+    `}
 
   .bar {
     position: relative;
