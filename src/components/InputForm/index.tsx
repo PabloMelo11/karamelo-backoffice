@@ -26,10 +26,6 @@ const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
   }, []);
 
   useEffect(() => {
-    console.log(defaultValue);
-  }, [defaultValue]);
-
-  useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRef.current,

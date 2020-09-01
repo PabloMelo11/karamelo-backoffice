@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { IHeader } from './Props';
+import { IHeader, IMainModalProps } from './Props';
 
 export const Container = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.default};
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.radius.default};
 `;
 
 export const Header = styled.div<IHeader>`
@@ -40,4 +40,11 @@ export const Header = styled.div<IHeader>`
 
 export const Content = styled.div`
   margin: 40px 15px 12px;
+`;
+
+export const ContentImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;

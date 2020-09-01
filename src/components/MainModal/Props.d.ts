@@ -3,6 +3,7 @@ export type IMainModalProps = {
   subtitle?: string;
   headerBackgroundColor?: string;
   headerShadowColor?: string;
+  hasImage?: boolean;
 };
 
 export type IHeader = {

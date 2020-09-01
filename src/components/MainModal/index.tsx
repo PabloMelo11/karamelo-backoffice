@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Header, Content } from './styles';
+import { Container, Header, Content, ContentImage } from './styles';
 
 import { IMainModalProps } from './Props';
 
@@ -9,18 +9,24 @@ const MainModal: React.FC<IMainModalProps> = ({
   subtitle,
   headerBackgroundColor,
   headerShadowColor,
+  hasImage,
   children,
 }) => {
   return (
     <Container>
-      <Header
-        backgroundColor={headerBackgroundColor}
-        shadowColor={headerShadowColor}
-      >
-        <h4>{title}</h4>
-        <p>{subtitle}</p>
-      </Header>
-      <Content>{children}</Content>
+      {!hasImage && (
+        <Header
+          backgroundColor={headerBackgroundColor}
+          shadowColor={headerShadowColor}
+        >
+          <h4>{title}</h4>
+          <p>{subtitle}</p>
+        </Header>
+      )}
+
+      {!hasImage && <Content>{children}</Content>}
+
+      {hasImage && <ContentImage>{children}</ContentImage>}
     </Container>
   );
 };

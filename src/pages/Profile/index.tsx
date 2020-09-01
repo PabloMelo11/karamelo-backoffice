@@ -395,7 +395,7 @@ const Profile: React.FC = () => {
         ) : (
           <ContentMain>
             <ContentInformations>
-              <MainInformations>
+              <MainModal hasImage>
                 <AvatarInput>
                   <img src={user.avatar_url} alt={user.name} />
                   <label htmlFor="avatar">
@@ -411,7 +411,7 @@ const Profile: React.FC = () => {
                 <Description>
                   <h6>{user.name}</h6>
                 </Description>
-              </MainInformations>
+              </MainModal>
             </ContentInformations>
           </ContentMain>
         )}
