@@ -1,3 +1,14 @@
+.pro-sidebar {
+  color: #adadad;
+  height: 100%;
+  width: 250px;
+  min-width: 250px;
+  text-align: left;
+  transition: width, left, right, 0.3s;
+  position: relative;
+  z-index: 1009;
+}
+
 .pro-sidebar .pro-menu {
   padding-top: 10px;
   padding-bottom: 10px;

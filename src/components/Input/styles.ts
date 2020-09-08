@@ -1,67 +1,57 @@
 import styled, { css } from 'styled-components';
+import { IContainerProps } from './Props';
 
 import Tooltip from '../Tooltip';
 
-interface IContainerProps {
-  isFocused: boolean;
-  isFilled: boolean;
-  isErrored: boolean;
-}
-
-interface IErrorProps {
-  isFilled: boolean;
-}
-
 export const Container = styled.div<IContainerProps>`
-  background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 100%;
+    color: ${({ theme }) => theme.colors.greyInput};
 
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  width: 100%;
-  color: #666360;
+    display: flex;
+    align-items: center;
 
-  display: flex;
-  align-items: center;
-
-  & + div {
-    margin-top: 8px;
-  }
-
-  ${props =>
-    props.isErrored &&
-    !props.isFilled &&
-    css`
-      border-color: #c53030;
-    `}
-
-  ${props =>
-    props.isFocused &&
-    css`
-      color: #f18b8c;
-      border-color: #f18b8c;
-    `}
-
-  ${props =>
-    props.isFilled &&
-    css`
-      color: #f18b8c;
-    `}
-
-  input {
-    flex: 1;
-    background: transparent;
-    border: 0;
-    color: #f4ede8;
-
-    &::placeholder {
-      color: #666360;
+    & + div {
+      margin-top: 8px;
     }
-  }
 
-  svg {
-    margin-right: 16px;
-  }
+    ${props =>
+      props.isErrored &&
+      props.isFilled &&
+      css`
+        border-color: ${({ theme }) => theme.colors.red};
+      `}
+
+    ${props =>
+      props.isFocused &&
+      css`
+        color: ${({ theme }) => theme.colors.primary};
+        border-color: ${({ theme }) => theme.colors.primary};
+      `}
+
+    ${props =>
+      props.isFilled &&
+      css`
+        color: ${({ theme }) => theme.colors.primary};
+      `}
+
+    input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      color: ${({ theme }) => theme.colors.frozen};
+
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.greyInput};
+      }
+    }
+
+    svg {
+      margin-right: 16px;
+    }
 `;
 
 export const Error = styled(Tooltip)`
@@ -73,11 +63,11 @@ export const Error = styled(Tooltip)`
   }
 
   span {
-    background: #c53030;
-    color: #fff;
+    background: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.white};
 
     &::before {
-      border-color: #c53030 transparent;
+      border-color: ${({ theme }) => theme.colors.red} transparent;
     }
   }
 `;

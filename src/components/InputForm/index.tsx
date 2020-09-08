@@ -1,21 +1,22 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { FiAlertCircle } from 'react-icons/fi';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
+import InputMask from 'react-input-mask';
 import { useField } from '@unform/core';
+import { FiAlertCircle } from 'react-icons/fi';
 
 import { IInputProps } from './Props';
 
 import { Container, Error } from './styles';
 
-const Input: React.FC<IInputProps> = ({ name, icon: Icon, ...rest }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
+  const inputRef = useRef<any>(null);
 
-  const [isFilled, setIsFilled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
+    setIsFocused(oldState => !oldState);
   }, []);
 
   const handleInputBlur = useCallback(() => {
@@ -29,19 +30,29 @@ const Input: React.FC<IInputProps> = ({ name, icon: Icon, ...rest }) => {
       name: fieldName,
       ref: inputRef.current,
       path: 'value',
+      setValue(ref: any, value: string | number) {
+        ref.setInputValue(value);
+      },
     });
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFocused={isFocused} isFilled={isFilled}>
-      {Icon && <Icon size={20} />}
-      <input
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
+    <Container
+      isErrored={!!error}
+      isFocused={isFocused}
+      isFilled={isFilled}
+      isValue={defaultValue !== undefined && defaultValue !== null}
+    >
+      <InputMask
         defaultValue={defaultValue}
         ref={inputRef}
         {...rest}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
+      <span className="highlight" />
+      <span className="bar" />
+      <label>{placeholder}</label>
 
       {error && (
         <Error title={error}>
@@ -52,4 +63,4 @@ const Input: React.FC<IInputProps> = ({ name, icon: Icon, ...rest }) => {
   );
 };
 
-export default Input;
+export default InputForm;

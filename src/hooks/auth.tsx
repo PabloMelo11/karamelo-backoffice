@@ -24,6 +24,7 @@ interface IAuthContext {
   user: IUser;
   signIn(credentials: ISignInCredentials): Promise<void>;
   signOut(): void;
+  updateUser(user: IUser): void;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -34,6 +35,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@Karamelo:user');
 
     if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
 
@@ -58,8 +61,22 @@ export const AuthProvider: React.FC = ({ children }) => {
     setData({} as IAuthState);
   }, []);
 
+  const updateUser = useCallback(
+    (user: IUser) => {
+      localStorage.setItem('@Karamelo:user', JSON.stringify(user));
+
+      setData({
+        token: data.token,
+        user,
+      });
+    },
+    [setData, data.token],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, signIn, signOut, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

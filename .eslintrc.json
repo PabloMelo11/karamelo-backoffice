@@ -35,7 +35,12 @@
     "@typescript-eslint/ban-types": "off",
     "import/no-duplicates": "off",
     "@typescript-eslint/class-name-casing": "off",
+    "import/no-extraneous-dependencies": "off",
     "no-unused-expressions": "off",
+    "react/no-unescaped-entities": "off",
+    "no-param-reassign": "off",
+    "ts-styled-plugin": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
     "react/jsx-filename-extension": [
       1,
@@ -52,6 +57,12 @@
       {
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      {
+        "allowSingleExtends": true
       }
     ]
   },

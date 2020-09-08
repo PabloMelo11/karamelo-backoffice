@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Content, Wrapper, WrapperContent } from './styles';
+import { Container, Content, Wrapper } from './styles';
 
 import Menu from '../../components/Menu';
 import Header from '../../components/Header';
@@ -11,9 +11,7 @@ const DefaultLayout: React.FC = ({ children }) => {
       <Menu />
       <Content>
         <Header />
-        <Wrapper>
-          <WrapperContent>{children}</WrapperContent>
-        </Wrapper>
+        <Wrapper>{children}</Wrapper>
       </Content>
     </Container>
   );

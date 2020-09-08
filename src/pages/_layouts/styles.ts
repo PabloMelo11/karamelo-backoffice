@@ -4,6 +4,7 @@ export const Container = styled.div`
   background-color: #f2f2f2;
   min-height: 100%;
   height: 100vh;
+  width: 100%;
   display: flex;
 `;
 
@@ -14,6 +15,8 @@ export const Content = styled.div`
   height: 100vh;
   background: #fafafa;
   color: rgb(85, 85, 85);
+  width: 100%;
+  overflow: hidden;
 
   font-weight: 300;
   line-height: 30px;
@@ -26,10 +29,5 @@ export const Wrapper = styled.div`
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-  overflow: auto;
   height: 100%;
-`;
-
-export const WrapperContent = styled.div`
-  width: 100%;
 `;
