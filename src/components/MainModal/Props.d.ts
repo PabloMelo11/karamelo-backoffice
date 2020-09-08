@@ -4,6 +4,7 @@ export type IMainModalProps = {
   headerBackgroundColor?: string;
   headerShadowColor?: string;
   hasImage?: boolean;
+  headerStyle?: object;
 };
 
 export type IHeader = {

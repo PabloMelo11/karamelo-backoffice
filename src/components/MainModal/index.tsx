@@ -11,6 +11,7 @@ const MainModal: React.FC<IMainModalProps> = ({
   headerShadowColor,
   hasImage,
   children,
+  headerStyle,
 }) => {
   return (
     <Container>
@@ -18,6 +19,7 @@ const MainModal: React.FC<IMainModalProps> = ({
         <Header
           backgroundColor={headerBackgroundColor}
           shadowColor={headerShadowColor}
+          style={headerStyle}
         >
           <h4>{title}</h4>
           <p>{subtitle}</p>
