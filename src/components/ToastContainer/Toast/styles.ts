@@ -45,9 +45,14 @@ export const Container = styled(animated.div)<IContainerProps>`
   div {
     flex: 1;
 
+    strong {
+      font-weight: 500;
+    }
+
     p {
       margin-top: 4px;
       font-size: 1.4rem;
+      font-weight: 500;
       opacity: 0.8;
       line-height: 20px;
     }
