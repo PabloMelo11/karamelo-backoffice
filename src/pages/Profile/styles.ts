@@ -102,7 +102,7 @@ export const MainInformations = styled.div`
 export const AvatarInput = styled.div`
   position: relative;
   align-self: center;
-  top: -30px;
+  top: -24px;
 
   img {
     width: 130px;
