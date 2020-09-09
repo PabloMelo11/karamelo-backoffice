@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import { IHeader, IMainModalProps } from './Props';
 
@@ -12,14 +13,37 @@ export const Container = styled.div`
   border-radius: ${({ theme }) => theme.radius.default};
 `;
 
+const headerTypesColors = {
+  purple: css`
+    background: ${({ theme }) => theme.modals.purple};
+    box-shadow: ${({ theme }) => theme.shadows.purple};
+  `,
+  red: css`
+    background: ${({ theme }) => theme.modals.red};
+    box-shadow: ${({ theme }) => theme.shadows.red};
+  `,
+  yellow: css`
+    background: ${({ theme }) => theme.modals.yellow};
+    box-shadow: ${({ theme }) => theme.shadows.yellow};
+  `,
+  green: css`
+    background: ${({ theme }) => theme.modals.green};
+    box-shadow: ${({ theme }) => theme.shadows.green};
+  `,
+  blue: css`
+    background: ${({ theme }) => theme.modals.blue};
+    box-shadow: ${({ theme }) => theme.shadows.blue};
+  `,
+};
+
 export const Header = styled.div<IHeader>`
   margin: 0 15px;
   margin-top: -21px;
   padding: 15px;
   height: 85px;
-  background: ${({ theme }) => theme.modals.purple};
-  box-shadow: ${({ theme }) => theme.shadows.purple};
   border-radius: 4px;
+
+  ${props => headerTypesColors[props.backgroundColor || 'purple']}
 
   h4 {
     color: #fff;
@@ -36,6 +60,14 @@ export const Header = styled.div<IHeader>`
     margin-top: 0;
     margin-bottom: 0;
   }
+
+  ${props =>
+    props.isCrud &&
+    css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `}
 `;
 
 export const Content = styled.div`
@@ -47,4 +79,79 @@ export const ContentImage = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+`;
+
+export const NavigationCrud = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    border: 0;
+    background: transparent;
+    color: #fff;
+    opacity: 0.8;
+    height: 100%;
+    padding: 0 24px;
+    transition: 0.2s background-color 0.1s;
+    border-radius: ${({ theme }) => theme.radius.default};
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    & + button {
+      margin-left: 6px;
+    }
+
+    svg {
+      margin-right: 9px;
+    }
+  }
+`;
+
+const activeClassName = 'active';
+
+export const MenuItem = styled(NavLink).attrs({
+  activeClassName,
+})`
+  border: 0;
+  background: transparent;
+  color: #fff;
+  opacity: 0.8;
+  height: 100%;
+  padding: 0 24px;
+  transition: 0.2s background-color 0.1s;
+  border-radius: ${({ theme }) => theme.radius.default};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-weight: 300;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  & + a {
+    margin-left: 9px;
+  }
+
+  svg {
+    margin-right: 9px;
+  }
+
+  &.${activeClassName} {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;

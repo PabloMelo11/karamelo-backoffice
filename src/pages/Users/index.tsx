@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
+import General from '../../components/General';
 
 import { Container } from './styles';
 
 const Users: React.FC = () => {
-  useEffect(() => {
-    console.log('acessou');
-  }, []);
-
   return (
-    <Container>
-      <span>Users</span>
-    </Container>
+    <General>
+      <Container>
+        <span>Users</span>
+      </Container>
+    </General>
   );
 };
 

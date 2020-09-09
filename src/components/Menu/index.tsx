@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { FaColumns, FaBox, FaUsers, FaUser } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
+import { AiOutlineSetting } from 'react-icons/ai';
 import { MdDashboard, MdShoppingBasket, MdMenu } from 'react-icons/md';
 import { BsClipboardData } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -46,9 +47,9 @@ const MenuSideBar: React.FC = () => {
           <Link to="/dashboard" />
         </MenuItem>
 
-        <MenuItem icon={<FaBox size={22} />}>
-          Produtos
-          <Link to="/products" />
+        <MenuItem icon={<AiOutlineSetting size={24} />}>
+          Configurações
+          <Link to="/general" />
         </MenuItem>
 
         <SubMenu title="Pedidos" icon={<MdShoppingBasket size={24} />}>
@@ -61,16 +62,6 @@ const MenuSideBar: React.FC = () => {
             <Link to="/cart" />
           </MenuItem>
         </SubMenu>
-
-        <MenuItem icon={<FaUsers size={24} />}>
-          Clientes
-          <Link to="/customers" />
-        </MenuItem>
-
-        <MenuItem icon={<FaUser size={24} />}>
-          Usuários
-          <Link to="/users" />
-        </MenuItem>
 
         <MenuItem icon={<BsClipboardData size={24} />}>
           Relatórios

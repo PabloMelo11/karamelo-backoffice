@@ -1,6 +1,14 @@
 import React from 'react';
+import { FaUser, FaUsers, FaBox } from 'react-icons/fa';
 
-import { Container, Header, Content, ContentImage } from './styles';
+import {
+  Container,
+  Header,
+  Content,
+  ContentImage,
+  NavigationCrud,
+  MenuItem,
+} from './styles';
 
 import { IMainModalProps } from './Props';
 
@@ -8,21 +16,41 @@ const MainModal: React.FC<IMainModalProps> = ({
   title,
   subtitle,
   headerBackgroundColor,
-  headerShadowColor,
   hasImage,
   children,
   headerStyle,
+  containerStyles,
+  isCrud,
 }) => {
   return (
-    <Container>
+    <Container style={containerStyles}>
       {!hasImage && (
         <Header
-          backgroundColor={headerBackgroundColor}
-          shadowColor={headerShadowColor}
           style={headerStyle}
+          isCrud={isCrud}
+          backgroundColor={headerBackgroundColor}
         >
-          <h4>{title}</h4>
-          <p>{subtitle}</p>
+          {title && <h4>{title}</h4>}
+          {subtitle && <p>{subtitle}</p>}
+
+          {isCrud && (
+            <NavigationCrud>
+              <MenuItem to="/general/users">
+                <FaUser size={18} />
+                <span>Usuários</span>
+              </MenuItem>
+
+              <MenuItem to="/general/customers">
+                <FaUsers size={24} />
+                <span>Clientes</span>
+              </MenuItem>
+
+              <MenuItem to="/general/products">
+                <FaBox size={18} />
+                <span>Produtos</span>
+              </MenuItem>
+            </NavigationCrud>
+          )}
         </Header>
       )}
 

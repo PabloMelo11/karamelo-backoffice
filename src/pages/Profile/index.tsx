@@ -236,7 +236,6 @@ const Profile: React.FC = () => {
       if (cep.length === 8) {
         cepApi(cep)
           .then(response => {
-            console.log(response);
             setCityApi(response.city);
             setStateApi(response.state);
             setNeighborhoodApi(response.neighborhood);

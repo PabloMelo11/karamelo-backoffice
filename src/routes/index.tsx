@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect, Route as RouteDOM } from 'react-router-dom';
 
 import Route from './routes';
 
@@ -21,12 +21,15 @@ const Routes: React.FC = () => (
 
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/panels" component={Panels} isPrivate />
+    <RouteDOM exact path="/general" isPrivate>
+      <Redirect to="/general/users" />
+    </RouteDOM>
     <Route path="/cart" component={Cart} isPrivate />
     <Route path="/catalog" component={Catalog} isPrivate />
-    <Route path="/customers" component={Customers} isPrivate />
-    <Route path="/products" component={Products} isPrivate />
+    <Route path="/general/customers" component={Customers} isPrivate />
+    <Route path="/general/products" component={Products} isPrivate />
     <Route path="/reports" component={Reports} isPrivate />
-    <Route path="/users" component={Users} isPrivate />
+    <Route path="/general/users" component={Users} isPrivate />
     <Route path="/me" component={Profile} isPrivate />
   </Switch>
 );
