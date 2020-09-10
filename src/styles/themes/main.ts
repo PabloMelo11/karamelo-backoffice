@@ -35,6 +35,9 @@ export default {
     small: '0.3rem',
     tiny: '0.2rem',
   },
+  borders: {
+    default: '1px solid #e0e0e0',
+  },
   shadows: {
     default: '0 0.5rem 2rem rgba(0, 0, 0, 0.14)',
     flat: '0 0.2rem 0.2rem rgba(0, 0, 0, 0.08)',
