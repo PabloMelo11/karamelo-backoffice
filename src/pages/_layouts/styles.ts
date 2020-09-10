@@ -24,7 +24,7 @@ export const Content = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 18px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   height: 100%;

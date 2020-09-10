@@ -20,13 +20,13 @@ export const ContentGrid = styled.div`
   height: 100%;
   width: 100%;
   display: grid;
+  grid-gap: 20px;
   grid-template-rows: auto;
   grid-template-columns: 2fr 1fr;
 `;
 
 export const ContentInformations = styled.div`
   width: 100%;
-  padding: 16px;
 
   display: flex;
   justify-content: center;
