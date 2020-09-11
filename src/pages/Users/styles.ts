@@ -51,14 +51,27 @@ export const Container = styled.div`
       vertical-align: middle;
       border-color: inherit;
 
+      tr:first-child {
+        border-top: ${({ theme }) => theme.borders.default};
+        border-bottom: ${({ theme }) => theme.borders.default};
+      }
+
       tr {
         color: inherit;
         height: 48px;
         display: table-row;
         outline: none;
         vertical-align: middle;
+        cursor: pointer;
+        transition: 0.2s background-color 0.1s;
 
-        border-top: ${({ theme }) => theme.borders.default};
+        &:hover {
+          background-color: #fafafa;
+        }
+
+        & + tr {
+          border-bottom: ${({ theme }) => theme.borders.default};
+        }
 
         td {
           padding: 12px 8px;

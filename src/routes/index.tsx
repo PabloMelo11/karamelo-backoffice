@@ -13,6 +13,7 @@ import Customers from '../pages/Customers';
 import Products from '../pages/Products';
 import Reports from '../pages/Reports';
 import Users from '../pages/Users';
+import UserDetails from '../pages/Users/UserDetails';
 import Profile from '../pages/Profile';
 
 const Routes: React.FC = () => (
@@ -30,6 +31,7 @@ const Routes: React.FC = () => (
     <Route path="/general/products" component={Products} isPrivate />
     <Route path="/reports" component={Reports} isPrivate />
     <Route path="/general/users" component={Users} isPrivate />
+    <Route path="/general/:userID/users" component={UserDetails} isPrivate />
     <Route path="/me" component={Profile} isPrivate />
   </Switch>
 );
