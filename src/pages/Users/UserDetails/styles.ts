@@ -8,29 +8,20 @@ export const ContainerGrid = styled.div`
   grid-gap: 20px;
   grid-row-gap: 40px;
   grid-template-rows: auto;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    'orders info'
-    'products info';
+    'info orders'
+    'info products';
 
-  .one {
-    background: #000;
-    width: 100%;
-    height: 100%;
+  .perfil {
     grid-area: info;
   }
 
-  .two {
-    background: #543423;
-    width: 100%;
-    height: 100%;
+  .orders {
     grid-area: orders;
   }
 
-  .three {
-    background: #989540;
-    width: 100%;
-    height: 100%;
+  .products {
     grid-area: products;
   }
 `;
