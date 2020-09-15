@@ -65,10 +65,10 @@ const UserDetails: React.FC = () => {
 
   const formattedStatusOrder = useCallback(orderStatus => {
     if (orderStatus === 'pending') return 'Pendente';
-    if (orderStatus === 'cancelled') return 'Cancelado';
-    if (orderStatus === 'shipped') return 'Enviado';
-    if (orderStatus === 'paid') return 'Pago';
+    if (orderStatus === 'in_progress') return 'Em progresso';
+    if (orderStatus === 'done') return 'Feito';
     if (orderStatus === 'finished') return 'Finalizado';
+    if (orderStatus === 'canceled') return 'Cancelado';
   }, []);
 
   useEffect(() => {
