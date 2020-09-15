@@ -20,6 +20,7 @@ const MainModal: React.FC<IMainModalProps> = ({
   children,
   headerStyle,
   containerStyles,
+  contentStyles,
   isCrud,
 }) => {
   return (
@@ -54,7 +55,7 @@ const MainModal: React.FC<IMainModalProps> = ({
         </Header>
       )}
 
-      {!hasImage && <Content>{children}</Content>}
+      {!hasImage && <Content style={contentStyles}>{children}</Content>}
 
       {hasImage && <ContentImage>{children}</ContentImage>}
     </Container>

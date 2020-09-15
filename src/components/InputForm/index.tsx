@@ -7,7 +7,13 @@ import { IInputProps } from './Props';
 
 import { Container, Error } from './styles';
 
-const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
+const InputForm: React.FC<IInputProps> = ({
+  name,
+  placeholder,
+  color,
+  disabled,
+  ...rest
+}) => {
   const inputRef = useRef<any>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -42,6 +48,8 @@ const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
       isFocused={isFocused}
       isFilled={isFilled}
       isValue={defaultValue !== undefined && defaultValue !== null}
+      color={color}
+      disabled={disabled}
     >
       <InputMask
         defaultValue={defaultValue}
@@ -49,6 +57,7 @@ const InputForm: React.FC<IInputProps> = ({ name, placeholder, ...rest }) => {
         {...rest}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        disabled={disabled}
       />
       <span className="highlight" />
       <span className="bar" />

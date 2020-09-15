@@ -6,6 +6,7 @@ export default {
     secondary: '#292534',
     white: '#fff',
     purple: '#ab47bc',
+    green: '#66bb6a',
     purpleStrong: '#9c27b0',
     grey: '#adadad',
     greyStrong: '#312e38',

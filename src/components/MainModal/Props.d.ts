@@ -6,6 +6,7 @@ export type IMainModalProps = {
   headerStyle?: object;
   isCrud?: boolean;
   containerStyles?: object;
+  contentStyles?: object;
 };
 
 export type IHeader = {

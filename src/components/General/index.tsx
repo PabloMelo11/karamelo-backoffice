@@ -8,7 +8,7 @@ const General: React.FC = ({ children }) => {
   return (
     <Container>
       <MainModal
-        containerStyles={{ height: '100%' }}
+        containerStyles={{ height: '100%', maxHeight: '867px' }}
         headerStyle={{ height: '64px' }}
         headerBackgroundColor="red"
         isCrud

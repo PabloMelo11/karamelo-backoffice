@@ -21,7 +21,7 @@ export const Container = styled.div`
 
     thead {
       display: table-header-group;
-      color: ${({ theme }) => theme.colors.red};
+      color: ${({ theme }) => theme.colors.grey999};
       vertical-align: middle;
       border-color: inherit;
 

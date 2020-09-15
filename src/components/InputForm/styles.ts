@@ -27,6 +27,7 @@ export const Container = styled.div<IContainerProps>`
     color: currentColor;
     border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
     position: relative;
+    cursor: ${props => (props.disabled ? 'not-allowed' : 'auto')}
   }
 
   input:focus {
@@ -55,7 +56,9 @@ export const Container = styled.div<IContainerProps>`
       label {
         top: -20px;
         font-size: 1.4rem !important;
-        color: ${({ theme }) => theme.colors.purple} !important;
+        color: ${props.color === 'green'
+          ? props.theme.colors.green
+          : props.theme.colors.purple};
       }
     `}
 
@@ -65,7 +68,12 @@ export const Container = styled.div<IContainerProps>`
         label {
           top: -20px;
           font-size: 1.4rem !important;
-          color: ${({ theme }) => theme.colors.purple} !important;
+          color: ${
+            props.color === 'green'
+              ? props.theme.colors.green
+              : props.theme.colors.purple
+          };
+      }
         }
       `}
 
@@ -75,7 +83,12 @@ export const Container = styled.div<IContainerProps>`
       label {
         top: -20px;
         font-size: 1.4rem;
-        color: ${({ theme }) => theme.colors.purple} !important;
+        color: ${
+          props.color === 'green'
+            ? props.theme.colors.green
+            : props.theme.colors.purple
+        };
+      }
       }
     `}
 
@@ -91,7 +104,10 @@ export const Container = styled.div<IContainerProps>`
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: ${({ theme }) => theme.colors.purple};
+    background: ${props =>
+      props.color === 'green'
+        ? props.theme.colors.green
+        : props.theme.colors.purple};
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
