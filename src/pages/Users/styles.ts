@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  padding: 0 24px;
+
   span {
     color: inherit;
     margin: 0;

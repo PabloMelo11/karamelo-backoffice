@@ -3,15 +3,18 @@ import styled from 'styled-components';
 export const ContainerGrid = styled.div`
   width: 100%;
   height: 100%;
+  padding: 40px 24px 0;
 
   display: grid;
   grid-gap: 20px;
   grid-row-gap: 40px;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    'info orders'
-    'categories products';
+    'info'
+    'orders'
+    'products'
+    'categories';
 
   .perfil {
     grid-area: info;
@@ -50,7 +53,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  height: 268px;
+  height: 250px;
   overflow: auto;
 
   &::-webkit-scrollbar-track {
