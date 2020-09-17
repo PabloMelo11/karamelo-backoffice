@@ -4,6 +4,7 @@ import { shade } from 'polished';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 
   > span {
     color: inherit;
@@ -14,6 +15,10 @@ export const Container = styled.div`
     letter-spacing: unset;
     text-transform: none;
   }
+`;
+
+export const Content = styled.div`
+  padding: 18px 15px;
 `;
 
 export const ContentGrid = styled.div`

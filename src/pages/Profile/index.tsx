@@ -29,6 +29,7 @@ import getValidationErrors from '../../utils/getValidationsErrors';
 
 import {
   Container,
+  Content,
   ContentGrid,
   ContentInformations,
   FormInformations,
@@ -272,149 +273,151 @@ const Profile: React.FC = () => {
 
   return (
     <Container>
-      <ContentGrid>
-        {loading ? (
-          <LoadingProfileContent />
-        ) : (
-          <ContentInformations>
-            <MainModal
-              title="Edite seu perfil"
-              subtitle="Complete as informações do perfil"
-            >
-              <ContentForm>
-                <Form
-                  ref={formRef}
-                  onSubmit={handleSubmit}
-                  initialData={{
-                    name: user.name,
-                    email: user.email,
-                    cpf: user.cpf,
-                    date_of_birth: user.date_of_birth,
-                    phone: user.phone,
-                    whatsapp: user.whatsapp,
-                    cep: user.cep,
-                    state: user.state,
-                    city: user.city,
-                    neighborhood: user.neighborhood,
-                    street: user.street,
-                    number: user.number,
-                  }}
-                >
-                  <Row>
-                    <InputForm name="name" placeholder="Usuário" mask="" />
-                    <InputForm name="email" placeholder="E-mail" mask="" />
-                    <InputForm
-                      name="cpf"
-                      placeholder="CPF"
-                      mask="999.999.999-99"
-                    />
-                  </Row>
-
-                  <Row>
-                    <InputForm
-                      name="date_of_birth"
-                      placeholder="Nascimento"
-                      mask="99/99/9999"
-                    />
-                    <InputForm
-                      name="phone"
-                      placeholder="Telefone"
-                      mask="(99) 99999-9999"
-                    />
-                    <InputForm
-                      name="whatsapp"
-                      placeholder="Whatsapp"
-                      mask="(99) 99999-9999"
-                    />
-                  </Row>
-
-                  <Row style={{ marginTop: 30 }}>
-                    <InputForm
-                      name="cep"
-                      placeholder="CEP"
-                      mask="99999-999"
-                      onChange={event => handleSearchCEP(event.target.value)}
-                    />
-                    <InputForm
-                      name="state"
-                      placeholder="UF"
-                      mask=""
-                      value={stateApi || user.state}
-                    />
-                    <InputForm
-                      name="city"
-                      placeholder="Cidade"
-                      mask=""
-                      value={cityApi || user.city}
-                    />
-                  </Row>
-
-                  <Row>
-                    <InputForm
-                      name="neighborhood"
-                      placeholder="Bairro"
-                      mask=""
-                      value={neighborhoodApi || user.neighborhood}
-                    />
-                    <InputForm
-                      name="street"
-                      placeholder="Logradouro"
-                      mask=""
-                      value={streetApi || user.street}
-                    />
-                    <InputForm name="number" placeholder="Número" mask="" />
-                  </Row>
-
-                  <Row style={{ marginTop: 30 }}>
-                    <InputForm
-                      type="password"
-                      name="password"
-                      placeholder="Senha"
-                      mask=""
-                    />
-                    <InputForm
-                      type="password"
-                      name="password_confirmation"
-                      placeholder="Confirmação de senha"
-                      mask=""
-                    />
-                  </Row>
-
-                  <ButtonForm type="submit">
-                    {loadingSubmit ? <Loading /> : 'Atualizar'}
-                  </ButtonForm>
-                </Form>
-              </ContentForm>
-            </MainModal>
-          </ContentInformations>
-        )}
-
-        {loading ? (
-          <LoadingProfile />
-        ) : (
-          <ContentMain>
+      <Content>
+        <ContentGrid>
+          {loading ? (
+            <LoadingProfileContent />
+          ) : (
             <ContentInformations>
-              <MainModal hasImage>
-                <AvatarInput>
-                  <img src={user.avatar_url} alt={user.name} />
-                  <label htmlFor="avatar">
-                    <FiCamera />
-                    <input
-                      type="file"
-                      id="avatar"
-                      onChange={handleAvatarChange}
-                    />
-                  </label>
-                </AvatarInput>
+              <MainModal
+                title="Edite seu perfil"
+                subtitle="Complete as informações do perfil"
+              >
+                <ContentForm>
+                  <Form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    initialData={{
+                      name: user.name,
+                      email: user.email,
+                      cpf: user.cpf,
+                      date_of_birth: user.date_of_birth,
+                      phone: user.phone,
+                      whatsapp: user.whatsapp,
+                      cep: user.cep,
+                      state: user.state,
+                      city: user.city,
+                      neighborhood: user.neighborhood,
+                      street: user.street,
+                      number: user.number,
+                    }}
+                  >
+                    <Row>
+                      <InputForm name="name" placeholder="Usuário" mask="" />
+                      <InputForm name="email" placeholder="E-mail" mask="" />
+                      <InputForm
+                        name="cpf"
+                        placeholder="CPF"
+                        mask="999.999.999-99"
+                      />
+                    </Row>
 
-                <Description>
-                  <h6>{user.name}</h6>
-                </Description>
+                    <Row>
+                      <InputForm
+                        name="date_of_birth"
+                        placeholder="Nascimento"
+                        mask="99/99/9999"
+                      />
+                      <InputForm
+                        name="phone"
+                        placeholder="Telefone"
+                        mask="(99) 99999-9999"
+                      />
+                      <InputForm
+                        name="whatsapp"
+                        placeholder="Whatsapp"
+                        mask="(99) 99999-9999"
+                      />
+                    </Row>
+
+                    <Row style={{ marginTop: 30 }}>
+                      <InputForm
+                        name="cep"
+                        placeholder="CEP"
+                        mask="99999-999"
+                        onChange={event => handleSearchCEP(event.target.value)}
+                      />
+                      <InputForm
+                        name="state"
+                        placeholder="UF"
+                        mask=""
+                        value={stateApi || user.state}
+                      />
+                      <InputForm
+                        name="city"
+                        placeholder="Cidade"
+                        mask=""
+                        value={cityApi || user.city}
+                      />
+                    </Row>
+
+                    <Row>
+                      <InputForm
+                        name="neighborhood"
+                        placeholder="Bairro"
+                        mask=""
+                        value={neighborhoodApi || user.neighborhood}
+                      />
+                      <InputForm
+                        name="street"
+                        placeholder="Logradouro"
+                        mask=""
+                        value={streetApi || user.street}
+                      />
+                      <InputForm name="number" placeholder="Número" mask="" />
+                    </Row>
+
+                    <Row style={{ marginTop: 30 }}>
+                      <InputForm
+                        type="password"
+                        name="password"
+                        placeholder="Senha"
+                        mask=""
+                      />
+                      <InputForm
+                        type="password"
+                        name="password_confirmation"
+                        placeholder="Confirmação de senha"
+                        mask=""
+                      />
+                    </Row>
+
+                    <ButtonForm type="submit">
+                      {loadingSubmit ? <Loading /> : 'Atualizar'}
+                    </ButtonForm>
+                  </Form>
+                </ContentForm>
               </MainModal>
             </ContentInformations>
-          </ContentMain>
-        )}
-      </ContentGrid>
+          )}
+
+          {loading ? (
+            <LoadingProfile />
+          ) : (
+            <ContentMain>
+              <ContentInformations>
+                <MainModal hasImage>
+                  <AvatarInput>
+                    <img src={user.avatar_url} alt={user.name} />
+                    <label htmlFor="avatar">
+                      <FiCamera />
+                      <input
+                        type="file"
+                        id="avatar"
+                        onChange={handleAvatarChange}
+                      />
+                    </label>
+                  </AvatarInput>
+
+                  <Description>
+                    <h6>{user.name}</h6>
+                  </Description>
+                </MainModal>
+              </ContentInformations>
+            </ContentMain>
+          )}
+        </ContentGrid>
+      </Content>
     </Container>
   );
 };

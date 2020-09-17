@@ -7,6 +7,7 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   padding: 9px 0;
+  margin: 0 15px;
 
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.default};
