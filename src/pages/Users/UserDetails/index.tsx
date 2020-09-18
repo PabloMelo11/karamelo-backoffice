@@ -30,6 +30,10 @@ interface IProduct {
 interface IOrder {
   id: number;
   customer_id: number;
+  customer: {
+    id: number;
+    name: string;
+  };
   status: string;
   total: number;
   date: string;
@@ -185,7 +189,7 @@ const UserDetails: React.FC = () => {
                     user.orders.map(order => (
                       <tr key={order.id}>
                         <td>{order.id}</td>
-                        <td>{order.customer_id}</td>
+                        <td>{order.customer.name}</td>
                         <td>{formattedStatusOrder(order.status)}</td>
                         <td>{formatMoney(order.total)}</td>
                         <td>{formattedDate.formatDateWithHour(order.date)}</td>
