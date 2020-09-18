@@ -43,4 +43,10 @@ export default createGlobalStyle`
     border: 0;
     background: 'transparent'
   }
+
+  @media (max-width: 1280px) {
+    html {
+      font-size: 60.5%;
+    }
+  }
 `;
