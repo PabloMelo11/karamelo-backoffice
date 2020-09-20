@@ -28,6 +28,22 @@ export const ContentGrid = styled.div`
   grid-gap: 20px;
   grid-template-rows: auto;
   grid-template-columns: 2fr 1fr;
+  grid-template-areas: 'info main';
+
+  .info {
+    grid-area: info;
+  }
+
+  .main {
+    grid-area: main;
+  }
+
+  @media (max-width: 940px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'main'
+      'info';
+  }
 `;
 
 export const ContentInformations = styled.div`
@@ -81,6 +97,10 @@ export const ContentForm = styled.div`
 export const Row = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
 
 export const Divider = styled.div``;

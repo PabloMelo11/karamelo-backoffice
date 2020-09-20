@@ -8,9 +8,16 @@ export const Container = styled.div<IContainerProps>`
   position: relative;
   margin-bottom: 45px;
   flex: 1;
+  width: 100%;
 
   & + div {
     margin-left: 20px;
+  }
+
+  @media (max-width: 650px) {
+    & + div {
+    margin-left: 0px;
+  }
   }
 
   .group {

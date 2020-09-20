@@ -278,7 +278,7 @@ const Profile: React.FC = () => {
           {loading ? (
             <LoadingProfileContent />
           ) : (
-            <ContentInformations>
+            <ContentInformations className="info">
               <MainModal
                 title="Edite seu perfil"
                 subtitle="Complete as informações do perfil"
@@ -395,8 +395,8 @@ const Profile: React.FC = () => {
             <LoadingProfile />
           ) : (
             <ContentMain>
-              <ContentInformations>
-                <MainModal hasImage>
+              <ContentInformations className="main">
+                <MainModal hasImage containerStyles={{ marginBottom: '20px' }}>
                   <AvatarInput>
                     <img src={user.avatar_url} alt={user.name} />
                     <label htmlFor="avatar">
