@@ -33,6 +33,7 @@
     "consistent-return": "off",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-types": "off",
     "import/no-duplicates": "off",
     "@typescript-eslint/class-name-casing": "off",

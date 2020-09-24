@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FiPlus } from 'react-icons/fi';
 
 import api from '../../services/api';
 
 import General from '../../components/General';
+import ModalCreateUser from './ModalCreateUser';
 
-import { Container } from './styles';
+import { Container, Footer } from './styles';
 
 interface IUsers {
   id: number;
@@ -18,6 +20,7 @@ const Users: React.FC = () => {
   const history = useHistory();
 
   const [users, setUsers] = useState<IUsers[]>([]);
+  const [createUser, setCreateUser] = useState(false);
 
   const formattedStatus = useCallback((status: string): string => {
     if (status === 'active') {
@@ -68,7 +71,23 @@ const Users: React.FC = () => {
               ))}
           </tbody>
         </table>
+
+        <Footer>
+          <button
+            type="button"
+            title="Adicionar novo usuário"
+            onClick={() => setCreateUser(true)}
+          >
+            <FiPlus size={32} />
+          </button>
+        </Footer>
       </Container>
+      {createUser && (
+        <ModalCreateUser
+          isVisible={createUser}
+          triggerClose={() => setCreateUser(false)}
+        />
+      )}
     </General>
   );
 };

@@ -18,6 +18,19 @@ export default createGlobalStyle`
 
     color: #fff;
     background: #292534;
+
+    .ReactModal__Overlay {
+      opacity: 0;
+      transition: opacity 200ms ease-in-out;
+    }
+
+    .ReactModal__Overlay--after-open{
+      opacity: 1;
+    }
+
+    .ReactModal__Overlay--before-close{
+      opacity: 0;
+    }
   }
 
   body, input, button {
