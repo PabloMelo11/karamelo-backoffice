@@ -27,12 +27,26 @@ export const Header = styled.header`
     justify-content: center;
     align-items: center;
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
     svg {
       color: #fff;
     }
   }
+`;
+
+export const Content = styled.div`
+  color: #000;
+  padding: 34px 12px 16px;
+
+  div {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
 `;

@@ -5,13 +5,13 @@ export type IContainerProps = {
   isFocused: boolean;
   isFilled: boolean;
   isValue?: boolean;
-  color?: 'purple' | 'green';
+  color: 'purple' | 'green' | 'red';
   disabled?: boolean;
 };
 
 export type IInputProps = InputProps & {
   name: string;
   placeholder?: string;
-  color?: 'purple' | 'green';
+  color?: 'purple' | 'green' | 'red';
   disabled?: boolean;
 };

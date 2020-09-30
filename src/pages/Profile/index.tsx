@@ -32,13 +32,9 @@ import {
   Content,
   ContentGrid,
   ContentInformations,
-  FormInformations,
-  Header,
   ContentForm,
   Row,
-  Divider,
   ContentMain,
-  MainInformations,
   AvatarInput,
   Description,
 } from './styles';
@@ -303,12 +299,23 @@ const Profile: React.FC = () => {
                     }}
                   >
                     <Row>
-                      <InputForm name="name" placeholder="Usuário" mask="" />
-                      <InputForm name="email" placeholder="E-mail" mask="" />
+                      <InputForm
+                        name="name"
+                        placeholder="Usuário"
+                        mask=""
+                        autoComplete="off"
+                      />
+                      <InputForm
+                        name="email"
+                        placeholder="E-mail"
+                        mask=""
+                        autoComplete="off"
+                      />
                       <InputForm
                         name="cpf"
                         placeholder="CPF"
                         mask="999.999.999-99"
+                        autoComplete="off"
                       />
                     </Row>
 
@@ -317,16 +324,19 @@ const Profile: React.FC = () => {
                         name="date_of_birth"
                         placeholder="Nascimento"
                         mask="99/99/9999"
+                        autoComplete="off"
                       />
                       <InputForm
                         name="phone"
                         placeholder="Telefone"
                         mask="(99) 99999-9999"
+                        autoComplete="off"
                       />
                       <InputForm
                         name="whatsapp"
                         placeholder="Whatsapp"
                         mask="(99) 99999-9999"
+                        autoComplete="off"
                       />
                     </Row>
 
@@ -336,18 +346,21 @@ const Profile: React.FC = () => {
                         placeholder="CEP"
                         mask="99999-999"
                         onChange={event => handleSearchCEP(event.target.value)}
+                        autoComplete="off"
                       />
                       <InputForm
                         name="state"
                         placeholder="UF"
                         mask=""
                         value={stateApi || user.state}
+                        autoComplete="off"
                       />
                       <InputForm
                         name="city"
                         placeholder="Cidade"
                         mask=""
                         value={cityApi || user.city}
+                        autoComplete="off"
                       />
                     </Row>
 
@@ -357,14 +370,21 @@ const Profile: React.FC = () => {
                         placeholder="Bairro"
                         mask=""
                         value={neighborhoodApi || user.neighborhood}
+                        autoComplete="off"
                       />
                       <InputForm
                         name="street"
                         placeholder="Logradouro"
                         mask=""
                         value={streetApi || user.street}
+                        autoComplete="off"
                       />
-                      <InputForm name="number" placeholder="Número" mask="" />
+                      <InputForm
+                        name="number"
+                        placeholder="Número"
+                        mask=""
+                        autoComplete="off"
+                      />
                     </Row>
 
                     <Row style={{ marginTop: 30 }}>
@@ -373,12 +393,14 @@ const Profile: React.FC = () => {
                         name="password"
                         placeholder="Senha"
                         mask=""
+                        autoComplete="off"
                       />
                       <InputForm
                         type="password"
                         name="password_confirmation"
                         placeholder="Confirmação de senha"
                         mask=""
+                        autoComplete="off"
                       />
                     </Row>
 

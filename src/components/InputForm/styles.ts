@@ -4,6 +4,18 @@ import { IContainerProps } from './Props';
 
 import Tooltip from '../Tooltip';
 
+const colors = {
+  purple: css`
+    ${({ theme }) => theme.colors.purple};
+  `,
+  red: css`
+    ${({ theme }) => theme.colors.redForm};
+  `,
+  green: css`
+    ${({ theme }) => theme.colors.green};
+  `,
+};
+
 export const Container = styled.div<IContainerProps>`
   position: relative;
   margin-bottom: 45px;
@@ -15,9 +27,9 @@ export const Container = styled.div<IContainerProps>`
   }
 
   @media (max-width: 650px) {
-    & + div {
-    margin-left: 0px;
-  }
+      & + div {
+      margin-left: 0px;
+    }
   }
 
   .group {
@@ -63,9 +75,7 @@ export const Container = styled.div<IContainerProps>`
       label {
         top: -20px;
         font-size: 1.4rem !important;
-        color: ${props.color === 'green'
-          ? props.theme.colors.green
-          : props.theme.colors.purple};
+        color: ${colors[props.color]};
       }
     `}
 
@@ -75,12 +85,7 @@ export const Container = styled.div<IContainerProps>`
         label {
           top: -20px;
           font-size: 1.4rem !important;
-          color: ${
-            props.color === 'green'
-              ? props.theme.colors.green
-              : props.theme.colors.purple
-          };
-      }
+          color: ${colors[props.color]};
         }
       `}
 
@@ -90,12 +95,7 @@ export const Container = styled.div<IContainerProps>`
       label {
         top: -20px;
         font-size: 1.4rem;
-        color: ${
-          props.color === 'green'
-            ? props.theme.colors.green
-            : props.theme.colors.purple
-        };
-      }
+        color: ${colors[props.color]};
       }
     `}
 
@@ -111,10 +111,7 @@ export const Container = styled.div<IContainerProps>`
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: ${props =>
-      props.color === 'green'
-        ? props.theme.colors.green
-        : props.theme.colors.purple};
+    background: ${props => colors[props.color]};
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;

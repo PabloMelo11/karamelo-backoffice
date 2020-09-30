@@ -103,8 +103,6 @@ export const Row = styled.div`
   }
 `;
 
-export const Divider = styled.div``;
-
 export const ContentMain = styled.div`
   width: 100%;
   height: 100%;

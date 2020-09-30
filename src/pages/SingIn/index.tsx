@@ -79,15 +79,22 @@ const SingIn: React.FC = () => {
       <Content>
         <img src={logoImg} alt="Karamelo" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <Form ref={formRef} onSubmit={handleSubmit} autoComplete="off">
           <h1>Faça seu logon</h1>
 
-          <Input name="name" icon={FiUser} placeholder="Usuário" />
+          <Input
+            name="name"
+            icon={FiUser}
+            placeholder="Usuário"
+            autoComplete="off"
+          />
+
           <Input
             name="password"
             icon={FiLock}
             type="password"
             placeholder="Senha"
+            autoComplete="off"
           />
 
           <Button type="submit">{loading ? <Loading /> : 'Entrar'}</Button>

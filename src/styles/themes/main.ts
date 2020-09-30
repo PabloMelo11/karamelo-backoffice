@@ -14,6 +14,7 @@ export default {
     grey999: '#999',
     sub: '#ffffff9e',
     red: '#c53030',
+    redForm: '#ef5350',
     frozen: '#f4ede8',
   },
   fontSizes: {

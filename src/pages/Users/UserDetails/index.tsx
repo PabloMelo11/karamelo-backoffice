@@ -125,6 +125,7 @@ const UserDetails: React.FC = () => {
                     mask=""
                     color="green"
                     disabled
+                    autoComplete="off"
                   />
                   <InputForm
                     name="name"
@@ -132,6 +133,7 @@ const UserDetails: React.FC = () => {
                     mask=""
                     color="green"
                     disabled
+                    autoComplete="off"
                   />
                 </Row>
 
@@ -142,6 +144,7 @@ const UserDetails: React.FC = () => {
                     mask=""
                     color="green"
                     disabled
+                    autoComplete="off"
                   />
 
                   <InputForm
@@ -150,6 +153,7 @@ const UserDetails: React.FC = () => {
                     mask=""
                     color="green"
                     disabled
+                    autoComplete="off"
                   />
                 </Row>
               </Form>

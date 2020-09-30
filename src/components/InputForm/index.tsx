@@ -48,7 +48,7 @@ const InputForm: React.FC<IInputProps> = ({
       isFocused={isFocused}
       isFilled={isFilled}
       isValue={defaultValue !== undefined && defaultValue !== null}
-      color={color}
+      color={color || 'purple'}
       disabled={disabled}
     >
       <InputMask
