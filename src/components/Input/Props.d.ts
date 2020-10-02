@@ -5,7 +5,7 @@ export type IContainerProps = {
   isFocused: boolean;
   isFilled: boolean;
   isErrored: boolean;
-  borderColor?: 'purple' | 'primary';
+  borderColor?: 'purple' | 'primary' | 'red';
 };
 
 export type IInputProps = InputProps & {
@@ -13,5 +13,5 @@ export type IInputProps = InputProps & {
   icon?: React.ComponentType<IconBaseProps>;
   containerStyle?: object;
   stylesInput?: object;
-  borderColor?: 'purple' | 'primary';
+  borderColor?: 'purple' | 'primary' | 'red';
 };

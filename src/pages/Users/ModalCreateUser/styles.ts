@@ -4,17 +4,22 @@ export const Container = styled.div``;
 
 export const Header = styled.header`
   width: 100%;
+  height: 56px;
 
-  padding: 16px 0px;
+  padding: 20px;
+
+  background: ${({ theme }) => theme.modals.red};
+  border-radius: 5px 5px 0px 0px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   h1 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 36px;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   span {
@@ -33,16 +38,25 @@ export const Header = styled.header`
     align-items: center;
 
     svg {
-      color: #000;
+      color: ${({ theme }) => theme.colors.white};
     }
   }
 `;
 
 export const Content = styled.div`
   color: ${({ theme }) => theme.colors.greyInput};
+  padding: 20px;
 
   button {
     margin-top: 20px;
+  }
+
+  .button-save {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 `;
 
@@ -50,11 +64,16 @@ export const Row = styled.div`
   display: flex;
   flex-direction: column;
 
-  div {
+  .container {
     width: 100%;
 
-    span {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    > span {
       color: ${({ theme }) => theme.colors.greyInput};
+      margin-bottom: 6px;
     }
 
     & + div {

@@ -52,15 +52,15 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
           password: Yup.string()
             .required('Senha obrigatória')
             .min(6, 'Mínimo 6 caracteres'),
-          // password_confirmation: Yup.string()
-          //   .when('password', {
-          //     is: value => !!value.length,
-          //     then: Yup.string()
-          //       .required('Campo obrigatório')
-          //       .min(6, 'Mínimo 6 caracteres'),
-          //     otherwise: Yup.string(),
-          //   })
-          //   .oneOf([Yup.ref('password')], 'Confirmação incorreta'),
+          password_confirmation: Yup.string()
+            .when('password', {
+              is: value => !!value.length,
+              then: Yup.string()
+                .required('Campo obrigatório')
+                .min(6, 'Mínimo 6 caracteres'),
+              otherwise: Yup.string(),
+            })
+            .oneOf([Yup.ref('password')], 'Confirmação incorreta'),
         });
 
         await schema.validate(data, {
@@ -124,7 +124,9 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
+            padding: '0px',
             background: '#fafafa',
+            overflow: 'none',
             color: '#000000',
             borderRadius: '8px',
             width: '736px',
@@ -145,54 +147,54 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
         <Content>
           <Form ref={formRef} onSubmit={handleSubmit} autoComplete="off">
             <Row>
-              <div>
+              <div className="container">
                 <span>Usuário</span>
                 <Input
                   name="name"
                   placeholder="Usuário"
                   mask=""
-                  color="red"
+                  borderColor="red"
                   autoComplete="off"
                 />
               </div>
 
-              <div>
+              <div className="container">
                 <span>E-mail</span>
                 <Input
                   name="email"
                   placeholder="E-mail"
                   mask=""
-                  color="red"
+                  borderColor="red"
                   autoComplete="off"
                 />
               </div>
 
-              <div>
+              <div className="container">
                 <span>Senha</span>
                 <Input
                   type="password"
                   name="password"
                   placeholder="Senha"
                   mask=""
-                  color="red"
+                  borderColor="red"
                   autoComplete="off"
                 />
               </div>
 
-              <div>
+              <div className="container">
                 <span>Confirmação de senha</span>
                 <Input
                   type="password"
                   name="password_confirmation"
                   placeholder="Confirmação de senha"
                   mask=""
-                  color="red"
+                  borderColor="red"
                   autoComplete="off"
                 />
               </div>
             </Row>
 
-            <div>
+            <div className="button-save">
               <ButtonForm type="submit" background="red">
                 Salvar
               </ButtonForm>
