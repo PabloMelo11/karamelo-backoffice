@@ -13,7 +13,6 @@ const bordersColor = {
 };
 
 export const Container = styled.div<IContainerProps>`
-    /* background: rgba(0, 0, 0, 0.1); */
     background: #fafafa;
     border-radius: 10px;
     border: 2px solid rgba(0, 0, 0, 0.1);
@@ -23,11 +22,6 @@ export const Container = styled.div<IContainerProps>`
 
     display: flex;
     align-items: center;
-
-    /* & + div {
-      margin-top: 8px;
-      margin-left: 20px;
-    } */
 
     ${props =>
       props.isErrored &&
@@ -53,11 +47,9 @@ export const Container = styled.div<IContainerProps>`
       flex: 1;
       background: transparent;
       border: 0;
-      /* color: ${({ theme }) => theme.colors.frozen}; */
       color: ${({ theme }) => theme.colors.greyInput};
 
       &::placeholder {
-        /* color: ${({ theme }) => theme.colors.greyInput}; */
         color: #bfbfbf;
       }
     }

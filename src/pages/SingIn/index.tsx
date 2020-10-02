@@ -83,6 +83,9 @@ const SingIn: React.FC = () => {
           <h1>Faça seu logon</h1>
 
           <Input
+            containerStyle={{ background: 'rgba(0, 0, 0, 0.1)' }}
+            borderColor="primary"
+            style={{ color: '#f4ede8' }}
             name="name"
             icon={FiUser}
             placeholder="Usuário"
@@ -91,6 +94,9 @@ const SingIn: React.FC = () => {
           />
 
           <Input
+            containerStyle={{ marginTop: 8, background: 'rgba(0, 0, 0, 0.1)' }}
+            borderColor="primary"
+            style={{ color: '#f4ede8' }}
             name="password"
             icon={FiLock}
             type="password"
