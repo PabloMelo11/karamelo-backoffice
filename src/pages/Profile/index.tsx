@@ -18,6 +18,7 @@ import api from '../../services/api';
 
 import MainModal from '../../components/MainModal';
 import InputForm from '../../components/InputForm';
+import Input from '../../components/Input';
 import ButtonForm from '../../components/ButtonForm';
 import Loading from '../../components/Loading';
 import {
@@ -299,109 +300,162 @@ const Profile: React.FC = () => {
                     }}
                   >
                     <Row>
-                      <InputForm
-                        name="name"
-                        placeholder="Usuário"
-                        mask=""
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="email"
-                        placeholder="E-mail"
-                        mask=""
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="cpf"
-                        placeholder="CPF"
-                        mask="999.999.999-99"
-                        autoComplete="off"
-                      />
+                      <div>
+                        <span>Usuário</span>
+                        <Input
+                          name="name"
+                          autoComplete="off"
+                          placeholder="Usuário"
+                          mask=""
+                        />
+                      </div>
+
+                      <div>
+                        <span>E-mail</span>
+                        <Input
+                          name="email"
+                          placeholder="E-mail"
+                          autoComplete="off"
+                          mask=""
+                        />
+                      </div>
+
+                      <div>
+                        <span>CPF</span>
+                        <Input
+                          name="cpf"
+                          placeholder="CPF"
+                          autoComplete="off"
+                          mask="999.999.999-99"
+                        />
+                      </div>
                     </Row>
 
-                    <Row>
-                      <InputForm
-                        name="date_of_birth"
-                        placeholder="Nascimento"
-                        mask="99/99/9999"
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="phone"
-                        placeholder="Telefone"
-                        mask="(99) 99999-9999"
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="whatsapp"
-                        placeholder="Whatsapp"
-                        mask="(99) 99999-9999"
-                        autoComplete="off"
-                      />
+                    <Row style={{ marginTop: 24 }}>
+                      <div>
+                        <span>Data de nascimento</span>
+                        <Input
+                          name="date_of_birth"
+                          placeholder="Nascimento"
+                          mask="99/99/9999"
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Telefone</span>
+                        <Input
+                          name="phone"
+                          placeholder="Telefone"
+                          mask="(99) 99999-9999"
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Whatsapp</span>
+                        <Input
+                          name="whatsapp"
+                          placeholder="Whatsapp"
+                          mask="(99) 99999-9999"
+                          autoComplete="off"
+                        />
+                      </div>
                     </Row>
 
-                    <Row style={{ marginTop: 30 }}>
-                      <InputForm
-                        name="cep"
-                        placeholder="CEP"
-                        mask="99999-999"
-                        onChange={event => handleSearchCEP(event.target.value)}
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="state"
-                        placeholder="UF"
-                        mask=""
-                        value={stateApi || user.state}
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="city"
-                        placeholder="Cidade"
-                        mask=""
-                        value={cityApi || user.city}
-                        autoComplete="off"
-                      />
+                    <Row style={{ marginTop: 48 }}>
+                      <div>
+                        <span>CEP</span>
+                        <Input
+                          name="cep"
+                          placeholder="CEP"
+                          mask="99999-999"
+                          onChange={event =>
+                            handleSearchCEP(event.target.value)
+                          }
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>UF</span>
+                        <Input
+                          name="state"
+                          placeholder="UF"
+                          mask=""
+                          value={stateApi || user.state}
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Cidade</span>
+                        <Input
+                          name="city"
+                          placeholder="Cidade"
+                          mask=""
+                          value={cityApi || user.city}
+                          autoComplete="off"
+                        />
+                      </div>
                     </Row>
 
-                    <Row>
-                      <InputForm
-                        name="neighborhood"
-                        placeholder="Bairro"
-                        mask=""
-                        value={neighborhoodApi || user.neighborhood}
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="street"
-                        placeholder="Logradouro"
-                        mask=""
-                        value={streetApi || user.street}
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        name="number"
-                        placeholder="Número"
-                        mask=""
-                        autoComplete="off"
-                      />
+                    <Row style={{ marginTop: 24 }}>
+                      <div>
+                        <span>Bairro</span>
+                        <Input
+                          name="neighborhood"
+                          placeholder="Bairro"
+                          mask=""
+                          value={neighborhoodApi || user.neighborhood}
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Rua</span>
+                        <Input
+                          name="street"
+                          placeholder="Logradouro"
+                          mask=""
+                          value={streetApi || user.street}
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Número</span>
+                        <Input
+                          name="number"
+                          placeholder="Número"
+                          mask=""
+                          autoComplete="off"
+                        />
+                      </div>
                     </Row>
 
-                    <Row style={{ marginTop: 30 }}>
-                      <InputForm
-                        type="password"
-                        name="password"
-                        placeholder="Senha"
-                        mask=""
-                        autoComplete="off"
-                      />
-                      <InputForm
-                        type="password"
-                        name="password_confirmation"
-                        placeholder="Confirmação de senha"
-                        mask=""
-                        autoComplete="off"
-                      />
+                    <Row style={{ margin: '48px 0px' }}>
+                      <div>
+                        <span>Senha</span>
+                        <Input
+                          type="password"
+                          name="password"
+                          placeholder="Senha"
+                          mask=""
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Confirmação de senha</span>
+                        <Input
+                          type="password"
+                          name="password_confirmation"
+                          placeholder="Confirmação de senha"
+                          mask=""
+                          autoComplete="off"
+                        />
+                      </div>
                     </Row>
 
                     <ButtonForm type="submit">

@@ -87,6 +87,7 @@ const SingIn: React.FC = () => {
             icon={FiUser}
             placeholder="Usuário"
             autoComplete="off"
+            mask=""
           />
 
           <Input
@@ -95,6 +96,7 @@ const SingIn: React.FC = () => {
             type="password"
             placeholder="Senha"
             autoComplete="off"
+            mask=""
           />
 
           <Button type="submit">{loading ? <Loading /> : 'Entrar'}</Button>

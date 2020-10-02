@@ -10,7 +10,7 @@ export default {
     purpleStrong: '#9c27b0',
     grey: '#adadad',
     greyStrong: '#312e38',
-    greyInput: '#666360',
+    greyInput: '#87868b',
     grey999: '#999',
     sub: '#ffffff9e',
     red: '#c53030',

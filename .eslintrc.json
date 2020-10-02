@@ -40,6 +40,7 @@
     "import/no-extraneous-dependencies": "off",
     "no-unused-expressions": "off",
     "react/no-unescaped-entities": "off",
+    "react/jsx-curly-newline": "off",
     "no-param-reassign": "off",
     "ts-styled-plugin": "off",
     "jsx-a11y/label-has-associated-control": "off",

@@ -98,8 +98,27 @@ export const Row = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 650px) {
+  @media (max-width: 1250px) {
     flex-direction: column;
+  }
+
+  div {
+    width: 100%;
+
+    span {
+      color: ${({ theme }) => theme.colors.greyInput};
+    }
+
+    & + div {
+      margin-left: 20px;
+    }
+
+    @media (max-width: 1250px) {
+      & + div {
+        margin-left: 0;
+        margin-top: 8px;
+      }
+    }
   }
 `;
 
