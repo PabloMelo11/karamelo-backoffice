@@ -10,6 +10,7 @@ import api from '../../../services/api';
 import { useToast } from '../../../hooks/toast';
 
 import InputForm from '../../../components/InputForm';
+import Input from '../../../components/Input';
 import ButtonForm from '../../../components/ButtonForm';
 
 import getValidationErrors from '../../../utils/getValidationsErrors';
@@ -26,22 +27,6 @@ interface IUserFormData {
   email: string;
   password: string;
 }
-
-const customStyles = {
-  overlay: {
-    backgroundColor: '#00000050',
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    padding: '0',
-    border: '0',
-    transform: 'translate(-50%, -50%)',
-    width: '600px',
-  },
-};
 
 const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
   isVisible = false,
@@ -127,53 +112,84 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
     <Container>
       <Modal
         isOpen={isVisible}
-        style={customStyles}
         closeTimeoutMS={500}
-        shouldCloseOnEsc
+        shouldCloseOnEsc={!false}
+        shouldCloseOnOverlayClick={!false}
+        ariaHideApp={false}
+        style={{
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            background: '#fafafa',
+            color: '#000000',
+            borderRadius: '8px',
+            width: '736px',
+            border: 'none',
+          },
+          overlay: {
+            backgroundColor: '#00000050',
+          },
+        }}
       >
         <Header>
-          <span>Novo usuário</span>
+          <h1>Novo usuário</h1>
           <button type="button" onClick={() => triggerClose()}>
-            <RiCloseCircleLine size={28} />
+            <RiCloseCircleLine size={32} />
           </button>
         </Header>
+
         <Content>
           <Form ref={formRef} onSubmit={handleSubmit} autoComplete="off">
             <Row>
-              <InputForm
-                name="name"
-                placeholder="Usuário"
-                mask=""
-                color="red"
-                autoComplete="off"
-              />
+              <div>
+                <span>Usuário</span>
+                <Input
+                  name="name"
+                  placeholder="Usuário"
+                  mask=""
+                  color="red"
+                  autoComplete="off"
+                />
+              </div>
 
-              <InputForm
-                name="email"
-                placeholder="E-mail"
-                mask=""
-                color="red"
-                autoComplete="off"
-              />
-            </Row>
+              <div>
+                <span>E-mail</span>
+                <Input
+                  name="email"
+                  placeholder="E-mail"
+                  mask=""
+                  color="red"
+                  autoComplete="off"
+                />
+              </div>
 
-            <Row>
-              <InputForm
-                type="password"
-                name="password"
-                placeholder="Senha"
-                mask=""
-                color="red"
-                autoComplete="off"
-              />
-              <InputForm
-                type="password"
-                name="password_confirmation"
-                placeholder="Confirmação de senha"
-                mask=""
-                color="red"
-                autoComplete="off"
-              />
+              <div>
+                <span>Senha</span>
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Senha"
+                  mask=""
+                  color="red"
+                  autoComplete="off"
+                />
+              </div>
+
+              <div>
+                <span>Confirmação de senha</span>
+                <Input
+                  type="password"
+                  name="password_confirmation"
+                  placeholder="Confirmação de senha"
+                  mask=""
+                  color="red"
+                  autoComplete="off"
+                />
+              </div>
             </Row>
 
             <div>

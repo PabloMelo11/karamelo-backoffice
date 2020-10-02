@@ -4,13 +4,18 @@ export const Container = styled.div``;
 
 export const Header = styled.header`
   width: 100%;
-  height: 58px;
-  background: ${({ theme }) => theme.modals.red};
-  padding: 9px;
+
+  padding: 16px 0px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  h1 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 36px;
+  }
 
   span {
     padding: 3px;
@@ -28,25 +33,32 @@ export const Header = styled.header`
     align-items: center;
 
     svg {
-      color: #fff;
+      color: #000;
     }
   }
 `;
 
 export const Content = styled.div`
-  color: #000;
-  padding: 34px 12px 16px;
+  color: ${({ theme }) => theme.colors.greyInput};
 
-  div {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  button {
+    margin-top: 20px;
   }
 `;
 
 export const Row = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+
+  div {
+    width: 100%;
+
+    span {
+      color: ${({ theme }) => theme.colors.greyInput};
+    }
+
+    & + div {
+      margin-top: 20px;
+    }
+  }
 `;
