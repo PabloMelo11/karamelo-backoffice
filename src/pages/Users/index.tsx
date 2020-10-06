@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi';
 
-import api from '../../services/api';
+import { useUsers } from '../../hooks/users';
 
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
@@ -19,7 +19,8 @@ interface IUsers {
 const Users: React.FC = () => {
   const history = useHistory();
 
-  const [users, setUsers] = useState<IUsers[]>([]);
+  const { users, handleGetAllUsers } = useUsers();
+
   const [createUser, setCreateUser] = useState(false);
 
   const formattedStatus = useCallback((status: string): string => {
@@ -37,10 +38,8 @@ const Users: React.FC = () => {
   );
 
   useEffect(() => {
-    api.get('/users').then(response => {
-      setUsers(response.data.data);
-    });
-  }, []);
+    handleGetAllUsers();
+  }, [handleGetAllUsers]);
 
   return (
     <General>

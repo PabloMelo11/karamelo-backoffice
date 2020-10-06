@@ -8,8 +8,8 @@ import { RiCloseCircleLine } from 'react-icons/ri';
 import api from '../../../services/api';
 
 import { useToast } from '../../../hooks/toast';
+import { useUsers } from '../../../hooks/users';
 
-import InputForm from '../../../components/InputForm';
 import Input from '../../../components/Input';
 import ButtonForm from '../../../components/ButtonForm';
 
@@ -35,6 +35,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToast();
+  const { handleAddNewUser } = useUsers();
 
   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
@@ -76,7 +77,9 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
           status: 'active',
         };
 
-        await api.post('users', formData);
+        const response = await api.post('users', formData);
+
+        handleAddNewUser(response.data);
 
         addToast({
           type: 'success',
