@@ -102,10 +102,10 @@ export const Row = styled.div`
     flex-direction: column;
   }
 
-  div {
+  > div {
     width: 100%;
 
-    span {
+    > span {
       color: ${({ theme }) => theme.colors.greyInput};
     }
 

@@ -94,24 +94,6 @@ const MenuSideBar: React.FC = () => {
           Relatórios
           <Link to="/reports" />
         </MenuItem>
-
-        <MenuItem
-          className="avatar"
-          icon={<img src={user.avatar_url} alt="Avatar" />}
-          active={handleGetCurrentPage() === 'me'}
-        >
-          <button type="button">
-            <span
-              className="perfil"
-              style={{
-                display: collapsed ? 'block' : 'none',
-              }}
-            >
-              Perfil
-            </span>
-          </button>
-          <Link to="/me" />
-        </MenuItem>
       </Menu>
 
       <SidebarFooter>
