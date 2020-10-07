@@ -7,7 +7,7 @@ import { useUsers } from '../../hooks/users';
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
 
-import { Container, Footer } from './styles';
+import { Container, ContentTable, Footer } from './styles';
 
 interface IUsers {
   id: number;
@@ -44,32 +44,35 @@ const Users: React.FC = () => {
   return (
     <General>
       <Container>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users &&
-              users.length > 0 &&
-              users.map(user => (
-                <tr
-                  key={user.id}
-                  title="Clique para ver os detalhes."
-                  onClick={() => handleDetailsUser(user.id)}
-                >
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{formattedStatus(user.status)}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <ContentTable>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {users &&
+                users.length > 0 &&
+                users.map(user => (
+                  <tr
+                    key={user.id}
+                    title="Clique para ver os detalhes."
+                    onClick={() => handleDetailsUser(user.id)}
+                  >
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{formattedStatus(user.status)}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </ContentTable>
 
         <Footer>
           <button

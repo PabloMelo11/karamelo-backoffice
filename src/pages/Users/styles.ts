@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.div`
   height: 100%;
@@ -31,6 +30,18 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.colors.grey999};
       vertical-align: middle;
       border-color: inherit;
+
+      th,
+      td {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        background: #fff;
+        top: 0;
+        margin: 0;
+        word-wrap: normal;
+        white-space: nowrap;
+        z-index: 1;
+      }
 
       tr {
         color: inherit;
@@ -64,6 +75,12 @@ export const Container = styled.div`
       }
 
       tr {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+      }
+
+      tr {
         color: inherit;
         height: 48px;
         display: table-row;
@@ -90,6 +107,22 @@ export const Container = styled.div`
         }
       }
     }
+  }
+`;
+
+export const ContentTable = styled.div`
+  height: calc(100% - 84px);
+  overflow: auto;
+
+  &::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: #f4f4f4;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #dad7d7;
   }
 `;
 
