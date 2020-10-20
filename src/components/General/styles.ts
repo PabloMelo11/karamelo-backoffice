@@ -38,8 +38,8 @@ const headerTypesColors = {
 };
 
 export const Header = styled.div<IHeader>`
-  margin: 0 24px;
-  margin-top: -21px;
+  width: 100%;
+  margin-top: -85px;
   padding: 15px;
   height: 64px;
   border-radius: 4px;
@@ -47,8 +47,6 @@ export const Header = styled.div<IHeader>`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  ${props => headerTypesColors[props.backgroundColor || 'red']};
 
   h4 {
     color: #fff;
@@ -95,8 +93,14 @@ export const NavigationCrud = styled.div`
   height: 100%;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
+  h2 {
+    color: #fff;
+    margin-right: 18px;
+    font-weight: 500;
+  }
 
   button {
     border: 0;
@@ -124,6 +128,11 @@ export const NavigationCrud = styled.div`
       margin-right: 9px;
     }
   }
+`;
+
+export const ContentItemsNavigation = styled.div`
+  flex: 1;
+  display: flex;
 `;
 
 const activeClassName = 'active';
@@ -162,5 +171,6 @@ export const MenuItem = styled(NavLink).attrs({
 
   &.${activeClassName} {
     background-color: rgba(255, 255, 255, 0.2);
+    opacity: 1;
   }
 `;

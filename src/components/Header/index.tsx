@@ -16,9 +16,9 @@ const Header: React.FC = () => {
         <span>Barra de pesquisa</span>
       </Left>
 
-      <div>
+      {/* <div>
         <img src={logoImg} alt="Karamelo" />
-      </div>
+      </div> */}
 
       <Right>
         <span>{`Olá, ${user.name}`}</span>

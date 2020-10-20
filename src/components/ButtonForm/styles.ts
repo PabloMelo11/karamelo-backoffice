@@ -7,6 +7,8 @@ const backgroundColor = {
   purple: '#ab47bc',
   red: '#ef5350',
   green: '#66bb6a',
+  white: '#fff',
+  blue: '#26c6da',
 };
 
 export const Container = styled.button<IButtonProps>`

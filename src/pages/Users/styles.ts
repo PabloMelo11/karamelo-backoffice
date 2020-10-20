@@ -113,6 +113,7 @@ export const Container = styled.div`
 export const ContentTable = styled.div`
   height: calc(100% - 84px);
   overflow: auto;
+  margin-top: 30px;
 
   &::-webkit-scrollbar-track {
     background-color: #f4f4f4;

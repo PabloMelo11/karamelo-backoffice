@@ -3,6 +3,7 @@ export type IMainModalProps = {
   headerStyle?: object;
   containerStyles?: object;
   contentStyles?: object;
+  triggerDone?(): void;
 };
 
 export type IHeader = {

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 80px;
+  height: 420px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 35px;
-  background: #fff;
+  align-items: flex-start;
+  padding: 20px 35px 0px 35px;
+  background: ${({ theme }) => theme.modals.blue};
 
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.06),
     0px 8px 10px 1px rgba(0, 0, 0, 0.042), 0px 3px 14px 2px rgba(0, 0, 0, 0.036);
@@ -17,7 +17,12 @@ export const Container = styled.div`
   }
 `;
 
-export const Left = styled.div``;
+export const Left = styled.div`
+  span {
+    color: #fff;
+    font-weight: 500;
+  }
+`;
 
 export const Right = styled.div`
   display: flex;
@@ -27,8 +32,9 @@ export const Right = styled.div`
   span {
     margin-right: 12px;
 
-    color: #666;
+    color: #fff;
     font-size: 1.4rem;
+    font-weight: 500;
   }
 
   a {

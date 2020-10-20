@@ -4,6 +4,12 @@ export default {
   colors: {
     primary: '#f18b8c',
     secondary: '#292534',
+    blue_primary: '#26c6da',
+    blue_secundary: '#00DDE2',
+    blue_tirth: '#38EAC9',
+    green_primary: '#7DF3A8',
+    green_secundary: '#BBF888',
+    yellow_primary: '#F9F871',
     white: '#fff',
     purple: '#ab47bc',
     green: '#66bb6a',

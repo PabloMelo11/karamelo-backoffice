@@ -8,7 +8,7 @@ export const Header = styled.header`
 
   padding: 20px;
 
-  background: ${({ theme }) => theme.modals.red};
+  background: ${({ theme }) => theme.modals.blue};
   border-radius: 5px 5px 0px 0px;
 
   display: flex;

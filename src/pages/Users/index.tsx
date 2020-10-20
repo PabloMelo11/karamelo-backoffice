@@ -42,7 +42,7 @@ const Users: React.FC = () => {
   }, [handleGetAllUsers]);
 
   return (
-    <General>
+    <General triggerDone={() => setCreateUser(true)}>
       <Container>
         <ContentTable>
           <table>
@@ -74,15 +74,15 @@ const Users: React.FC = () => {
           </table>
         </ContentTable>
 
-        <Footer>
+        {/* <Footer>
           <button
             type="button"
             title="Adicionar novo usuário"
-            onClick={() => setCreateUser(true)}
+            onClick={() => }
           >
             <FiPlus size={32} />
           </button>
-        </Footer>
+        </Footer> */}
       </Container>
       {createUser && (
         <ModalCreateUser

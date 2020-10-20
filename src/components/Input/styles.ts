@@ -13,6 +13,9 @@ const bordersColor = {
   red: css`
     ${props => props.theme.colors.redForm}
   `,
+  blue: css`
+    ${props => props.theme.colors.blue_primary}
+  `,
 };
 
 export const Container = styled.div<IContainerProps>`

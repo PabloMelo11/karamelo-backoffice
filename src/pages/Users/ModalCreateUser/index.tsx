@@ -126,6 +126,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
             right: 'auto',
             bottom: 'auto',
             marginRight: '-50%',
+            zIndex: 1,
             transform: 'translate(-50%, -50%)',
             padding: '0px',
             background: '#fafafa',
@@ -137,6 +138,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
           },
           overlay: {
             backgroundColor: '#00000050',
+            zIndex: 1,
           },
         }}
       >
@@ -156,7 +158,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
                   name="name"
                   placeholder="Usuário"
                   mask=""
-                  borderColor="red"
+                  borderColor="blue"
                   autoComplete="off"
                 />
               </div>
@@ -167,7 +169,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
                   name="email"
                   placeholder="E-mail"
                   mask=""
-                  borderColor="red"
+                  borderColor="blue"
                   autoComplete="off"
                 />
               </div>
@@ -179,7 +181,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
                   name="password"
                   placeholder="Senha"
                   mask=""
-                  borderColor="red"
+                  borderColor="blue"
                   autoComplete="off"
                 />
               </div>
@@ -191,14 +193,14 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
                   name="password_confirmation"
                   placeholder="Confirmação de senha"
                   mask=""
-                  borderColor="red"
+                  borderColor="blue"
                   autoComplete="off"
                 />
               </div>
             </Row>
 
             <div className="button-save">
-              <ButtonForm type="submit" background="red">
+              <ButtonForm type="submit" background="blue">
                 Salvar
               </ButtonForm>
             </div>
