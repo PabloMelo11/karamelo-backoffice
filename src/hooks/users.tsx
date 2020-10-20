@@ -15,14 +15,20 @@ interface User {
 interface IUsersContext {
   users: User[];
   loading: boolean;
+  page: number;
+  lastPage: number;
   handleGetAllUsers(): void;
   handleAddNewUser(newUser: User): void;
+  handleNextPage(): void;
+  handlePreviousPage(): void;
 }
 const UsersContext = createContext<IUsersContext>({} as IUsersContext);
 
 export const UsersProvider: React.FC = ({ children }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [lastPage, setLastPage] = useState<number>(0);
 
   const { addToast } = useToast();
 
@@ -30,9 +36,16 @@ export const UsersProvider: React.FC = ({ children }) => {
     setLoading(true);
 
     try {
-      api.get('/users').then(response => {
-        setUsers(response.data.data);
-      });
+      api
+        .get('/users', {
+          params: {
+            page,
+          },
+        })
+        .then(response => {
+          setUsers(response.data.data);
+          setLastPage(response.data.lastPage);
+        });
       setLoading(false);
     } catch (err) {
       addToast({
@@ -42,7 +55,7 @@ export const UsersProvider: React.FC = ({ children }) => {
       });
       setLoading(false);
     }
-  }, [addToast]);
+  }, [addToast, page]);
 
   const handleAddNewUser = useCallback(
     (newUser: User) => {
@@ -51,9 +64,26 @@ export const UsersProvider: React.FC = ({ children }) => {
     [users],
   );
 
+  const handleNextPage = useCallback(() => {
+    setPage(oldState => oldState + 1);
+  }, []);
+
+  const handlePreviousPage = useCallback(() => {
+    setPage(oldState => oldState - 1);
+  }, []);
+
   return (
     <UsersContext.Provider
-      value={{ users, loading, handleGetAllUsers, handleAddNewUser }}
+      value={{
+        users,
+        page,
+        lastPage,
+        loading,
+        handleGetAllUsers,
+        handleAddNewUser,
+        handleNextPage,
+        handlePreviousPage,
+      }}
     >
       {children}
     </UsersContext.Provider>

@@ -11,7 +11,7 @@ import General from '../../../components/General';
 import MainModal from '../../../components/MainModal';
 import InputForm from '../../../components/InputForm';
 
-import { ContainerGrid, Container, Content, Row } from './styles';
+import { ContainerGrid, Content, Row } from './styles';
 
 interface ICategory {
   id: number;

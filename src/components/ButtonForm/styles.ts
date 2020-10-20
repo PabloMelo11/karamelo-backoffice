@@ -17,7 +17,7 @@ export const Container = styled.button<IButtonProps>`
   background-color: ${props => backgroundColor[props.background || 'purple']};
   color: ${({ theme }) => theme.colors.white};
   border: none;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: 0.3125rem 1px;
   position: relative;
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -39,6 +39,12 @@ export const Container = styled.button<IButtonProps>`
   align-items: center;
   justify-content: center;
 
+  ${props =>
+    props.disabled &&
+    css`
+      background-color: ${({ theme }) => theme.colors.grey};
+    `}
+
   &:hover {
     background: ${props =>
       props.background
@@ -47,6 +53,22 @@ export const Container = styled.button<IButtonProps>`
   }
 
   &:hover {
+    background: ${props =>
+      props.disabled &&
+      css`
+        ${({ theme }) => theme.colors.grey999}
+      `};
+  }
+
+  &:hover {
     box-shadow: 0 0.7em 0.7em -0.5em ${props => (props.background ? shade(0.1, backgroundColor[props.background]) : shade(0.1, backgroundColor.purple))};
+  }
+
+  &:hover {
+    box-shadow: 0 0.7em 0.7em -0.5em ${props =>
+        props.disabled &&
+        css`
+          ${({ theme }) => theme.colors.grey999}
+        `};
   }
 `;

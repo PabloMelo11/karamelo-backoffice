@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { useUsers } from '../../hooks/users';
 
+import Button from '../../components/ButtonForm';
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
 
@@ -11,7 +12,14 @@ import { Container, ContentTable, UserAvatar, Footer } from './styles';
 const Users: React.FC = () => {
   const history = useHistory();
 
-  const { users, handleGetAllUsers } = useUsers();
+  const {
+    users,
+    page,
+    lastPage,
+    handleGetAllUsers,
+    handleNextPage,
+    handlePreviousPage,
+  } = useUsers();
 
   const [createUser, setCreateUser] = useState(false);
 
@@ -32,10 +40,6 @@ const Users: React.FC = () => {
   useEffect(() => {
     handleGetAllUsers();
   }, [handleGetAllUsers]);
-
-  useEffect(() => {
-    console.log('users >>>>>>', users);
-  }, [users]);
 
   return (
     <General triggerDone={() => setCreateUser(true)}>
@@ -74,15 +78,23 @@ const Users: React.FC = () => {
           </table>
         </ContentTable>
 
-        {/* <Footer>
-          <button
-            type="button"
-            title="Adicionar novo usuário"
-            onClick={() => }
+        <Footer>
+          <Button
+            background="blue"
+            onClick={handlePreviousPage}
+            disabled={page === 1}
           >
-            <FiPlus size={32} />
-          </button>
-        </Footer> */}
+            Anterior
+          </Button>
+
+          <Button
+            background="blue"
+            onClick={handleNextPage}
+            disabled={page === lastPage}
+          >
+            Próximo
+          </Button>
+        </Footer>
       </Container>
       {createUser && (
         <ModalCreateUser

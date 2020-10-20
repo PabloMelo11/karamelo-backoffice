@@ -130,28 +130,9 @@ export const ContentTable = styled.div`
 export const Footer = styled.footer`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 76px;
-
-  button {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: ${({ theme }) => theme.modals.red};
-    border: 0;
-    transition: background-color 0.2s;
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-      0 7px 10px -5px rgba(244, 67, 54, 0.4);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      color: #fff;
-    }
-  }
 `;
 
 export const UserAvatar = styled.img`

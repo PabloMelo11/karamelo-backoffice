@@ -39,8 +39,8 @@ const headerTypesColors = {
 
 export const Header = styled.div<IHeader>`
   width: 100%;
-  margin-top: -85px;
-  padding: 15px;
+  margin-top: -72px;
+  padding: 15px 0px;
   height: 64px;
   border-radius: 4px;
 
