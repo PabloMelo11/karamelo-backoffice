@@ -153,3 +153,9 @@ export const Footer = styled.footer`
     }
   }
 `;
+
+export const UserAvatar = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+`;

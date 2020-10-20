@@ -1,20 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi';
 
 import { useUsers } from '../../hooks/users';
 
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
 
-import { Container, ContentTable, Footer } from './styles';
-
-interface IUsers {
-  id: number;
-  name: string;
-  email: string;
-  status: 'active' | 'inactive';
-}
+import { Container, ContentTable, UserAvatar, Footer } from './styles';
 
 const Users: React.FC = () => {
   const history = useHistory();
@@ -41,6 +33,10 @@ const Users: React.FC = () => {
     handleGetAllUsers();
   }, [handleGetAllUsers]);
 
+  useEffect(() => {
+    console.log('users >>>>>>', users);
+  }, [users]);
+
   return (
     <General triggerDone={() => setCreateUser(true)}>
       <Container>
@@ -49,6 +45,7 @@ const Users: React.FC = () => {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Avatar</th>
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Status</th>
@@ -65,6 +62,9 @@ const Users: React.FC = () => {
                     onClick={() => handleDetailsUser(user.id)}
                   >
                     <td>{user.id}</td>
+                    <td>
+                      <UserAvatar src={user.avatar_url} alt="avatar" />
+                    </td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{formattedStatus(user.status)}</td>
