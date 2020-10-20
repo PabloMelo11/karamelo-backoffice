@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { IHeader, IMainModalProps } from './Props';
+import { IHeader } from './Props';
 
 export const Container = styled.div`
   position: relative;
@@ -38,15 +38,13 @@ const headerTypesColors = {
 
 export const Header = styled.div<IHeader>`
   margin: 0 15px;
-  margin-top: -21px;
   padding: 15px;
-  height: 85px;
-  border-radius: 4px;
+  height: 40px;
 
-  ${props => headerTypesColors[props.backgroundColor || 'purple']}
+  border-bottom: 1px solid ${({ theme }) => theme.colors.frozen};
 
   h4 {
-    color: #fff;
+    color: ${({ theme }) => theme.colors.grey999};
     margin-top: 0px;
     min-height: auto;
     font-weight: 300;
@@ -54,20 +52,12 @@ export const Header = styled.div<IHeader>`
   }
 
   p {
-    color: ${({ theme }) => theme.colors.sub};
+    color: ${({ theme }) => theme.colors.grey};
     margin: 0;
     font-size: ${({ theme }) => theme.fontSizes.default};
     margin-top: 0;
     margin-bottom: 0;
   }
-
-  ${props =>
-    props.isCrud &&
-    css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
 `;
 
 export const Content = styled.div`
