@@ -19,6 +19,16 @@ export const ContainerGrid = styled.div`
     'products info'
     'categories info';
 
+  @media (max-width: 1520px) {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      'info'
+      'orders'
+      'products'
+      'categories';
+  }
+
   .perfil {
     grid-area: info;
   }
@@ -190,12 +200,16 @@ export const Row = styled.div`
       margin-left: 20px;
     }
 
-    @media (max-width: 1250px) {
+    @media (max-width: 980px) {
       & + div {
         margin-left: 0;
         margin-top: 8px;
       }
     }
+  }
+
+  @media (max-width: 980px) {
+    flex-direction: column;
   }
 `;
 

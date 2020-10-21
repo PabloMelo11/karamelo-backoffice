@@ -103,8 +103,6 @@ const UserDetails: React.FC = () => {
             headerStyle={{ padding: '3px 15px' }}
             headerBackgroundColor="green"
             containerStyles={{
-              height: '100%',
-              maxHeight: '330px',
               minHeight: '330px',
               marginBottom: '12px',
             }}
