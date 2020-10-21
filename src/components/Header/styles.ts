@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   height: 420px;
@@ -19,7 +20,7 @@ export const Container = styled.div`
 
 export const Left = styled.div`
   span {
-    color: #fff;
+    color: ${({ theme }) => theme.colors.white};
     font-weight: 500;
   }
 `;
@@ -29,8 +30,25 @@ export const Right = styled.div`
   justify-content: center;
   align-items: center;
 
+  button {
+    margin-right: 32px;
+    background: transparent;
+    border: 0;
+
+    svg {
+      transition: color 0.2s;
+      color: ${({ theme }) => theme.colors.white};
+    }
+
+    &:hover {
+      svg {
+        color: ${({ theme }) => shade(0.1, theme.colors.white)};
+      }
+    }
+  }
+
   span {
-    margin-right: 12px;
+    margin-left: 12px;
 
     color: #fff;
     font-size: 1.4rem;

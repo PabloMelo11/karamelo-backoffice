@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-
-import logoImg from '../../assets/horizontalLogo.svg';
+import { MdNotifications } from 'react-icons/md';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -16,15 +15,15 @@ const Header: React.FC = () => {
         <span>Barra de pesquisa</span>
       </Left>
 
-      {/* <div>
-        <img src={logoImg} alt="Karamelo" />
-      </div> */}
-
       <Right>
-        <span>{`Olá, ${user.name}`}</span>
+        <button type="button" title="Notificações">
+          <MdNotifications size={22} />
+        </button>
+
         <Link to="/me" title="Perfil">
           <img src={user.avatar_url} alt="Avatar" />
         </Link>
+        <span>{`Olá, ${user.name}`}</span>
       </Right>
     </Container>
   );
