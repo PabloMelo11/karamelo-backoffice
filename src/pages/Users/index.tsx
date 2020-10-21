@@ -1,13 +1,22 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 import { useUsers } from '../../hooks/users';
 
-import Button from '../../components/ButtonForm';
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
 
-import { Container, ContentTable, UserAvatar, Footer } from './styles';
+import {
+  Container,
+  ContentTable,
+  UserAvatar,
+  Footer,
+  ButtonNext,
+  FirstPage,
+  SecundaryPage,
+  ButtonPrevious,
+} from './styles';
 
 const Users: React.FC = () => {
   const history = useHistory();
@@ -19,6 +28,7 @@ const Users: React.FC = () => {
     handleGetAllUsers,
     handleNextPage,
     handlePreviousPage,
+    handleChangePageByNumber,
   } = useUsers();
 
   const [createUser, setCreateUser] = useState(false);
@@ -79,21 +89,37 @@ const Users: React.FC = () => {
         </ContentTable>
 
         <Footer>
-          <Button
-            background="blue"
+          <ButtonPrevious
+            title="Página anterior"
             onClick={handlePreviousPage}
             disabled={page === 1}
           >
-            Anterior
-          </Button>
+            <IoIosArrowBack size={32} />
+          </ButtonPrevious>
 
-          <Button
-            background="blue"
+          <FirstPage
+            title="Página 1"
+            background={page !== 1}
+            onClick={() => handleChangePageByNumber(1)}
+          >
+            1
+          </FirstPage>
+
+          <SecundaryPage
+            title="Página 2"
+            background={page !== 2}
+            onClick={() => handleChangePageByNumber(2)}
+          >
+            2
+          </SecundaryPage>
+
+          <ButtonNext
+            title="Próxima página"
             onClick={handleNextPage}
             disabled={page === lastPage}
           >
-            Próximo
-          </Button>
+            <IoIosArrowForward size={32} />
+          </ButtonNext>
         </Footer>
       </Container>
       {createUser && (

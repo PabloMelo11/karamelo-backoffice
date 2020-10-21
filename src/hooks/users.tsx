@@ -21,6 +21,7 @@ interface IUsersContext {
   handleAddNewUser(newUser: User): void;
   handleNextPage(): void;
   handlePreviousPage(): void;
+  handleChangePageByNumber(value: number): void;
 }
 const UsersContext = createContext<IUsersContext>({} as IUsersContext);
 
@@ -72,6 +73,10 @@ export const UsersProvider: React.FC = ({ children }) => {
     setPage(oldState => oldState - 1);
   }, []);
 
+  const handleChangePageByNumber = useCallback((value: number) => {
+    setPage(value);
+  }, []);
+
   return (
     <UsersContext.Provider
       value={{
@@ -83,6 +88,7 @@ export const UsersProvider: React.FC = ({ children }) => {
         handleAddNewUser,
         handleNextPage,
         handlePreviousPage,
+        handleChangePageByNumber,
       }}
     >
       {children}

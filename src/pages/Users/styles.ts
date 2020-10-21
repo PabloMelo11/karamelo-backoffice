@@ -1,4 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { shade } from 'polished';
+
+interface IButton {
+  disabled?: boolean;
+  background?: boolean;
+}
 
 export const Container = styled.div`
   height: 100%;
@@ -130,7 +136,7 @@ export const ContentTable = styled.div`
 export const Footer = styled.footer`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 76px;
 `;
@@ -139,4 +145,108 @@ export const UserAvatar = styled.img`
   width: 36px;
   height: 36px;
   border-radius: 50%;
+`;
+
+export const ButtonNext = styled.button<IButton>`
+  background: transparent;
+  border: 0;
+  margin-left: 9px;
+
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+
+  svg {
+    color: ${({ theme }) => theme.colors.blue_primary};
+
+    &:hover {
+      color: ${({ theme }) => shade(0.1, theme.colors.blue_primary)};
+    }
+  }
+
+  ${props =>
+    props.disabled &&
+    css`
+      svg {
+        color: ${({ theme }) => theme.colors.grey};
+
+        &:hover {
+          color: ${({ theme }) => shade(0.1, theme.colors.grey999)};
+        }
+      }
+    `}
+`;
+
+export const FirstPage = styled.button<IButton>`
+  background: ${({ theme }) => theme.colors.blue_primary};
+  border: 0;
+  color: ${({ theme }) => theme.colors.white};
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  & + button {
+    margin-left: 9px;
+  }
+
+  ${props =>
+    props.background &&
+    css`
+      background: ${({ theme }) => theme.colors.grey};
+
+      &:hover {
+        background: ${({ theme }) => shade(0.1, theme.colors.grey999)};
+      }
+    `}
+`;
+
+export const SecundaryPage = styled.button<IButton>`
+  background: ${({ theme }) => theme.colors.blue_primary};
+  border: 0;
+  color: ${({ theme }) => theme.colors.white};
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  ${props =>
+    props.background &&
+    css`
+      background: ${({ theme }) => theme.colors.grey};
+
+      &:hover {
+        background: ${({ theme }) => shade(0.1, theme.colors.grey999)};
+      }
+    `}
+`;
+
+export const ButtonPrevious = styled.button<IButton>`
+  background: transparent;
+  border: 0;
+  margin-right: 9px;
+
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+
+  svg {
+    color: ${({ theme }) => theme.colors.blue_primary};
+  }
+
+  svg {
+    color: ${({ theme }) => theme.colors.blue_primary};
+
+    &:hover {
+      color: ${({ theme }) => shade(0.1, theme.colors.blue_primary)};
+    }
+  }
+
+  ${props =>
+    props.disabled &&
+    css`
+      svg {
+        color: ${({ theme }) => theme.colors.grey};
+
+        &:hover {
+          color: ${({ theme }) => shade(0.1, theme.colors.grey999)};
+        }
+      }
+    `}
 `;
