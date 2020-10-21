@@ -11,9 +11,7 @@ const Header: React.FC = () => {
 
   return (
     <Container>
-      <Left>
-        <span>Barra de pesquisa</span>
-      </Left>
+      <Left />
 
       <Right>
         <button type="button" title="Notificações">
