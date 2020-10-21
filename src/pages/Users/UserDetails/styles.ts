@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface ITdStatus {
+  status: string;
+}
 
 export const ContainerGrid = styled.div`
   width: 100%;
@@ -9,12 +13,11 @@ export const ContainerGrid = styled.div`
   grid-gap: 20px;
   grid-row-gap: 40px;
   grid-template-rows: auto;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 600px;
   grid-template-areas:
-    'info'
-    'orders'
-    'products'
-    'categories';
+    'orders info'
+    'products info'
+    'categories info';
 
   .perfil {
     grid-area: info;
@@ -92,7 +95,8 @@ export const Content = styled.div`
       border-color: inherit;
 
       th,
-      td {
+      td,
+      span {
         position: -webkit-sticky; /* for Safari */
         position: sticky;
         background: #fff;
@@ -157,7 +161,8 @@ export const Content = styled.div`
           border-bottom: ${({ theme }) => theme.borders.default};
         }
 
-        td {
+        td,
+        span {
           padding: 12px 8px;
           font-weight: 300;
           font-size: 1.4rem;
@@ -192,4 +197,56 @@ export const Row = styled.div`
       }
     }
   }
+`;
+
+export const TdStatus = styled.td<ITdStatus>`
+  ${props =>
+    props.status === 'pending' &&
+    css`
+      span {
+        background-color: ${({ theme }) => theme.colors.yellow_primary};
+        border-radius: 8px;
+        padding: 6px 18px !important;
+      }
+    `}
+
+  ${props =>
+    props.status === 'in_progress' &&
+    css`
+      span {
+        background-color: ${({ theme }) => theme.colors.blue_tirth};
+        border-radius: 8px;
+        padding: 6px 18px !important;
+      }
+    `}
+
+    ${props =>
+      props.status === 'done' &&
+      css`
+        span {
+          background-color: ${({ theme }) => theme.colors.green_primary};
+          border-radius: 8px;
+          padding: 6px 18px !important;
+        }
+      `}
+
+    ${props =>
+      props.status === 'finished' &&
+      css`
+        span {
+          background-color: ${({ theme }) => theme.colors.green_secundary};
+          border-radius: 8px;
+          padding: 6px 18px !important;
+        }
+      `}
+
+    ${props =>
+      props.status === 'canceled' &&
+      css`
+        span {
+          background-color: ${({ theme }) => theme.colors.redForm};
+          border-radius: 8px;
+          padding: 6px 18px !important;
+        }
+      `}
 `;

@@ -9,10 +9,9 @@ import formatMoney from '../../../utils/formatMoney';
 
 import General from '../../../components/General';
 import MainModal from '../../../components/MainModal';
-import InputForm from '../../../components/InputForm';
 import Input from '../../../components/Input';
 
-import { ContainerGrid, Content, Row } from './styles';
+import { ContainerGrid, Content, Row, TdStatus } from './styles';
 
 interface ICategory {
   id: number;
@@ -92,7 +91,12 @@ const UserDetails: React.FC = () => {
   }, [location]);
 
   return (
-    <General>
+    <General
+      containerStyles={{
+        background: 'transparent',
+        boxShadow: 'none',
+      }}
+    >
       <ContainerGrid className="grid">
         <div className="perfil">
           <MainModal
@@ -171,154 +175,146 @@ const UserDetails: React.FC = () => {
           </MainModal>
         </div>
 
-        {user.orders && user.orders.length > 0 && (
-          <div className="orders">
-            <MainModal
-              headerStyle={{ padding: '3px 15px' }}
-              headerBackgroundColor="yellow"
-              containerStyles={{
-                height: '100%',
-                maxHeight: '330px',
-                minHeight: '330px',
-                marginBottom: '12px',
-              }}
-              contentStyles={{ margin: '18px 15px 12px' }}
-              title="Pedidos"
-              subtitle="Pedidos realizados"
-            >
-              <Content>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Cliente</th>
-                      <th>Status</th>
-                      <th>Total</th>
-                      <th>Data entrega</th>
-                      <th>Criado em</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {user.orders &&
-                      user.orders.length > 0 &&
-                      user.orders.map(order => (
-                        <tr key={order.id}>
-                          <td>{order.id}</td>
-                          <td>{order.customer.name}</td>
-                          <td>{formattedStatusOrder(order.status)}</td>
-                          <td>{formatMoney(order.total)}</td>
-                          <td>
-                            {formattedDate.formatDateWithHour(order.date)}
-                          </td>
-                          <td>
-                            {formattedDate.formatDateWithHour(order.created_at)}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </Content>
-            </MainModal>
-          </div>
-        )}
+        <div className="orders">
+          <MainModal
+            headerStyle={{ padding: '3px 15px' }}
+            headerBackgroundColor="yellow"
+            containerStyles={{
+              height: '100%',
+              maxHeight: '330px',
+              minHeight: '330px',
+              marginBottom: '12px',
+            }}
+            contentStyles={{ margin: '18px 15px 12px' }}
+            title="Pedidos"
+            subtitle="Pedidos realizados"
+          >
+            <Content>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Data entrega</th>
+                    <th>Criado em</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {user.orders &&
+                    user.orders.length > 0 &&
+                    user.orders.map(order => (
+                      <tr key={order.id}>
+                        <td>{order.id}</td>
+                        <td>{order.customer.name}</td>
+                        <TdStatus status={order.status}>
+                          <span>{formattedStatusOrder(order.status)}</span>
+                        </TdStatus>
+                        <td>{formatMoney(order.total)}</td>
+                        <td>{formattedDate.formatDateWithHour(order.date)}</td>
+                        <td>
+                          {formattedDate.formatDateWithHour(order.created_at)}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </Content>
+          </MainModal>
+        </div>
 
-        {user.products && user.products.length > 0 && (
-          <div className="products">
-            <MainModal
-              headerStyle={{ padding: '3px 15px' }}
-              containerStyles={{
-                height: '100%',
-                maxHeight: '330px',
-                minHeight: '330px',
-                marginBottom: '12px',
-              }}
-              contentStyles={{ margin: '18px 15px 12px' }}
-              headerBackgroundColor="blue"
-              title="Produtos"
-              subtitle="Produtos criados"
-            >
-              <Content>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Nome</th>
-                      <th>Descrição</th>
-                      <th>Criado em</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {user.products &&
-                      user.products.length > 0 &&
-                      user.products.map(product => (
-                        <tr key={product.id}>
-                          <td>{product.id}</td>
-                          <td>{product.name}</td>
-                          <td title={product.description}>
-                            {truncateString(product.description, 60)}
-                          </td>
-                          <td>
-                            {formattedDate.formatDateWithHour(
-                              product.created_at,
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </Content>
-            </MainModal>
-          </div>
-        )}
+        <div className="products">
+          <MainModal
+            headerStyle={{ padding: '3px 15px' }}
+            containerStyles={{
+              height: '100%',
+              maxHeight: '330px',
+              minHeight: '330px',
+              marginBottom: '12px',
+            }}
+            contentStyles={{ margin: '18px 15px 12px' }}
+            headerBackgroundColor="blue"
+            title="Produtos"
+            subtitle="Produtos criados"
+          >
+            <Content>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Criado em</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {user.products &&
+                    user.products.length > 0 &&
+                    user.products.map(product => (
+                      <tr key={product.id}>
+                        <td>{product.id}</td>
+                        <td>{product.name}</td>
+                        <td title={product.description}>
+                          {truncateString(product.description, 60)}
+                        </td>
+                        <td>
+                          {formattedDate.formatDateWithHour(product.created_at)}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </Content>
+          </MainModal>
+        </div>
 
-        {user.categories && user.categories.length > 0 && (
-          <div className="categories">
-            <MainModal
-              headerStyle={{ padding: '3px 15px' }}
-              containerStyles={{
-                height: '100%',
-                maxHeight: '330px',
-                minHeight: '330px',
-                marginBottom: '12px',
-              }}
-              contentStyles={{ margin: '18px 15px 12px' }}
-              headerBackgroundColor="purple"
-              title="Categorias"
-              subtitle="Categorias criadas"
-            >
-              <Content>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Nome</th>
-                      <th>Descrição</th>
-                      <th>Criado em</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {user.categories &&
-                      user.categories.length > 0 &&
-                      user.categories.map(category => (
-                        <tr key={category.id}>
-                          <td>{category.id}</td>
-                          <td>{category.title}</td>
-                          <td title={category.description}>
-                            {truncateString(category.description, 60)}
-                          </td>
-                          <td>
-                            {formattedDate.formatDateWithHour(
-                              category.created_at,
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </Content>
-            </MainModal>
-          </div>
-        )}
+        <div className="categories">
+          <MainModal
+            headerStyle={{ padding: '3px 15px' }}
+            containerStyles={{
+              height: '100%',
+              maxHeight: '330px',
+              minHeight: '330px',
+              marginBottom: '12px',
+            }}
+            contentStyles={{ margin: '18px 15px 12px' }}
+            headerBackgroundColor="purple"
+            title="Categorias"
+            subtitle="Categorias criadas"
+          >
+            <Content>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Criado em</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {user.categories &&
+                    user.categories.length > 0 &&
+                    user.categories.map(category => (
+                      <tr key={category.id}>
+                        <td>{category.id}</td>
+                        <td>{category.title}</td>
+                        <td title={category.description}>
+                          {truncateString(category.description, 60)}
+                        </td>
+                        <td>
+                          {formattedDate.formatDateWithHour(
+                            category.created_at,
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </Content>
+          </MainModal>
+        </div>
       </ContainerGrid>
     </General>
   );
