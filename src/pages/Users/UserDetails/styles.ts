@@ -264,3 +264,25 @@ export const TdStatus = styled.td<ITdStatus>`
         }
       `}
 `;
+
+export const NotContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  position: absolute;
+  right: 40%;
+  top: 50%;
+
+  svg {
+    color: ${({ theme }) => theme.colors.grey};
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors.grey};
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 12px;
+  }
+`;

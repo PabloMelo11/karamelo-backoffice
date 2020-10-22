@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { Form } from '@unform/web';
 import { useLocation } from 'react-router-dom';
+import { MdRemoveShoppingCart } from 'react-icons/md';
+import { FaBox, FaBoxes } from 'react-icons/fa';
 
 import api from '../../../services/api';
+
 import truncateString from '../../../utils/truncateString';
 import formattedDate from '../../../utils/dates';
 import formatMoney from '../../../utils/formatMoney';
@@ -11,7 +14,7 @@ import General from '../../../components/General';
 import MainModal from '../../../components/MainModal';
 import Input from '../../../components/Input';
 
-import { ContainerGrid, Content, Row, TdStatus } from './styles';
+import { ContainerGrid, Content, Row, TdStatus, NotContent } from './styles';
 
 interface ICategory {
   id: number;
@@ -101,13 +104,11 @@ const UserDetails: React.FC = () => {
         <div className="perfil">
           <MainModal
             headerStyle={{ padding: '3px 15px' }}
-            headerBackgroundColor="green"
             containerStyles={{
               minHeight: '330px',
               marginBottom: '12px',
             }}
             title="Perfil"
-            subtitle="Informações básicas da conta"
           >
             {loading ? (
               'carregando...'
@@ -176,7 +177,6 @@ const UserDetails: React.FC = () => {
         <div className="orders">
           <MainModal
             headerStyle={{ padding: '3px 15px' }}
-            headerBackgroundColor="yellow"
             containerStyles={{
               height: '100%',
               maxHeight: '330px',
@@ -185,7 +185,6 @@ const UserDetails: React.FC = () => {
             }}
             contentStyles={{ margin: '18px 15px 12px' }}
             title="Pedidos"
-            subtitle="Pedidos realizados"
           >
             <Content>
               <table>
@@ -200,8 +199,7 @@ const UserDetails: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {user.orders &&
-                    user.orders.length > 0 &&
+                  {user.orders && user.orders.length > 0 ? (
                     user.orders.map(order => (
                       <tr key={order.id}>
                         <td>{order.id}</td>
@@ -215,7 +213,13 @@ const UserDetails: React.FC = () => {
                           {formattedDate.formatDateWithHour(order.created_at)}
                         </td>
                       </tr>
-                    ))}
+                    ))
+                  ) : (
+                    <NotContent>
+                      <MdRemoveShoppingCart size={62} />
+                      <span>Nenhum pedido criado.</span>
+                    </NotContent>
+                  )}
                 </tbody>
               </table>
             </Content>
@@ -232,9 +236,7 @@ const UserDetails: React.FC = () => {
               marginBottom: '12px',
             }}
             contentStyles={{ margin: '18px 15px 12px' }}
-            headerBackgroundColor="blue"
             title="Produtos"
-            subtitle="Produtos criados"
           >
             <Content>
               <table>
@@ -247,8 +249,7 @@ const UserDetails: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {user.products &&
-                    user.products.length > 0 &&
+                  {user.products && user.products.length > 0 ? (
                     user.products.map(product => (
                       <tr key={product.id}>
                         <td>{product.id}</td>
@@ -260,7 +261,13 @@ const UserDetails: React.FC = () => {
                           {formattedDate.formatDateWithHour(product.created_at)}
                         </td>
                       </tr>
-                    ))}
+                    ))
+                  ) : (
+                    <NotContent>
+                      <FaBox size={48} />
+                      <span>Nenhum produto criado.</span>
+                    </NotContent>
+                  )}
                 </tbody>
               </table>
             </Content>
@@ -277,9 +284,7 @@ const UserDetails: React.FC = () => {
               marginBottom: '12px',
             }}
             contentStyles={{ margin: '18px 15px 12px' }}
-            headerBackgroundColor="purple"
             title="Categorias"
-            subtitle="Categorias criadas"
           >
             <Content>
               <table>
@@ -292,8 +297,7 @@ const UserDetails: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {user.categories &&
-                    user.categories.length > 0 &&
+                  {user.categories && user.categories.length > 0 ? (
                     user.categories.map(category => (
                       <tr key={category.id}>
                         <td>{category.id}</td>
@@ -307,7 +311,13 @@ const UserDetails: React.FC = () => {
                           )}
                         </td>
                       </tr>
-                    ))}
+                    ))
+                  ) : (
+                    <NotContent>
+                      <FaBoxes size={48} />
+                      <span>Nenhuma categoria criada.</span>
+                    </NotContent>
+                  )}
                 </tbody>
               </table>
             </Content>
