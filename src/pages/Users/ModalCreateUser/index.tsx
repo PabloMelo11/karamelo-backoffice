@@ -1,4 +1,10 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import Modal from 'react-modal';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -12,15 +18,12 @@ import { useUsers } from '../../../hooks/users';
 
 import Input from '../../../components/Input';
 import ButtonForm from '../../../components/ButtonForm';
+import Loading from '../../../components/Loading';
+import styles from '../../../styles/modal/styles';
 
 import getValidationErrors from '../../../utils/getValidationsErrors';
 
 import { Container, Header, Content, Row } from './styles';
-
-interface ModalCreateUserProps {
-  isVisible: boolean;
-  triggerClose(): void;
-}
 
 interface IUserFormData {
   name: string;
@@ -28,16 +31,35 @@ interface IUserFormData {
   password: string;
 }
 
-const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
-  isVisible = false,
-  triggerClose = () => {},
-}) => {
+export interface ModalHandles {
+  openModal(): void;
+}
+
+const ModalCreateUser: React.ForwardRefRenderFunction<ModalHandles> = (
+  props,
+  ref,
+) => {
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToast();
   const { handleAddNewUser } = useUsers();
 
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const openModal = useCallback(() => {
+    setOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  useImperativeHandle(ref, () => {
+    return {
+      openModal,
+    };
+  });
 
   const handleSubmit = useCallback(
     async (data: IUserFormData) => {
@@ -87,7 +109,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
         });
 
         setLoadingSubmit(false);
-        triggerClose();
+        closeModal();
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -108,43 +130,22 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
         setLoadingSubmit(false);
       }
     },
-    [addToast, triggerClose],
+    [addToast, closeModal, handleAddNewUser],
   );
 
   return (
     <Container>
       <Modal
-        isOpen={isVisible}
+        isOpen={open}
         closeTimeoutMS={500}
         shouldCloseOnEsc={!false}
         shouldCloseOnOverlayClick={!false}
         ariaHideApp={false}
-        style={{
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            zIndex: 1,
-            transform: 'translate(-50%, -50%)',
-            padding: '0px',
-            background: '#fafafa',
-            overflow: 'none',
-            color: '#000000',
-            borderRadius: '8px',
-            width: '736px',
-            border: 'none',
-          },
-          overlay: {
-            backgroundColor: '#00000050',
-            zIndex: 1,
-          },
-        }}
+        style={styles}
       >
         <Header>
           <h1>Novo usuário</h1>
-          <button type="button" onClick={() => triggerClose()}>
+          <button type="button" onClick={closeModal}>
             <RiCloseCircleLine size={32} />
           </button>
         </Header>
@@ -201,7 +202,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
 
             <div className="button-save">
               <ButtonForm type="submit" background="blue">
-                Salvar
+                {loadingSubmit ? <Loading /> : 'Salvar'}
               </ButtonForm>
             </div>
           </Form>
@@ -211,4 +212,4 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({
   );
 };
 
-export default ModalCreateUser;
+export default forwardRef(ModalCreateUser);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
@@ -6,6 +6,8 @@ import { useUsers } from '../../hooks/users';
 
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
+
+import { ModalHandles } from './ModalCreateUser';
 
 import {
   Container,
@@ -20,6 +22,7 @@ import {
 
 const Users: React.FC = () => {
   const history = useHistory();
+  const modalRef = useRef<ModalHandles>(null);
 
   const {
     users,
@@ -30,8 +33,6 @@ const Users: React.FC = () => {
     handlePreviousPage,
     handleChangePageByNumber,
   } = useUsers();
-
-  const [createUser, setCreateUser] = useState(false);
 
   const formattedStatus = useCallback((status: string): string => {
     if (status === 'active') {
@@ -47,12 +48,16 @@ const Users: React.FC = () => {
     [history],
   );
 
+  const handleOpenModal = useCallback(() => {
+    modalRef.current?.openModal();
+  }, []);
+
   useEffect(() => {
     handleGetAllUsers();
   }, [handleGetAllUsers]);
 
   return (
-    <General triggerDone={() => setCreateUser(true)}>
+    <General triggerDone={handleOpenModal}>
       <Container>
         <ContentTable>
           <table>
@@ -122,12 +127,7 @@ const Users: React.FC = () => {
           </ButtonNext>
         </Footer>
       </Container>
-      {createUser && (
-        <ModalCreateUser
-          isVisible={createUser}
-          triggerClose={() => setCreateUser(false)}
-        />
-      )}
+      <ModalCreateUser ref={modalRef} />
     </General>
   );
 };
