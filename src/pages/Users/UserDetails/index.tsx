@@ -13,6 +13,7 @@ import formatMoney from '../../../utils/formatMoney';
 import General from '../../../components/General';
 import MainModal from '../../../components/MainModal';
 import Input from '../../../components/Input';
+import { LoadingDetailsUser } from '../../../components/Shimmer/LoadingUsers';
 
 import { ContainerGrid, Content, Row, TdStatus, NotContent } from './styles';
 
@@ -100,19 +101,19 @@ const UserDetails: React.FC = () => {
         boxShadow: 'none',
       }}
     >
-      <ContainerGrid className="grid">
-        <div className="perfil">
-          <MainModal
-            headerStyle={{ padding: '3px 15px' }}
-            containerStyles={{
-              minHeight: '330px',
-              marginBottom: '12px',
-            }}
-            title="Perfil"
-          >
-            {loading ? (
-              'carregando...'
-            ) : (
+      {loading ? (
+        <LoadingDetailsUser />
+      ) : (
+        <ContainerGrid className="grid">
+          <div className="perfil">
+            <MainModal
+              headerStyle={{ padding: '3px 15px' }}
+              containerStyles={{
+                minHeight: '330px',
+                marginBottom: '12px',
+              }}
+              title="Perfil"
+            >
               <Form
                 onSubmit={handleNoSubmit}
                 initialData={{
@@ -170,160 +171,164 @@ const UserDetails: React.FC = () => {
                   </div>
                 </Row>
               </Form>
-            )}
-          </MainModal>
-        </div>
+            </MainModal>
+          </div>
 
-        <div className="orders">
-          <MainModal
-            headerStyle={{ padding: '3px 15px' }}
-            containerStyles={{
-              height: '100%',
-              maxHeight: '330px',
-              minHeight: '330px',
-              marginBottom: '12px',
-            }}
-            contentStyles={{ margin: '18px 15px 12px' }}
-            title="Pedidos"
-          >
-            <Content>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Status</th>
-                    <th>Total</th>
-                    <th>Data entrega</th>
-                    <th>Criado em</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {user.orders && user.orders.length > 0 ? (
-                    user.orders.map(order => (
-                      <tr key={order.id}>
-                        <td>{order.id}</td>
-                        <td>{order.customer.name}</td>
-                        <TdStatus status={order.status}>
-                          <span>{formattedStatusOrder(order.status)}</span>
-                        </TdStatus>
-                        <td>{formatMoney(order.total)}</td>
-                        <td>{formattedDate.formatDateWithHour(order.date)}</td>
-                        <td>
-                          {formattedDate.formatDateWithHour(order.created_at)}
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <NotContent>
-                      <MdRemoveShoppingCart size={62} />
-                      <span>Nenhum pedido criado.</span>
-                    </NotContent>
-                  )}
-                </tbody>
-              </table>
-            </Content>
-          </MainModal>
-        </div>
+          <div className="orders">
+            <MainModal
+              headerStyle={{ padding: '3px 15px' }}
+              containerStyles={{
+                height: '100%',
+                maxHeight: '330px',
+                minHeight: '330px',
+                marginBottom: '12px',
+              }}
+              contentStyles={{ margin: '18px 15px 12px' }}
+              title="Pedidos"
+            >
+              <Content>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Cliente</th>
+                      <th>Status</th>
+                      <th>Total</th>
+                      <th>Data entrega</th>
+                      <th>Criado em</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {user.orders && user.orders.length > 0 ? (
+                      user.orders.map(order => (
+                        <tr key={order.id}>
+                          <td>{order.id}</td>
+                          <td>{order.customer.name}</td>
+                          <TdStatus status={order.status}>
+                            <span>{formattedStatusOrder(order.status)}</span>
+                          </TdStatus>
+                          <td>{formatMoney(order.total)}</td>
+                          <td>
+                            {formattedDate.formatDateWithHour(order.date)}
+                          </td>
+                          <td>
+                            {formattedDate.formatDateWithHour(order.created_at)}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <NotContent>
+                        <MdRemoveShoppingCart size={62} />
+                        <span>Nenhum pedido criado.</span>
+                      </NotContent>
+                    )}
+                  </tbody>
+                </table>
+              </Content>
+            </MainModal>
+          </div>
 
-        <div className="products">
-          <MainModal
-            headerStyle={{ padding: '3px 15px' }}
-            containerStyles={{
-              height: '100%',
-              maxHeight: '330px',
-              minHeight: '330px',
-              marginBottom: '12px',
-            }}
-            contentStyles={{ margin: '18px 15px 12px' }}
-            title="Produtos"
-          >
-            <Content>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Criado em</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {user.products && user.products.length > 0 ? (
-                    user.products.map(product => (
-                      <tr key={product.id}>
-                        <td>{product.id}</td>
-                        <td>{product.name}</td>
-                        <td title={product.description}>
-                          {truncateString(product.description, 60)}
-                        </td>
-                        <td>
-                          {formattedDate.formatDateWithHour(product.created_at)}
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <NotContent>
-                      <FaBox size={48} />
-                      <span>Nenhum produto criado.</span>
-                    </NotContent>
-                  )}
-                </tbody>
-              </table>
-            </Content>
-          </MainModal>
-        </div>
+          <div className="products">
+            <MainModal
+              headerStyle={{ padding: '3px 15px' }}
+              containerStyles={{
+                height: '100%',
+                maxHeight: '330px',
+                minHeight: '330px',
+                marginBottom: '12px',
+              }}
+              contentStyles={{ margin: '18px 15px 12px' }}
+              title="Produtos"
+            >
+              <Content>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>Descrição</th>
+                      <th>Criado em</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {user.products && user.products.length > 0 ? (
+                      user.products.map(product => (
+                        <tr key={product.id}>
+                          <td>{product.id}</td>
+                          <td>{product.name}</td>
+                          <td title={product.description}>
+                            {truncateString(product.description, 60)}
+                          </td>
+                          <td>
+                            {formattedDate.formatDateWithHour(
+                              product.created_at,
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <NotContent>
+                        <FaBox size={48} />
+                        <span>Nenhum produto criado.</span>
+                      </NotContent>
+                    )}
+                  </tbody>
+                </table>
+              </Content>
+            </MainModal>
+          </div>
 
-        <div className="categories">
-          <MainModal
-            headerStyle={{ padding: '3px 15px' }}
-            containerStyles={{
-              height: '100%',
-              maxHeight: '330px',
-              minHeight: '330px',
-              marginBottom: '12px',
-            }}
-            contentStyles={{ margin: '18px 15px 12px' }}
-            title="Categorias"
-          >
-            <Content>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Criado em</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {user.categories && user.categories.length > 0 ? (
-                    user.categories.map(category => (
-                      <tr key={category.id}>
-                        <td>{category.id}</td>
-                        <td>{category.title}</td>
-                        <td title={category.description}>
-                          {truncateString(category.description, 60)}
-                        </td>
-                        <td>
-                          {formattedDate.formatDateWithHour(
-                            category.created_at,
-                          )}
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <NotContent>
-                      <FaBoxes size={48} />
-                      <span>Nenhuma categoria criada.</span>
-                    </NotContent>
-                  )}
-                </tbody>
-              </table>
-            </Content>
-          </MainModal>
-        </div>
-      </ContainerGrid>
+          <div className="categories">
+            <MainModal
+              headerStyle={{ padding: '3px 15px' }}
+              containerStyles={{
+                height: '100%',
+                maxHeight: '330px',
+                minHeight: '330px',
+                marginBottom: '12px',
+              }}
+              contentStyles={{ margin: '18px 15px 12px' }}
+              title="Categorias"
+            >
+              <Content>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>Descrição</th>
+                      <th>Criado em</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {user.categories && user.categories.length > 0 ? (
+                      user.categories.map(category => (
+                        <tr key={category.id}>
+                          <td>{category.id}</td>
+                          <td>{category.title}</td>
+                          <td title={category.description}>
+                            {truncateString(category.description, 60)}
+                          </td>
+                          <td>
+                            {formattedDate.formatDateWithHour(
+                              category.created_at,
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <NotContent>
+                        <FaBoxes size={48} />
+                        <span>Nenhuma categoria criada.</span>
+                      </NotContent>
+                    )}
+                  </tbody>
+                </table>
+              </Content>
+            </MainModal>
+          </div>
+        </ContainerGrid>
+      )}
     </General>
   );
 };
