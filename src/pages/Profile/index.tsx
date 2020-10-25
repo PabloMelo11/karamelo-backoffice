@@ -17,7 +17,6 @@ import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 
 import MainModal from '../../components/MainModal';
-import InputForm from '../../components/InputForm';
 import Input from '../../components/Input';
 import ButtonForm from '../../components/ButtonForm';
 import Loading from '../../components/Loading';
@@ -76,7 +75,6 @@ interface IUserProps {
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const cepRef = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);

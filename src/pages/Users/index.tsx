@@ -6,6 +6,7 @@ import { useUsers } from '../../hooks/users';
 
 import General from '../../components/General';
 import ModalCreateUser from './ModalCreateUser';
+import { LoadingUserContent } from '../../components/Shimmer/LoadingUsers';
 
 import { ModalHandles } from './ModalCreateUser';
 
@@ -28,6 +29,7 @@ const Users: React.FC = () => {
     users,
     page,
     lastPage,
+    loading,
     handleGetAllUsers,
     handleNextPage,
     handlePreviousPage,
@@ -60,37 +62,41 @@ const Users: React.FC = () => {
     <General triggerDone={handleOpenModal}>
       <Container>
         <ContentTable>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Avatar</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+          {loading ? (
+            <LoadingUserContent />
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Avatar</th>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {users &&
-                users.length > 0 &&
-                users.map(user => (
-                  <tr
-                    key={user.id}
-                    title="Clique para ver os detalhes."
-                    onClick={() => handleDetailsUser(user.id)}
-                  >
-                    <td>{user.id}</td>
-                    <td>
-                      <UserAvatar src={user.avatar_url} alt="avatar" />
-                    </td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{formattedStatus(user.status)}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+              <tbody>
+                {users &&
+                  users.length > 0 &&
+                  users.map(user => (
+                    <tr
+                      key={user.id}
+                      title="Clique para ver os detalhes."
+                      onClick={() => handleDetailsUser(user.id)}
+                    >
+                      <td>{user.id}</td>
+                      <td>
+                        <UserAvatar src={user.avatar_url} alt="avatar" />
+                      </td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>{formattedStatus(user.status)}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          )}
         </ContentTable>
 
         <Footer>

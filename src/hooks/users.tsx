@@ -47,6 +47,7 @@ export const UsersProvider: React.FC = ({ children }) => {
           setUsers(response.data.data);
           setLastPage(response.data.lastPage);
         });
+
       setLoading(false);
     } catch (err) {
       addToast({
