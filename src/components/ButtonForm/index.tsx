@@ -1,11 +1,15 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React from 'react';
 
 import { Container } from './styles';
 
-type IButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+import { IButtonProps } from './Props';
 
-const ButtonForm: React.FC<IButtonProps> = ({ children, ...rest }) => (
-  <Container type="button" {...rest}>
+const ButtonForm: React.FC<IButtonProps> = ({
+  children,
+  background,
+  ...rest
+}) => (
+  <Container type="button" {...rest} background={background || 'purple'}>
     {children}
   </Container>
 );

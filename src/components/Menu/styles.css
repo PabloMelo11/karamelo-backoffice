@@ -76,7 +76,6 @@
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-footer {
   border-top: 1px solid rgba(173, 173, 173, 0.2);
   height: 68px;
-  margin-left: 20px;
   width: 100%;
 
   position: absolute;
@@ -89,7 +88,7 @@
 .button-logout {
   background: transparent;
   border: 0;
-  margin-left: 6px;
+  margin-left: 26px;
   margin-right: 10px;
   width: 100%;
   height: 100%;
@@ -146,4 +145,16 @@
   height: 28px;
   border-radius: 50%;
   border: 2px solid #fff;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item.active {
+  color: #d8d8d8;
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+}
+
+.subMenu-active {
+  color: #d8d8d8;
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
 }

@@ -3,8 +3,23 @@ import { IContainerProps } from './Props';
 
 import Tooltip from '../Tooltip';
 
+const bordersColor = {
+  purple: css`
+    ${props => props.theme.colors.purple}
+  `,
+  primary: css`
+    ${props => props.theme.colors.primary}
+  `,
+  red: css`
+    ${props => props.theme.colors.redForm}
+  `,
+  blue: css`
+    ${props => props.theme.colors.blue_primary}
+  `,
+};
+
 export const Container = styled.div<IContainerProps>`
-    background: rgba(0, 0, 0, 0.1);
+    background: #fafafa;
     border-radius: 10px;
     border: 2px solid rgba(0, 0, 0, 0.1);
     padding: 16px;
@@ -13,10 +28,6 @@ export const Container = styled.div<IContainerProps>`
 
     display: flex;
     align-items: center;
-
-    & + div {
-      margin-top: 8px;
-    }
 
     ${props =>
       props.isErrored &&
@@ -28,24 +39,24 @@ export const Container = styled.div<IContainerProps>`
     ${props =>
       props.isFocused &&
       css`
-        color: ${({ theme }) => theme.colors.primary};
-        border-color: ${({ theme }) => theme.colors.primary};
+        color: ${bordersColor[props.borderColor || 'purple']};
+        border-color: ${bordersColor[props.borderColor || 'purple']};
       `}
 
     ${props =>
       props.isFilled &&
       css`
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${bordersColor[props.borderColor || 'purple']};
       `}
 
     input {
       flex: 1;
       background: transparent;
       border: 0;
-      color: ${({ theme }) => theme.colors.frozen};
+      color: ${({ theme }) => theme.colors.greyInput};
 
       &::placeholder {
-        color: ${({ theme }) => theme.colors.greyInput};
+        color: #bfbfbf;
       }
     }
 

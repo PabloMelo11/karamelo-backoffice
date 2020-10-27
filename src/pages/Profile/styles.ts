@@ -4,6 +4,7 @@ import { shade } from 'polished';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 
   > span {
     color: inherit;
@@ -16,17 +17,37 @@ export const Container = styled.div`
   }
 `;
 
+export const Content = styled.div`
+  padding: 18px 15px;
+`;
+
 export const ContentGrid = styled.div`
   height: 100%;
   width: 100%;
   display: grid;
+  grid-gap: 20px;
   grid-template-rows: auto;
   grid-template-columns: 2fr 1fr;
+  grid-template-areas: 'info main';
+
+  .info {
+    grid-area: info;
+  }
+
+  .main {
+    grid-area: main;
+  }
+
+  @media (max-width: 940px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'main'
+      'info';
+  }
 `;
 
 export const ContentInformations = styled.div`
   width: 100%;
-  padding: 16px;
 
   display: flex;
   justify-content: center;
@@ -76,9 +97,30 @@ export const ContentForm = styled.div`
 export const Row = styled.div`
   display: flex;
   align-items: center;
-`;
 
-export const Divider = styled.div``;
+  @media (max-width: 1250px) {
+    flex-direction: column;
+  }
+
+  > div {
+    width: 100%;
+
+    > span {
+      color: ${({ theme }) => theme.colors.greyInput};
+    }
+
+    & + div {
+      margin-left: 20px;
+    }
+
+    @media (max-width: 1250px) {
+      & + div {
+        margin-left: 0;
+        margin-top: 8px;
+      }
+    }
+  }
+`;
 
 export const ContentMain = styled.div`
   width: 100%;
@@ -117,7 +159,7 @@ export const AvatarInput = styled.div`
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #ab47bc;
+    background: ${({ theme }) => theme.colors.blue_primary};
     right: 0;
     bottom: 0;
     border: 0;
@@ -135,7 +177,7 @@ export const AvatarInput = styled.div`
       color: #fff;
     }
     &:hover {
-      background: ${shade(0.2, '#ab47bc')};
+      background: ${({ theme }) => shade(0.2, theme.colors.blue_primary)};
     }
   }
 `;

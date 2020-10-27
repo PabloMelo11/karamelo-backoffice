@@ -1,9 +1,10 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { FaColumns, FaBox, FaUsers, FaUser } from 'react-icons/fa';
+import React, { useCallback, useState, memo } from 'react';
+import { FaColumns } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
+import { AiOutlineSetting } from 'react-icons/ai';
 import { MdDashboard, MdShoppingBasket, MdMenu } from 'react-icons/md';
 import { BsClipboardData } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   ProSidebar,
   Menu,
@@ -20,6 +21,7 @@ import './styles.css';
 
 const MenuSideBar: React.FC = () => {
   const { user, signOut } = useAuth();
+  const location = useLocation();
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -27,8 +29,13 @@ const MenuSideBar: React.FC = () => {
     setCollapsed(oldState => !oldState);
   }, []);
 
+  const handleGetCurrentPage = useCallback(() => {
+    const pathname = location.pathname.split('/');
+    return pathname[1];
+  }, [location.pathname]);
+
   return (
-    <ProSidebar collapsed={!!collapsed}>
+    <ProSidebar collapsed={!collapsed}>
       <SidebarHeader>
         <button type="button" className="button-menu" onClick={handleCollapsed}>
           <MdMenu size={28} color="#adadad" />
@@ -36,22 +43,40 @@ const MenuSideBar: React.FC = () => {
       </SidebarHeader>
 
       <Menu iconShape="square">
-        <MenuItem icon={<FaColumns size={24} />}>
+        <MenuItem
+          icon={<FaColumns size={24} />}
+          active={handleGetCurrentPage() === 'panels'}
+        >
           Painel
           <Link to="/panels" />
         </MenuItem>
 
-        <MenuItem icon={<MdDashboard size={24} />}>
+        <MenuItem
+          icon={<MdDashboard size={24} />}
+          active={handleGetCurrentPage() === 'dashboard'}
+        >
           Dashboard
           <Link to="/dashboard" />
         </MenuItem>
 
-        <MenuItem icon={<FaBox size={22} />}>
-          Produtos
-          <Link to="/products" />
+        <MenuItem
+          icon={<AiOutlineSetting size={24} />}
+          active={handleGetCurrentPage() === 'general'}
+        >
+          Configurações
+          <Link to="/general" />
         </MenuItem>
 
-        <SubMenu title="Pedidos" icon={<MdShoppingBasket size={24} />}>
+        <SubMenu
+          title="Pedidos"
+          icon={<MdShoppingBasket size={24} />}
+          className={
+            handleGetCurrentPage() === 'cart' ||
+            handleGetCurrentPage() === 'catalog'
+              ? 'subMenu-active'
+              : ''
+          }
+        >
           <MenuItem>
             Catálogo
             <Link to="/catalog" />
@@ -62,36 +87,12 @@ const MenuSideBar: React.FC = () => {
           </MenuItem>
         </SubMenu>
 
-        <MenuItem icon={<FaUsers size={24} />}>
-          Clientes
-          <Link to="/customers" />
-        </MenuItem>
-
-        <MenuItem icon={<FaUser size={24} />}>
-          Usuários
-          <Link to="/users" />
-        </MenuItem>
-
-        <MenuItem icon={<BsClipboardData size={24} />}>
+        <MenuItem
+          icon={<BsClipboardData size={24} />}
+          active={handleGetCurrentPage() === 'reports'}
+        >
           Relatórios
           <Link to="/reports" />
-        </MenuItem>
-
-        <MenuItem
-          className="avatar"
-          icon={<img src={user.avatar_url} alt="Avatar" />}
-        >
-          <button type="button">
-            <span
-              className="perfil"
-              style={{
-                display: collapsed ? 'none' : 'block',
-              }}
-            >
-              Perfil
-            </span>
-          </button>
-          <Link to="/me" />
         </MenuItem>
       </Menu>
 
@@ -100,7 +101,7 @@ const MenuSideBar: React.FC = () => {
           <FiLogOut size={25} color="#adadad" />
           <span
             className="logout"
-            style={{ display: collapsed ? 'none' : 'block' }}
+            style={{ display: collapsed ? 'block' : 'none' }}
           >
             Sair
           </span>
@@ -110,4 +111,4 @@ const MenuSideBar: React.FC = () => {
   );
 };
 
-export default MenuSideBar;
+export default memo(MenuSideBar);

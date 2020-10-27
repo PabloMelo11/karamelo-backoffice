@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
+  border-radius: 5px;
   background-image: linear-gradient(
     -90deg,
     #e7edf1 0%,

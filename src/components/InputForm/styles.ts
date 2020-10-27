@@ -4,13 +4,32 @@ import { IContainerProps } from './Props';
 
 import Tooltip from '../Tooltip';
 
+const colors = {
+  purple: css`
+    ${({ theme }) => theme.colors.purple};
+  `,
+  red: css`
+    ${({ theme }) => theme.colors.redForm};
+  `,
+  green: css`
+    ${({ theme }) => theme.colors.green};
+  `,
+};
+
 export const Container = styled.div<IContainerProps>`
   position: relative;
   margin-bottom: 45px;
   flex: 1;
+  width: 100%;
 
   & + div {
     margin-left: 20px;
+  }
+
+  @media (max-width: 650px) {
+      & + div {
+      margin-left: 0px;
+    }
   }
 
   .group {
@@ -27,6 +46,7 @@ export const Container = styled.div<IContainerProps>`
     color: currentColor;
     border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
     position: relative;
+    cursor: ${props => (props.disabled ? 'not-allowed' : 'auto')}
   }
 
   input:focus {
@@ -55,7 +75,7 @@ export const Container = styled.div<IContainerProps>`
       label {
         top: -20px;
         font-size: 1.4rem !important;
-        color: ${({ theme }) => theme.colors.purple} !important;
+        color: ${colors[props.color]};
       }
     `}
 
@@ -65,7 +85,7 @@ export const Container = styled.div<IContainerProps>`
         label {
           top: -20px;
           font-size: 1.4rem !important;
-          color: ${({ theme }) => theme.colors.purple} !important;
+          color: ${colors[props.color]};
         }
       `}
 
@@ -75,7 +95,7 @@ export const Container = styled.div<IContainerProps>`
       label {
         top: -20px;
         font-size: 1.4rem;
-        color: ${({ theme }) => theme.colors.purple} !important;
+        color: ${colors[props.color]};
       }
     `}
 
@@ -91,7 +111,7 @@ export const Container = styled.div<IContainerProps>`
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: ${({ theme }) => theme.colors.purple};
+    background: ${props => colors[props.color]};
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;

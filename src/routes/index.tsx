@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect, Route as RouteDOM } from 'react-router-dom';
 
 import Route from './routes';
 
@@ -13,6 +13,7 @@ import Customers from '../pages/Customers';
 import Products from '../pages/Products';
 import Reports from '../pages/Reports';
 import Users from '../pages/Users';
+import UserDetails from '../pages/Users/UserDetails';
 import Profile from '../pages/Profile';
 
 const Routes: React.FC = () => (
@@ -21,12 +22,16 @@ const Routes: React.FC = () => (
 
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/panels" component={Panels} isPrivate />
+    <RouteDOM exact path="/general" isPrivate>
+      <Redirect to="/general/users" />
+    </RouteDOM>
     <Route path="/cart" component={Cart} isPrivate />
     <Route path="/catalog" component={Catalog} isPrivate />
-    <Route path="/customers" component={Customers} isPrivate />
-    <Route path="/products" component={Products} isPrivate />
+    <Route path="/general/customers" component={Customers} isPrivate />
+    <Route path="/general/products" component={Products} isPrivate />
     <Route path="/reports" component={Reports} isPrivate />
-    <Route path="/users" component={Users} isPrivate />
+    <Route path="/general/users" component={Users} isPrivate />
+    <Route path="/general/:userID/users" component={UserDetails} isPrivate />
     <Route path="/me" component={Profile} isPrivate />
   </Switch>
 );

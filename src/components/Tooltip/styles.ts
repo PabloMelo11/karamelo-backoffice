@@ -19,7 +19,7 @@ export const Container = styled.div`
     bottom: calc(100% + 12px);
     left: 50%;
     transform: translateX(-50%);
-    color: ${({ theme }) => theme.colors.greyStrong};
+    color: ${({ theme }) => theme.colors.white};
 
     display: flex;
     justify-content: center;

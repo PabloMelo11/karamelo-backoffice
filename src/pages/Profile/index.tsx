@@ -17,7 +17,7 @@ import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 
 import MainModal from '../../components/MainModal';
-import InputForm from '../../components/InputForm';
+import Input from '../../components/Input';
 import ButtonForm from '../../components/ButtonForm';
 import Loading from '../../components/Loading';
 import {
@@ -29,15 +29,12 @@ import getValidationErrors from '../../utils/getValidationsErrors';
 
 import {
   Container,
+  Content,
   ContentGrid,
   ContentInformations,
-  FormInformations,
-  Header,
   ContentForm,
   Row,
-  Divider,
   ContentMain,
-  MainInformations,
   AvatarInput,
   Description,
 } from './styles';
@@ -78,7 +75,6 @@ interface IUserProps {
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const cepRef = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
@@ -236,7 +232,6 @@ const Profile: React.FC = () => {
       if (cep.length === 8) {
         cepApi(cep)
           .then(response => {
-            console.log(response);
             setCityApi(response.city);
             setStateApi(response.state);
             setNeighborhoodApi(response.neighborhood);
@@ -273,149 +268,241 @@ const Profile: React.FC = () => {
 
   return (
     <Container>
-      <ContentGrid>
-        {loading ? (
-          <LoadingProfileContent />
-        ) : (
-          <ContentInformations>
-            <MainModal
-              title="Edite seu perfil"
-              subtitle="Complete as informações do perfil"
-            >
-              <ContentForm>
-                <Form
-                  ref={formRef}
-                  onSubmit={handleSubmit}
-                  initialData={{
-                    name: user.name,
-                    email: user.email,
-                    cpf: user.cpf,
-                    date_of_birth: user.date_of_birth,
-                    phone: user.phone,
-                    whatsapp: user.whatsapp,
-                    cep: user.cep,
-                    state: user.state,
-                    city: user.city,
-                    neighborhood: user.neighborhood,
-                    street: user.street,
-                    number: user.number,
-                  }}
-                >
-                  <Row>
-                    <InputForm name="name" placeholder="Usuário" mask="" />
-                    <InputForm name="email" placeholder="E-mail" mask="" />
-                    <InputForm
-                      name="cpf"
-                      placeholder="CPF"
-                      mask="999.999.999-99"
-                    />
-                  </Row>
+      <Content>
+        <ContentGrid>
+          {loading ? (
+            <LoadingProfileContent />
+          ) : (
+            <ContentInformations className="info">
+              <MainModal title="Perfil">
+                <ContentForm>
+                  <Form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    initialData={{
+                      name: user.name,
+                      email: user.email,
+                      cpf: user.cpf,
+                      date_of_birth: user.date_of_birth,
+                      phone: user.phone,
+                      whatsapp: user.whatsapp,
+                      cep: user.cep,
+                      state: user.state,
+                      city: user.city,
+                      neighborhood: user.neighborhood,
+                      street: user.street,
+                      number: user.number,
+                    }}
+                  >
+                    <Row>
+                      <div>
+                        <span>Usuário</span>
+                        <Input
+                          name="name"
+                          borderColor="blue"
+                          autoComplete="off"
+                          placeholder="Usuário"
+                          mask=""
+                        />
+                      </div>
 
-                  <Row>
-                    <InputForm
-                      name="date_of_birth"
-                      placeholder="Nascimento"
-                      mask="99/99/9999"
-                    />
-                    <InputForm
-                      name="phone"
-                      placeholder="Telefone"
-                      mask="(99) 99999-9999"
-                    />
-                    <InputForm
-                      name="whatsapp"
-                      placeholder="Whatsapp"
-                      mask="(99) 99999-9999"
-                    />
-                  </Row>
+                      <div>
+                        <span>E-mail</span>
+                        <Input
+                          name="email"
+                          borderColor="blue"
+                          placeholder="E-mail"
+                          autoComplete="off"
+                          mask=""
+                        />
+                      </div>
 
-                  <Row style={{ marginTop: 30 }}>
-                    <InputForm
-                      name="cep"
-                      placeholder="CEP"
-                      mask="99999-999"
-                      onChange={event => handleSearchCEP(event.target.value)}
-                    />
-                    <InputForm
-                      name="state"
-                      placeholder="UF"
-                      mask=""
-                      value={stateApi || user.state}
-                    />
-                    <InputForm
-                      name="city"
-                      placeholder="Cidade"
-                      mask=""
-                      value={cityApi || user.city}
-                    />
-                  </Row>
+                      <div>
+                        <span>CPF</span>
+                        <Input
+                          name="cpf"
+                          borderColor="blue"
+                          placeholder="CPF"
+                          autoComplete="off"
+                          mask="999.999.999-99"
+                        />
+                      </div>
+                    </Row>
 
-                  <Row>
-                    <InputForm
-                      name="neighborhood"
-                      placeholder="Bairro"
-                      mask=""
-                      value={neighborhoodApi || user.neighborhood}
-                    />
-                    <InputForm
-                      name="street"
-                      placeholder="Logradouro"
-                      mask=""
-                      value={streetApi || user.street}
-                    />
-                    <InputForm name="number" placeholder="Número" mask="" />
-                  </Row>
+                    <Row style={{ marginTop: 24 }}>
+                      <div>
+                        <span>Data de nascimento</span>
+                        <Input
+                          borderColor="blue"
+                          name="date_of_birth"
+                          placeholder="Nascimento"
+                          mask="99/99/9999"
+                          autoComplete="off"
+                        />
+                      </div>
 
-                  <Row style={{ marginTop: 30 }}>
-                    <InputForm
-                      type="password"
-                      name="password"
-                      placeholder="Senha"
-                      mask=""
-                    />
-                    <InputForm
-                      type="password"
-                      name="password_confirmation"
-                      placeholder="Confirmação de senha"
-                      mask=""
-                    />
-                  </Row>
+                      <div>
+                        <span>Telefone</span>
+                        <Input
+                          borderColor="blue"
+                          name="phone"
+                          placeholder="Telefone"
+                          mask="(99) 99999-9999"
+                          autoComplete="off"
+                        />
+                      </div>
 
-                  <ButtonForm type="submit">
-                    {loadingSubmit ? <Loading /> : 'Atualizar'}
-                  </ButtonForm>
-                </Form>
-              </ContentForm>
-            </MainModal>
-          </ContentInformations>
-        )}
+                      <div>
+                        <span>Whatsapp</span>
+                        <Input
+                          name="whatsapp"
+                          borderColor="blue"
+                          placeholder="Whatsapp"
+                          mask="(99) 99999-9999"
+                          autoComplete="off"
+                        />
+                      </div>
+                    </Row>
 
-        {loading ? (
-          <LoadingProfile />
-        ) : (
-          <ContentMain>
-            <ContentInformations>
-              <MainModal hasImage>
-                <AvatarInput>
-                  <img src={user.avatar_url} alt={user.name} />
-                  <label htmlFor="avatar">
-                    <FiCamera />
-                    <input
-                      type="file"
-                      id="avatar"
-                      onChange={handleAvatarChange}
-                    />
-                  </label>
-                </AvatarInput>
+                    <Row style={{ marginTop: 48 }}>
+                      <div>
+                        <span>CEP</span>
+                        <Input
+                          name="cep"
+                          borderColor="blue"
+                          placeholder="CEP"
+                          mask="99999-999"
+                          onChange={event =>
+                            handleSearchCEP(event.target.value)
+                          }
+                          autoComplete="off"
+                        />
+                      </div>
 
-                <Description>
-                  <h6>{user.name}</h6>
-                </Description>
+                      <div>
+                        <span>UF</span>
+                        <Input
+                          name="state"
+                          borderColor="blue"
+                          placeholder="UF"
+                          mask=""
+                          value={stateApi || user.state}
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Cidade</span>
+                        <Input
+                          name="city"
+                          borderColor="blue"
+                          placeholder="Cidade"
+                          mask=""
+                          value={cityApi || user.city}
+                          autoComplete="off"
+                        />
+                      </div>
+                    </Row>
+
+                    <Row style={{ marginTop: 24 }}>
+                      <div>
+                        <span>Bairro</span>
+                        <Input
+                          name="neighborhood"
+                          placeholder="Bairro"
+                          borderColor="blue"
+                          mask=""
+                          value={neighborhoodApi || user.neighborhood}
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Rua</span>
+                        <Input
+                          name="street"
+                          placeholder="Logradouro"
+                          borderColor="blue"
+                          mask=""
+                          value={streetApi || user.street}
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Número</span>
+                        <Input
+                          name="number"
+                          placeholder="Número"
+                          borderColor="blue"
+                          mask=""
+                          autoComplete="off"
+                        />
+                      </div>
+                    </Row>
+
+                    <Row style={{ margin: '48px 0px' }}>
+                      <div>
+                        <span>Senha</span>
+                        <Input
+                          type="password"
+                          borderColor="blue"
+                          name="password"
+                          placeholder="Senha"
+                          mask=""
+                          autoComplete="off"
+                        />
+                      </div>
+
+                      <div>
+                        <span>Confirmação de senha</span>
+                        <Input
+                          type="password"
+                          name="password_confirmation"
+                          placeholder="Confirmação de senha"
+                          mask=""
+                          borderColor="blue"
+                          autoComplete="off"
+                        />
+                      </div>
+                    </Row>
+
+                    <ButtonForm type="submit" background="blue">
+                      {loadingSubmit ? <Loading /> : 'Atualizar'}
+                    </ButtonForm>
+                  </Form>
+                </ContentForm>
               </MainModal>
             </ContentInformations>
-          </ContentMain>
-        )}
-      </ContentGrid>
+          )}
+
+          {loading ? (
+            <LoadingProfile />
+          ) : (
+            <ContentMain>
+              <ContentInformations className="main">
+                <MainModal hasImage containerStyles={{ marginBottom: '20px' }}>
+                  <AvatarInput>
+                    <img src={user.avatar_url} alt={user.name} />
+                    <label htmlFor="avatar">
+                      <FiCamera />
+                      <input
+                        type="file"
+                        id="avatar"
+                        onChange={handleAvatarChange}
+                      />
+                    </label>
+                  </AvatarInput>
+
+                  <Description>
+                    <h6>{user.name}</h6>
+                  </Description>
+                </MainModal>
+              </ContentInformations>
+            </ContentMain>
+          )}
+        </ContentGrid>
+      </Content>
     </Container>
   );
 };

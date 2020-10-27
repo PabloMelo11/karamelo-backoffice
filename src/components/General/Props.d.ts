@@ -1,11 +1,9 @@
 export type IMainModalProps = {
-  title?: string;
-  subtitle?: string;
   headerBackgroundColor?: 'purple' | 'red' | 'yellow' | 'green' | 'blue';
-  hasImage?: boolean;
   headerStyle?: object;
   containerStyles?: object;
   contentStyles?: object;
+  triggerDone?(): void;
 };
 
 export type IHeader = {

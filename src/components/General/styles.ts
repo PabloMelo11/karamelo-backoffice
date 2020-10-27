@@ -6,7 +6,8 @@ import { IHeader } from './Props';
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  padding: 9px;
+  padding: 9px 0;
+  margin: 0 15px;
 
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.default};
@@ -37,14 +38,18 @@ const headerTypesColors = {
 };
 
 export const Header = styled.div<IHeader>`
-  margin: 0 15px;
-  padding: 3px 15px;
-  height: 40px;
+  width: 100%;
+  margin-top: -72px;
+  padding: 15px 0px;
+  height: 64px;
+  border-radius: 4px;
 
-  border-bottom: 1px solid ${({ theme }) => theme.colors.frozen};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   h4 {
-    color: ${({ theme }) => theme.colors.grey999};
+    color: #fff;
     margin-top: 0px;
     min-height: auto;
     font-weight: 300;
@@ -52,7 +57,7 @@ export const Header = styled.div<IHeader>`
   }
 
   p {
-    color: ${({ theme }) => theme.colors.grey};
+    color: ${({ theme }) => theme.colors.sub};
     margin: 0;
     font-size: ${({ theme }) => theme.fontSizes.default};
     margin-top: 0;
@@ -61,7 +66,19 @@ export const Header = styled.div<IHeader>`
 `;
 
 export const Content = styled.div`
-  margin: 40px 15px 12px;
+  overflow: auto;
+  height: calc(100vh - 175px);
+
+  &::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: #f4f4f4;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+  }
 `;
 
 export const ContentImage = styled.div`
@@ -76,8 +93,14 @@ export const NavigationCrud = styled.div`
   height: 100%;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
+  h2 {
+    color: #fff;
+    margin-right: 18px;
+    font-weight: 500;
+  }
 
   button {
     border: 0;
@@ -105,6 +128,11 @@ export const NavigationCrud = styled.div`
       margin-right: 9px;
     }
   }
+`;
+
+export const ContentItemsNavigation = styled.div`
+  flex: 1;
+  display: flex;
 `;
 
 const activeClassName = 'active';
@@ -143,5 +171,6 @@ export const MenuItem = styled(NavLink).attrs({
 
   &.${activeClassName} {
     background-color: rgba(255, 255, 255, 0.2);
+    opacity: 1;
   }
 `;

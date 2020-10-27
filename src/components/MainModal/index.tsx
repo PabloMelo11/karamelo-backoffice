@@ -6,27 +6,22 @@ import { IMainModalProps } from './Props';
 
 const MainModal: React.FC<IMainModalProps> = ({
   title,
-  subtitle,
   headerBackgroundColor,
-  headerShadowColor,
   hasImage,
   children,
   headerStyle,
+  containerStyles,
+  contentStyles,
 }) => {
   return (
-    <Container>
+    <Container style={containerStyles}>
       {!hasImage && (
-        <Header
-          backgroundColor={headerBackgroundColor}
-          shadowColor={headerShadowColor}
-          style={headerStyle}
-        >
-          <h4>{title}</h4>
-          <p>{subtitle}</p>
+        <Header style={headerStyle} backgroundColor={headerBackgroundColor}>
+          {title && <h4>{title}</h4>}
         </Header>
       )}
 
-      {!hasImage && <Content>{children}</Content>}
+      {!hasImage && <Content style={contentStyles}>{children}</Content>}
 
       {hasImage && <ContentImage>{children}</ContentImage>}
     </Container>
