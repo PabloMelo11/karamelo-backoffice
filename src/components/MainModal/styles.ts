@@ -38,7 +38,7 @@ const headerTypesColors = {
 
 export const Header = styled.div<IHeader>`
   margin: 0 15px;
-  padding: 15px;
+  padding: 3px 15px;
   height: 40px;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.frozen};

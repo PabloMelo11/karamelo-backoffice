@@ -7,15 +7,15 @@ import { Container, ContainerGrid, Row } from './styles';
 export const LoadingUserContent: React.FC = () => {
   return (
     <Container>
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
-      <Skeleton className="li-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
+      <Skeleton className="list-users" />
     </Container>
   );
 };
@@ -49,8 +49,6 @@ export const LoadingDetailsUser: React.FC = () => {
           <Skeleton className="title" />
         </div>
         <Skeleton className="li" />
-        <Skeleton className="li" />
-        <Skeleton className="li" />
       </div>
 
       <div className="products">
@@ -59,8 +57,6 @@ export const LoadingDetailsUser: React.FC = () => {
         </div>
 
         <Skeleton className="li" />
-        <Skeleton className="li" />
-        <Skeleton className="li" />
       </div>
 
       <div className="categories">
@@ -68,8 +64,6 @@ export const LoadingDetailsUser: React.FC = () => {
           <Skeleton className="title" />
         </div>
 
-        <Skeleton className="li" />
-        <Skeleton className="li" />
         <Skeleton className="li" />
       </div>
     </ContainerGrid>

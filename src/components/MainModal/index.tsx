@@ -6,7 +6,6 @@ import { IMainModalProps } from './Props';
 
 const MainModal: React.FC<IMainModalProps> = ({
   title,
-  subtitle,
   headerBackgroundColor,
   hasImage,
   children,

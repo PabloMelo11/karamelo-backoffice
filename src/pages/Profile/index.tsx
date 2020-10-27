@@ -274,10 +274,7 @@ const Profile: React.FC = () => {
             <LoadingProfileContent />
           ) : (
             <ContentInformations className="info">
-              <MainModal
-                title="Edite seu perfil"
-                subtitle="Complete as informações do perfil"
-              >
+              <MainModal title="Perfil">
                 <ContentForm>
                   <Form
                     ref={formRef}
@@ -302,6 +299,7 @@ const Profile: React.FC = () => {
                         <span>Usuário</span>
                         <Input
                           name="name"
+                          borderColor="blue"
                           autoComplete="off"
                           placeholder="Usuário"
                           mask=""
@@ -312,6 +310,7 @@ const Profile: React.FC = () => {
                         <span>E-mail</span>
                         <Input
                           name="email"
+                          borderColor="blue"
                           placeholder="E-mail"
                           autoComplete="off"
                           mask=""
@@ -322,6 +321,7 @@ const Profile: React.FC = () => {
                         <span>CPF</span>
                         <Input
                           name="cpf"
+                          borderColor="blue"
                           placeholder="CPF"
                           autoComplete="off"
                           mask="999.999.999-99"
@@ -333,6 +333,7 @@ const Profile: React.FC = () => {
                       <div>
                         <span>Data de nascimento</span>
                         <Input
+                          borderColor="blue"
                           name="date_of_birth"
                           placeholder="Nascimento"
                           mask="99/99/9999"
@@ -343,6 +344,7 @@ const Profile: React.FC = () => {
                       <div>
                         <span>Telefone</span>
                         <Input
+                          borderColor="blue"
                           name="phone"
                           placeholder="Telefone"
                           mask="(99) 99999-9999"
@@ -354,6 +356,7 @@ const Profile: React.FC = () => {
                         <span>Whatsapp</span>
                         <Input
                           name="whatsapp"
+                          borderColor="blue"
                           placeholder="Whatsapp"
                           mask="(99) 99999-9999"
                           autoComplete="off"
@@ -366,6 +369,7 @@ const Profile: React.FC = () => {
                         <span>CEP</span>
                         <Input
                           name="cep"
+                          borderColor="blue"
                           placeholder="CEP"
                           mask="99999-999"
                           onChange={event =>
@@ -379,6 +383,7 @@ const Profile: React.FC = () => {
                         <span>UF</span>
                         <Input
                           name="state"
+                          borderColor="blue"
                           placeholder="UF"
                           mask=""
                           value={stateApi || user.state}
@@ -390,6 +395,7 @@ const Profile: React.FC = () => {
                         <span>Cidade</span>
                         <Input
                           name="city"
+                          borderColor="blue"
                           placeholder="Cidade"
                           mask=""
                           value={cityApi || user.city}
@@ -404,6 +410,7 @@ const Profile: React.FC = () => {
                         <Input
                           name="neighborhood"
                           placeholder="Bairro"
+                          borderColor="blue"
                           mask=""
                           value={neighborhoodApi || user.neighborhood}
                           autoComplete="off"
@@ -415,6 +422,7 @@ const Profile: React.FC = () => {
                         <Input
                           name="street"
                           placeholder="Logradouro"
+                          borderColor="blue"
                           mask=""
                           value={streetApi || user.street}
                           autoComplete="off"
@@ -426,6 +434,7 @@ const Profile: React.FC = () => {
                         <Input
                           name="number"
                           placeholder="Número"
+                          borderColor="blue"
                           mask=""
                           autoComplete="off"
                         />
@@ -437,6 +446,7 @@ const Profile: React.FC = () => {
                         <span>Senha</span>
                         <Input
                           type="password"
+                          borderColor="blue"
                           name="password"
                           placeholder="Senha"
                           mask=""
@@ -451,12 +461,13 @@ const Profile: React.FC = () => {
                           name="password_confirmation"
                           placeholder="Confirmação de senha"
                           mask=""
+                          borderColor="blue"
                           autoComplete="off"
                         />
                       </div>
                     </Row>
 
-                    <ButtonForm type="submit">
+                    <ButtonForm type="submit" background="blue">
                       {loadingSubmit ? <Loading /> : 'Atualizar'}
                     </ButtonForm>
                   </Form>

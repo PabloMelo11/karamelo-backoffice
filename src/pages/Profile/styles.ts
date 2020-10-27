@@ -159,7 +159,7 @@ export const AvatarInput = styled.div`
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #ab47bc;
+    background: ${({ theme }) => theme.colors.blue_primary};
     right: 0;
     bottom: 0;
     border: 0;
@@ -177,7 +177,7 @@ export const AvatarInput = styled.div`
       color: #fff;
     }
     &:hover {
-      background: ${shade(0.2, '#ab47bc')};
+      background: ${({ theme }) => shade(0.2, theme.colors.blue_primary)};
     }
   }
 `;

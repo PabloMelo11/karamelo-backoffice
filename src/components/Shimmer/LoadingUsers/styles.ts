@@ -3,6 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
 
+  .list-users:first-child {
+    width: 100%;
+    height: 3.3rem;
+    margin: 0px 0px 24px 0px;
+  }
+
   .list-users {
     width: 100%;
     height: 6.6rem;
